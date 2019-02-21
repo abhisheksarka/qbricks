@@ -4,6 +4,7 @@ require 'active_support/core_ext'
 require 'quasi'
 require 'quore/version'
 require 'quore/models'
+require 'quore/browser'
 
 module Quore
   module_function
