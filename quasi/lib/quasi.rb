@@ -15,7 +15,6 @@ require_relative 'quasi/support'
 require_relative 'quasi/hash_mapped'
 require_relative 'quasi/element'
 require_relative 'quasi/browsable'
-require_relative 'quasi/browser'
 
 module Quasi
   MAX_LOOKUP_DEPTH = 50
