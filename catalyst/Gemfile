@@ -9,7 +9,9 @@ gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'rb-readline'
 
+gem 'quasi', path: '../quasi'
 gem 'quore', path: '../quore'
+
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
