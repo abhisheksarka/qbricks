@@ -1,0 +1,16 @@
+<%= form_for [@site, @flow] do |f| %>
+    <div class="form-group">
+      <%= f.select :site_id, Site.all.collect { |s| [ s.name, s.id ] }, { prompt: '---Select Site---' }, class: 'form-control', required: true %>
+    </div>
+    <div class='form-group'>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+    </div>
+    <div class='form-group'>
+      <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition Expression', required: false, value: @flow.display_condition_expression %>
+    </div>
+    <% if @flow.id %>
+        <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
+    <% else %>
+        <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
+    <% end %>
+<% end %>

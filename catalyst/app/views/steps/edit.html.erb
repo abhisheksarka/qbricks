@@ -1,0 +1,16 @@
+<div class="content-body text-center content-body-compressed">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to @site.name, { controller: 'sites', action: 'edit', id: @site.id } %></li>
+      <% if @flow %>
+          <li class="breadcrumb-item"><%= link_to 'Flows', { controller: 'flows', action: 'index', site_id: @site.id } %></li>
+          <li class="breadcrumb-item"><%= link_to @flow.name, { controller: 'flows', action: 'edit', site_id: @site.id, id: @flow.id } %></li>
+      <% end %>
+      <li class="breadcrumb-item"><%= link_to 'Steps', { controller: 'steps', action: 'index', flow_id: @flow.try(:id), site_id: @site.id } %></li>
+      <li class="breadcrumb-item"><%= link_to @step.name, { controller: 'steps', action: 'edit', flow_id: @flow.try(:id), site_id: @site.id, id: @step.id } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <%= render 'steps/form' %>
+</div>

@@ -1,0 +1,1 @@
+Quore.rails_setup

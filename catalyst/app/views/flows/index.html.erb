@@ -1,0 +1,33 @@
+<div class="content-body text-center">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to @site.name, { controller: 'sites', action: 'edit', id: @site.id } %></li>
+      <li class="breadcrumb-item"><%= link_to 'Flows', { controller: 'flows', action: 'index', site_id: @site.id } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <table class="table table-bordered table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Condition Expression</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @flows.each_with_index do |flow, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= flow.name %></td>
+          <td><%= flow.display_condition_expression %></td>
+          <td>
+            <%= link_to 'View/edit', { id: flow, action: 'edit' }, { class: 'btn btn-sm btn-info' } %>
+            <%= link_to 'Steps', { action: 'index', controller: 'steps', flow_id: flow.id }, { class: 'btn btn-sm btn-info' } %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

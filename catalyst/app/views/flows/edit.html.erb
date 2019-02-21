@@ -1,0 +1,12 @@
+<div class="content-body text-center content-body-compressed">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to @site.name, { controller: 'sites', action: 'edit', id: @site.id } %></li>
+      <li class="breadcrumb-item"><%= link_to 'Flows', { controller: 'flows', action: 'index', site_id: @site.id } %></li>
+      <li class="breadcrumb-item"><%= link_to @flow.name, { controller: 'flows', action: 'edit', id: @flow.id, site_id: @site.id } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <%= render 'flows/form' %>
+</div>

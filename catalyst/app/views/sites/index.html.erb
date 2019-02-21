@@ -1,0 +1,40 @@
+<div class="content-body text-center">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <table class="table table-bordered table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Code</th>
+        <th scope="col">Domain</th>
+        <th scope="col">Config</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sites.each_with_index do |site, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= site.name %></td>
+          <td><%= site.code %></td>
+          <td><%= site.domain %></td>
+          <td><%= site.config %></td>
+          <td>
+            <%= link_to 'View/Edit', { id: site, action: 'edit' }, { class: 'btn btn-sm btn-info' } %>
+            &nbsp; | &nbsp;
+            <%= link_to 'All Flows', { action: 'index', controller: 'flows', site_id: site.id }, { class: 'btn btn-sm btn-info' } %>
+            <%= link_to 'New Flow', { action: 'new', controller: 'flows', site_id: site.id }, { class: 'btn btn-sm btn-danger' } %>
+            &nbsp; | &nbsp;
+            <%= link_to 'All Steps', { action: 'index', controller: 'steps', site_id: site.id }, { class: 'btn btn-sm btn-info' } %>
+            <%= link_to 'New Step', { action: 'new', controller: 'steps', site_id: site.id }, { class: 'btn btn-sm btn-danger' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

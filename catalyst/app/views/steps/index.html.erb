@@ -1,0 +1,40 @@
+<div class="content-body text-center">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to @site.name, { controller: 'sites', action: 'edit', id: @site.id } %></li>
+      <% if @flow %>
+        <li class="breadcrumb-item"><%= link_to 'Flows', { controller: 'flows', action: 'index', site_id: @site.id } %></li>
+        <li class="breadcrumb-item"><%= link_to @flow.name, { controller: 'flows', action: 'edit', site_id: @site.id, id: @flow.id } %></li>
+      <% end %>
+      <li class="breadcrumb-item"><%= link_to 'Steps', { controller: 'steps', action: 'index', flow_id: @flow.try(:id), site_id: @site.id } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <table class="table table-bordered table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Config</th>
+      <th scope="col">Condition Expression</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @steps.each_with_index do |step, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= step.name %></td>
+          <td><%= step.step_type %></td>
+          <td><%= step.config %></td>
+          <td><%= step.display_condition_expression %></td>
+          <td>
+            <%= link_to 'View/edit', { id: step, action: 'edit', site_id: @site.id }, { class: 'btn btn-sm btn-info' } %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

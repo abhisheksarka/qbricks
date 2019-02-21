@@ -1,0 +1,30 @@
+<%= form_for [@site, @step] do |f| %>
+    <div class='form-group'>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.select :step_type, Step.step_types, { include_blank: false }, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.text_area :config, class: 'form-control', placeholder: 'Config', required: true, value: @step.config %>
+    </div>
+    <div class='form-group'>
+      <%= f.text_area :condition, class: 'form-control', placeholder: 'Condition', required: false, value: @step.display_condition_expression %>
+    </div>
+    <% @flows.each do |flow| %>
+      <div class="form-group">
+        <% if @step.flows.include? flow %>
+          <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>" checked/>
+        <% else %>
+          <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>"/>
+        <% end %>
+        <label for="flow-<%=flow.id%>"><%= flow.name %></label>
+      </div>
+    <% end %>
+
+    <% if @step.id %>
+      <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
+    <% else %>
+      <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
+    <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="content-body text-center content-body-compressed">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to 'New Site', { controller: 'sites', action: 'new' } %></li>
+    </ol>
+  </nav>
+  <br><hr><br>
+  <%= render 'sites/form' %>
+</div>
