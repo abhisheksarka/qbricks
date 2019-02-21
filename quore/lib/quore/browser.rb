@@ -10,7 +10,7 @@ module Quore
       @site = site
       @browsable_config = site.config.with_indifferent_access
       @data = dataset
-      @mdata = HashMapped.new(dataset, site.datamap)
+      @mdata = HashMapped.new(dataset, site.datamap || {})
     end
 
     def run
