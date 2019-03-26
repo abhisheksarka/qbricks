@@ -5,7 +5,7 @@ require_relative 'element/check_box'
 require_relative 'element/radio'
 require_relative 'element/select'
 
-module Quasi
+module Quanta
   module Element
     KLASS_MAP = {
       Watir::CheckBox => CheckBox,

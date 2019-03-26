@@ -1,6 +1,6 @@
-module Quasi
+module Quanta
   module Element
-    class CheckBox < Base
+    class Select < Base
       def set(value)
 
       end

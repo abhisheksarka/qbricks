@@ -1,4 +1,4 @@
-module Quasi
+module Quanta
   class HashMapped < HashWithIndifferentAccess
     KEYWORDS = {
       default: '__default'

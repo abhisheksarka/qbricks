@@ -1,9 +1,10 @@
-require "quasi/version"
+require "quanta/version"
 require 'pry'
 require 'open-uri'
 require 'tempfile'
 
 # All environment requirements
+require 'webdrivers'
 require 'uri'
 require 'active_support'
 require 'active_support/core_ext'
@@ -11,11 +12,11 @@ require 'watir'
 require 'watir-scroll'
 require 'fuzzystringmatch'
 
-require_relative 'quasi/support'
-require_relative 'quasi/hash_mapped'
-require_relative 'quasi/element'
-require_relative 'quasi/browsable'
+require_relative 'quanta/support'
+require_relative 'quanta/hash_mapped'
+require_relative 'quanta/element'
+require_relative 'quanta/browsable'
 
-module Quasi
+module Quanta
   MAX_LOOKUP_DEPTH = 50
 end

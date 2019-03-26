@@ -1,6 +1,6 @@
-RSpec.describe Quasi do
+RSpec.describe Quanta do
   it "has a version number" do
-    expect(Quasi::VERSION).not_to be nil
+    expect(Quanta::VERSION).not_to be nil
   end
 
   it "does something useful" do

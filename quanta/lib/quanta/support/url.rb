@@ -1,4 +1,4 @@
-module Quasi
+module Quanta
   module Support
     # This module provides a namespace
     # for all classes/modules that define

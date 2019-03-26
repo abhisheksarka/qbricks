@@ -1,4 +1,4 @@
-module Quasi
+module Quanta
   module Element
     class Base
       attr_accessor :el

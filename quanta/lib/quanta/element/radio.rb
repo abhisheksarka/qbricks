@@ -1,6 +1,6 @@
-module Quasi
+module Quanta
   module Element
-    class Select < Base
+    class Radio < Base
       def set(value)
 
       end

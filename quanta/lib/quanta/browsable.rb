@@ -1,4 +1,4 @@
-module Quasi
+module Quanta
   module Browsable
     include Support
     attr_accessor :browsable_config

@@ -1,8 +1,8 @@
-module Quasi
+module Quanta
   module Element
-    class Radio < Base
+    class TextField < Base
       def set(value)
-
+        el.set(value)
       end
     end
   end

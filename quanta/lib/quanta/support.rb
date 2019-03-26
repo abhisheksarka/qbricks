@@ -3,7 +3,7 @@ require_relative './support/address'
 require_relative './support/file'
 require_relative './support/string'
 
-module Quasi
+module Quanta
   # This module provides a namespace
   # for all classes/modules that define
   # support methods for different objects
