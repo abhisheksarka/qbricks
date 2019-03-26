@@ -1,8 +1,6 @@
 # Core
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/core`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This holds all services and business logic. Connects to the db. Check usage section
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Make sure you have the following env variables set
+```
+QUBRICKS_DB_NAME
+QUBRICKS_DB_HOST
+QUBRICKS_DB_USER
+QUBRICKS_DB_PASS
+```
+
+Start the gem console
+$ bin/console
+
+Connect to the db
+```
+Core.establish_connection
+```
 
 ## Development
 
