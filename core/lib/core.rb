@@ -2,11 +2,11 @@ require 'active_support'
 require 'active_record'
 require 'active_support/core_ext'
 require 'quasi'
-require 'quore/version'
-require 'quore/models'
-require 'quore/browser'
+require 'core/version'
+require 'core/models'
+require 'core/browser'
 
-module Quore
+module Core
   module_function
 
   def rails_setup
@@ -14,7 +14,7 @@ module Quore
   end
 
   def rails_db_path
-    Gem.loaded_specs['quore'].full_gem_path + '/lib/quore/db'
+    Gem.loaded_specs['core'].full_gem_path + '/lib/core/db'
   end
 
   def establish_connection

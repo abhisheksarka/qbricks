@@ -9,7 +9,7 @@ require_relative 'models/flows_step'
 require_relative 'models/site'
 require_relative 'models/step'
 
-module Quore
+module Core
   module Models
   end
 end

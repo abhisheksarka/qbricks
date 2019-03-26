@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "quore/version"
+require "core/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "quore"
-  spec.version       = Quore::VERSION
+  spec.name          = "core"
+  spec.version       = Core::VERSION
   spec.authors       = ["Abhishek Sarkar"]
   spec.email         = ["abhisheksarka@gmail.com"]
 

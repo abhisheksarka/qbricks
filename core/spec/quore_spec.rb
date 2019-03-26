@@ -1,6 +1,6 @@
-RSpec.describe Quore do
+RSpec.describe Core do
   it "has a version number" do
-    expect(Quore::VERSION).not_to be nil
+    expect(Core::VERSION).not_to be nil
   end
 
   it "does something useful" do

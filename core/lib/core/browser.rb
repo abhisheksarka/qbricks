@@ -1,4 +1,4 @@
-module Quore
+module Core
   class Browser
     include Quasi::Browsable
     attr_accessor :site,
