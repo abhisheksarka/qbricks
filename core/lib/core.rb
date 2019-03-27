@@ -4,7 +4,7 @@ require 'active_support/core_ext'
 require 'quanta'
 require 'core/version'
 require 'core/models'
-require 'core/browser'
+require 'core/services'
 
 module Core
   module_function

@@ -1,1 +1,1 @@
-Quore.rails_setup
+Core.rails_setup
