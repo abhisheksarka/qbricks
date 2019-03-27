@@ -1,7 +1,7 @@
 require 'active_support'
 require 'active_record'
 require 'active_support/core_ext'
-require 'quasi'
+require 'quanta'
 require 'core/version'
 require 'core/models'
 require 'core/browser'
