@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
-  before_action :load_site, only: [:update, :edit]
-  before_action :parse_config, only: [:update, :create]
+  before_action :load_site, only: %i[update edit]
+  before_action :parse_config, only: %i[update create]
+  before_action :parse_datamap, only: %i[update create]
 
   def index
     @sites = Site.all
@@ -14,15 +15,19 @@ class SitesController < ApplicationController
   end
 
   def create
-    @site = Site.find_or_create_by!(allowed_params)
-    flash[:success] = "Site created..."
+    @site = Site.create!(allowed_params)
+    flash[:success] = 'Site created...'
     render :new
   end
 
   def update
-    @site.update_attributes!(allowed_params)
-    flash[:success] = "Site updated..."
+    @site.update!(allowed_params)
+    flash[:success] = 'Site updated...'
     redirect_to edit_site_path(@site)
+  end
+
+  def run
+    Core::Services::Browser.new(@site, {})
   end
 
   private
@@ -32,10 +37,16 @@ class SitesController < ApplicationController
   end
 
   def allowed_params
-    @allowed_params ||= params.require(:site).permit(:name, :code, :config, :domain)
+    @allowed_params ||= params
+                        .require(:site)
+                        .permit(:name, :code, :config, :domain, datamap_attributes: [:content])
   end
 
   def parse_config
     allowed_params[:config] = JSON.parse(allowed_params[:config])
+  end
+
+  def parse_datamap
+    allowed_params[:datamap_attributes][:content] = JSON.parse(allowed_params[:datamap_attributes][:content])
   end
 end
