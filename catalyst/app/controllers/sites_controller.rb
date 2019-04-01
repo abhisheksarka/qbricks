@@ -1,7 +1,11 @@
 class SitesController < ApplicationController
-  before_action :load_site, only: %i[update edit]
+  before_action :load_site, only: %i[update edit runner]
   before_action :parse_config, only: %i[update create]
   before_action :parse_datamap, only: %i[update create]
+
+  def edit; end
+
+  def runner; end
 
   def index
     @sites = Site.all
@@ -9,9 +13,6 @@ class SitesController < ApplicationController
 
   def new
     @site = Site.new
-  end
-
-  def edit
   end
 
   def create
@@ -27,7 +28,7 @@ class SitesController < ApplicationController
   end
 
   def run
-    Core::Services::Browser.new(@site, {})
+    Core::Services::Browser.new(@site, params[:dataset]).run!
   end
 
   private

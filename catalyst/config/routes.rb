@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :sites do
     resources :flows
     resources :steps
+    member do
+      get 'runner'
+      post 'run'
+    end
   end
 
   resources :flows, only: [:create, :new, :edit, :update] do
