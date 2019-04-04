@@ -3,8 +3,8 @@ class Condition < ApplicationRecord
 
   belongs_to :conditionable, polymorphic: true
 
-  def execute?
-    interpolate(expression).eql? 'true'
+  def execute?(binding = nil)
+    interpolate(expression, binding).eql? 'true'
   end
 
   def display_expression

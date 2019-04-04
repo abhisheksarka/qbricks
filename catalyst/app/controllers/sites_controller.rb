@@ -29,8 +29,10 @@ class SitesController < ApplicationController
 
   def run
     dataset = JSON.parse(params[:site][:dataset])
-    binding.pry
-    Core::Services::Browser.new(@site, dataset).run!
+    Thread.new {
+      Core::Services::Browser.new(@site, dataset).run!
+    }
+    render :runner
   end
 
   private

@@ -9,10 +9,10 @@
       <%= f.text_field :domain, class: 'form-control', placeholder: 'Domain', required: true %>
     </div>
     <div class='form-group'>
-      <%= f.text_area :config, class: 'form-control', placeholder: 'JSON Config', required: true %>
+      <%= f.text_area :config, class: 'form-control', placeholder: 'JSON Config', required: true, value: @site.config.try(:to_json) %>
     </div>
     <div class='form-group'>
-      <%= f.text_area :datamap, class: 'form-control', placeholder: 'JSON Datamap', required: true %>
+      <%= f.text_area :datamap, class: 'form-control', placeholder: 'JSON Datamap', required: true, value: @site.datamap.try(:to_json) %>
     </div>
     <% if @site.id %>
       <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>

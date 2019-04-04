@@ -17,10 +17,10 @@ module Core
 
       def run!
         site.flows.each do |flow|
-          next unless flow.execute?
+          next unless flow.execute?(binding)
 
           flow.steps.each do |step|
-            next unless step.execute?
+            next unless step.execute?(binding)
 
             send(step.step_type, step.config)
           end

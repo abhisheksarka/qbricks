@@ -8,7 +8,7 @@ module Interpolatable
     v.is_a? String and v.include? Interpolatable.start_delimiter
   end
 
-  def interpolate(v)
+  def interpolate(v, binding)
     interpolate?(v) ? ERB.new(v).result(binding) : v
   end
 

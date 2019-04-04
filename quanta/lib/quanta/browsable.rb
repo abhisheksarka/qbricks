@@ -12,13 +12,13 @@ module Quanta
     end
 
     def goto(config)
-      browser_client.goto(config[:url])
+      browser_client.goto(config['url'])
     end
 
     # Sample - { input: { id: 'foo' }, set: 'bar' }
     def mset(config)
       el = find_by_config(config)
-      wrap_el(el).set(config[:set])
+      wrap_el(el).set(config['set'])
       config
     end
 
@@ -31,7 +31,7 @@ module Quanta
     # Sample - { label: 'Foo', nearest: 'text', set: 'bar' }
     def nset(nearest_config)
       el = find_by_nearest(nearest_config)
-      wrap_el(el).set(config[:set])
+      wrap_el(el).set(config['set'])
       nearest_config
     end
 
@@ -48,7 +48,7 @@ module Quanta
     end
 
     # Sample config: { div: { id: 'hello' } }
-    def find_by_config(config, doc=browser_client)
+    def find_by_config(config, doc = browser_client)
       doc ||= browser_client
       el = doc.send(config.keys[0], config.values[0]).to_subtype
       el.scroll.to(:center)

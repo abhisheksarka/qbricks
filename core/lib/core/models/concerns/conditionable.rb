@@ -7,8 +7,8 @@ module Conditionable
     has_one :condition, as: :conditionable
   end
 
-  def execute?
-    condition.blank? ? true : condition.execute?
+  def execute?(binding = nil)
+    condition.blank? ? true : condition.execute?(binding)
   end
 
   def display_condition_expression
