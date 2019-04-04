@@ -4,6 +4,7 @@ class CreateSites < ActiveRecord::Migration[5.2]
       t.string :name, index: true, unique: true, null: false
       t.string :code, index: true, unique: true, null: false
       t.jsonb :config, null: false
+      t.jsonb :datamap, null: false  
       t.string :domain, index: true, unique: true, null: false
 
       t.timestamps

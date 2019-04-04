@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :load_site, only: %i[update edit runner]
+  before_action :load_site, only: %i[update edit runner run]
   before_action :parse_config, only: %i[update create]
   before_action :parse_datamap, only: %i[update create]
 
@@ -28,6 +28,7 @@ class SitesController < ApplicationController
   end
 
   def run
+    binding.pry
     Core::Services::Browser.new(@site, params[:dataset]).run!
   end
 
@@ -40,7 +41,7 @@ class SitesController < ApplicationController
   def allowed_params
     @allowed_params ||= params
                         .require(:site)
-                        .permit(:name, :code, :config, :domain, datamap_attributes: [:content])
+                        .permit(:name, :code, :config, :domain, :datamap)
   end
 
   def parse_config
@@ -48,6 +49,6 @@ class SitesController < ApplicationController
   end
 
   def parse_datamap
-    allowed_params[:datamap_attributes][:content] = JSON.parse(allowed_params[:datamap_attributes][:content])
+    allowed_params[:datamap] = JSON.parse(allowed_params[:datamap])
   end
 end

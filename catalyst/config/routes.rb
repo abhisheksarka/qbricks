@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :steps
     member do
       get 'runner'
-      post 'run'
+      patch 'run'
     end
   end
 

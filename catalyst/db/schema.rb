@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_124635) do
+ActiveRecord::Schema.define(version: 2019_02_14_111415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_124635) do
     t.datetime "updated_at", null: false
     t.index ["conditionable_type", "conditionable_id"], name: "index_conditions_on_conditionable_type_and_conditionable_id"
     t.index ["expression"], name: "index_conditions_on_expression"
-  end
-
-  create_table "datamaps", force: :cascade do |t|
-    t.jsonb "content"
-    t.bigint "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["site_id"], name: "index_datamaps_on_site_id"
   end
 
   create_table "datasets", force: :cascade do |t|
@@ -64,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_124635) do
     t.string "name", null: false
     t.string "code", null: false
     t.jsonb "config", null: false
+    t.jsonb "datamap", null: false
     t.string "domain", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_124635) do
     t.index ["step_type"], name: "index_steps_on_step_type"
   end
 
-  add_foreign_key "datamaps", "sites"
   add_foreign_key "datasets", "sites"
   add_foreign_key "flows", "sites"
   add_foreign_key "flows_steps", "flows"

@@ -3,23 +3,26 @@ module Core
     class Browser
       include Quanta::Browsable
       attr_accessor :site,
-                    :data,
-                    :mdata
+                    :dataset,
+                    :datamap
 
 
       def initialize(site, dataset)
         @site = site
         @browsable_config = site.config.with_indifferent_access
-        @data = dataset
-        @mdata = HashMapped.new(dataset, site.datamap || {})
+        @dataset = dataset
+        @datamap = Quanta::HashMapped.new(dataset, site.datamap || {})
+        @site.dataset = dataset
       end
 
-      def run
+      def run!
         site.flows.each do |flow|
-          if flow.execute?
-            flow.steps.each do |step|
-              self.send(step.step_type, step.config) if step.execute?
-            end
+          next unless flow.execute?
+
+          flow.steps.each do |step|
+            next unless step.execute?
+
+            send(step.step_type, step.config)
           end
         end
       end
