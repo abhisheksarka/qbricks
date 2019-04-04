@@ -28,8 +28,9 @@ class SitesController < ApplicationController
   end
 
   def run
+    dataset = JSON.parse(params[:site][:dataset])
     binding.pry
-    Core::Services::Browser.new(@site, params[:dataset]).run!
+    Core::Services::Browser.new(@site, dataset).run!
   end
 
   private
@@ -41,7 +42,14 @@ class SitesController < ApplicationController
   def allowed_params
     @allowed_params ||= params
                         .require(:site)
-                        .permit(:name, :code, :config, :domain, :datamap)
+                        .permit(
+                          :name,
+                          :code,
+                          :domain,
+                          :config,
+                          :datamap,
+                          :dataset
+                        )
   end
 
   def parse_config
