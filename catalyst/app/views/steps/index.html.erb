@@ -14,7 +14,7 @@
   <table class="table table-bordered table-striped table-dark">
     <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Serial</th>
       <th scope="col">Name</th>
       <th scope="col">Type</th>
       <th scope="col">Config</th>
@@ -25,7 +25,7 @@
     <tbody>
     <% @steps.each_with_index do |step, i| %>
         <tr>
-          <th scope="row"><%= i+1 %></th>
+          <th scope="row"><%= step.serial %></th>
           <td><%= step.name %></td>
           <td><%= step.step_type %></td>
           <td><%= step.config %></td>

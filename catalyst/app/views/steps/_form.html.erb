@@ -11,6 +11,9 @@
     <div class='form-group'>
       <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition', required: false, value: @step.display_condition_expression %>
     </div>
+    <div class='form-group'>
+      <%= f.text_field :serial, class: 'form-control', placeholder: 'Serial', required: true, value: @step.serial, type: :number %>
+    </div>
     <% @flows.each do |flow| %>
       <div class="form-group">
         <% if @step.flows.include? flow %>

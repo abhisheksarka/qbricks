@@ -1,6 +1,6 @@
 <%= form_for @site, url: { action: :run } do |f| %>
     <div class='form-group'>
-      <%= f.text_area :dataset, class: 'form-control', placeholder: 'JSON Dataset', required: true %>
+      <%= f.text_area :dataset, class: 'form-control', placeholder: 'JSON Dataset', required: true, value: @site.dataset.try(:to_json) %>
     </div>
     <%= f.submit 'Start Browser', class: 'btn btn-primary btn-lg' %>
 <% end %>

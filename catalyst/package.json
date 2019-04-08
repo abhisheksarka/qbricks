@@ -1,5 +1,7 @@
 {
   "name": "catalyst",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jsoneditor": "^5.32.3"
+  }
 }

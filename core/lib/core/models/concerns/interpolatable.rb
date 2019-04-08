@@ -5,7 +5,7 @@ module Interpolatable
   extend ActiveSupport::Concern
 
   def interpolate?(v)
-    v.is_a? String and v.include? Interpolatable.start_delimiter
+    v.is_a? String and v.to_s.include? Interpolatable.start_delimiter
   end
 
   def interpolate(v, binding)

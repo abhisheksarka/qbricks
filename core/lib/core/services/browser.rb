@@ -22,7 +22,7 @@ module Core
           flow.steps.each do |step|
             next unless step.execute?(binding)
 
-            send(step.step_type, step.config)
+            send(step.step_type, step.interpolated_config(binding))
           end
         end
       end
