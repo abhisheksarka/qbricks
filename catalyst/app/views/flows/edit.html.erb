@@ -6,6 +6,9 @@
       <li class="breadcrumb-item"><%= link_to 'Flows', { controller: 'flows', action: 'index', site_id: @site.id } %></li>
       <li class="breadcrumb-item"><%= link_to @flow.name, { controller: 'flows', action: 'edit', id: @flow.id, site_id: @site.id } %></li>
     </ol>
+    <div>
+      <%= link_to 'All Steps', { action: 'index', controller: 'steps', flow_id: @flow.id }, { class: 'btn btn-sm btn-info' } %>
+    </div>
   </nav>
   <br><hr><br>
   <%= render 'flows/form' %>

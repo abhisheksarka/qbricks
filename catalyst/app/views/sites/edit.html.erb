@@ -1,9 +1,16 @@
 <div class="content-body text-center content-body-compressed">
-  <nav aria-label="breadcrumb">
+  <nav aria-label="breadcrumb" class="justify-content-end">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
       <li class="breadcrumb-item"><%= link_to @site.name, { controller: 'sites', action: 'edit', id: @site.id } %></li>
     </ol>
+    <div>
+      <%= link_to 'Run', { id: @site, action: 'runner' }, { class: 'btn btn-sm btn-info' } %>
+      <%= link_to 'All Flows', { action: 'index', controller: 'flows', site_id: @site.id }, { class: 'btn btn-sm btn-info' } %>
+      <%= link_to 'All Steps', { action: 'index', controller: 'steps', site_id: @site.id }, { class: 'btn btn-sm btn-info' } %>
+      <%= link_to 'New Flow', { action: 'new', controller: 'flows', site_id: @site.id }, { class: 'btn btn-sm btn-danger' } %>
+      <%= link_to 'New Step', { action: 'new', controller: 'steps', site_id: @site.id }, { class: 'btn btn-sm btn-danger' } %>
+    </div>
   </nav>
   <br><hr><br>
   <%= render 'sites/form' %>

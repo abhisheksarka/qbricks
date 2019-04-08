@@ -2,6 +2,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><%= link_to 'Qubricks Sites', { controller: 'sites', action: 'index' } %></li>
+      <li class="breadcrumb-item"><%= link_to @site.name, { id: @site, action: 'edit' } %></li>
       <li class="breadcrumb-item"><%= link_to @site.name + ' run', { controller: 'sites', action: 'runner', id: @site.id } %></li>
     </ol>
   </nav>

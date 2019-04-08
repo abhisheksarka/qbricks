@@ -26,13 +26,6 @@
           <td><%= site.config %></td>
           <td>
             <%= link_to 'View/Edit', { id: site, action: 'edit' }, { class: 'btn btn-sm btn-info' } %>
-            <%= link_to 'Run', { id: site, action: 'runner' }, { class: 'btn btn-sm btn-info' } %>
-            &nbsp; | &nbsp;
-            <%= link_to 'All Flows', { action: 'index', controller: 'flows', site_id: site.id }, { class: 'btn btn-sm btn-info' } %>
-            <%= link_to 'New Flow', { action: 'new', controller: 'flows', site_id: site.id }, { class: 'btn btn-sm btn-danger' } %>
-            &nbsp; | &nbsp;
-            <%= link_to 'All Steps', { action: 'index', controller: 'steps', site_id: site.id }, { class: 'btn btn-sm btn-info' } %>
-            <%= link_to 'New Step', { action: 'new', controller: 'steps', site_id: site.id }, { class: 'btn btn-sm btn-danger' } %>
           </td>
         </tr>
       <% end %>

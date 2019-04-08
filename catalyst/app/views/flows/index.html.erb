@@ -24,7 +24,6 @@
           <td><%= flow.display_condition_expression %></td>
           <td>
             <%= link_to 'View/edit', { id: flow, action: 'edit' }, { class: 'btn btn-sm btn-info' } %>&nbsp;
-            <%= link_to 'Steps', { action: 'index', controller: 'steps', flow_id: flow.id }, { class: 'btn btn-sm btn-info' } %>
           </td>
         </tr>
     <% end %>
