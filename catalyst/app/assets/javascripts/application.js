@@ -16,4 +16,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require json_editor
+//= require json_editor_init
 //= require_tree .

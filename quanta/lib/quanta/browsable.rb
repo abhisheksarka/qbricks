@@ -61,7 +61,7 @@ module Quanta
 
     # Sample config: { div: { id: 'hello' } }
     def find_by_config(config, doc = browser_client)
-      el = doc.send(config.keys[0], config.values[0]).to_subtype
+      el = doc.send(config.keys[0], config.values[0].symbolize_keys).to_subtype
       el.scroll.to(:center)
       el
     end
