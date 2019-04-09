@@ -5,7 +5,8 @@ class SitesController < ApplicationController
 
   def edit; end
 
-  def runner; end
+  def runner
+  end
 
   def index
     @sites = Site.all
@@ -29,6 +30,7 @@ class SitesController < ApplicationController
 
   def run
     dataset = JSON.parse(params[:site][:dataset])
+    $redis.set('current_dataset', dataset.to_json)
     Thread.new {
       Core::Services::Browser.new(@site, dataset).run!
     }

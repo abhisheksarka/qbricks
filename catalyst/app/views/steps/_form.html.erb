@@ -6,7 +6,7 @@
       <%= f.select :step_type, Step.step_types, { include_blank: false }, class: 'form-control' %>
     </div>
     <div class='form-group'>
-      <%= f.text_area :config, class: 'form-control', placeholder: 'Config', required: true, value: @step.config.try(:to_json) %>
+      <%= f.text_area :config, class: 'form-control', placeholder: 'Config', required: true, value: @step.config.try(:to_json_ea) %>
     </div>
     <div class='form-group'>
       <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition', required: false, value: @step.display_condition_expression %>
