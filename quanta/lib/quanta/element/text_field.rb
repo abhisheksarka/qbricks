@@ -3,6 +3,7 @@ module Quanta
     class TextField < Base
       def set(value)
         el.set(value)
+        broadcast_change
       end
     end
   end
