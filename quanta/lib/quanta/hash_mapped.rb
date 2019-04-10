@@ -4,7 +4,7 @@ module Quanta
       default: '_d_',
       wild_card: '_wc_'
     }.freeze
-
+    WILD_CARD_REGEX = '.{0,}'
     STRUCTURES = [Hash].freeze
 
     attr_accessor :hash,
@@ -30,7 +30,7 @@ module Quanta
 
     def apply(hash, key)
       hash_keys = hash.keys
-      apply_standard(hash, hash_keys, key) || apply_default(hash, hash_keys, key)
+      apply_standard(hash, hash_keys, key) || apply_wildcard(hash, hash_keys, key) || apply_default(hash, hash_keys, key)
     end
 
     def apply_standard(hash, hash_keys, key)
@@ -39,6 +39,18 @@ module Quanta
 
     def apply_default(hash, hash_keys, _key)
       hash[KEYWORDS[:default]] if hash_keys.include? KEYWORDS[:default]
+    end
+
+    def apply_wildcard(hash, _hash_keys, key)
+      kwc = KEYWORDS[:wild_card]
+      found = nil
+      hash.each do |k, _v|
+        if k.include?(kwc) && (/#{k.gsub(kwc, WILD_CARD_REGEX)}/ =~ key).present?
+          found = k
+          break
+        end
+      end
+      hash[found] if found
     end
 
     def struct?(val)
