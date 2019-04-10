@@ -21,7 +21,7 @@ module Core
 
           flow.steps.each do |step|
             next unless step.execute?(binding)
-            binding.pry if step.name == 'Property Type'
+            
             send(step.step_type, step.interpolated_config(binding))
           end
         end
