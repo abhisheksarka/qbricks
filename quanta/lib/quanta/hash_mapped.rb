@@ -31,13 +31,15 @@ module Quanta
   # res = Quanta::HashMapped.new({}, datamap)
   # res['city'] # No City
   ######################################################################
-  
+
   class HashMapped < HashWithIndifferentAccess
     KEYWORDS = {
       default: '_d_',
       wild_card: '_wc_'
     }.freeze
-    WILD_CARD_REGEX = '.{0,}'
+
+    WILD_CARD_REGEX = '.{0,}'.freeze
+
     STRUCTURES = [Hash].freeze
 
     attr_accessor :hash,
