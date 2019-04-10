@@ -6,7 +6,6 @@ module Core
                     :dataset,
                     :datamap
 
-
       def initialize(site, dataset)
         @site = site
         @browsable_config = site.config.with_indifferent_access
