@@ -55,7 +55,11 @@ module Quanta
         HashMapped.new(val, mapped[key])
       else
         map = mapped[key]
-        apply(map, val) if map.present?
+        if map.present?
+          apply(map, val)
+        else
+          val
+        end
       end
     end
 
