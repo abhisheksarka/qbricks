@@ -1,3 +1,34 @@
+Usage
+
+datamap = {
+  # Define the mappings for the value of `city` key in `dataset`
+  city: {
+    Bangalore: 'Bengaluru',
+    Gurgaon: 'Gurugram',
+
+    # Default when `city` is nil
+    _d_: 'No City',
+    # Wild Card when `city` is like Delhi
+    _wc_Delhi_wc_: 'New Delhi'
+  }
+}
+
+# No Mapping
+res = Quanta::HashMapped.new({ city: 'Noida' }, datamap)
+res['city'] # Noida
+
+# Simple Mapping
+res = Quanta::HashMapped.new({ city: 'Bangalore' }, datamap)
+res['city'] # Bengaluru
+
+# Wild Card Mapping
+res = Quanta::HashMapped.new({ city: 'South Delhi' }, datamap)
+res['city'] # New Delhi
+
+# Default Mapping
+res = Quanta::HashMapped.new({}, datamap)
+res['city'] # No City
+
 module Quanta
   class HashMapped < HashWithIndifferentAccess
     KEYWORDS = {
@@ -37,7 +68,9 @@ module Quanta
       hash[key.to_s] if hash_keys.include? key.to_s
     end
 
-    def apply_default(hash, hash_keys, _key)
+    def apply_default(hash, hash_keys, key)
+      return key if key.present?
+
       hash[KEYWORDS[:default]] if hash_keys.include? KEYWORDS[:default]
     end
 
