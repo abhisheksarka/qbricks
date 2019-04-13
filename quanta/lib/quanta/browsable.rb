@@ -93,10 +93,11 @@ module Quanta
 
       depth += 1
       parent = node.parent
-      if parent
-        el = find_by_config({ lookup.to_sym => { index: 0 } }, parent)
-        el.exists? ? el : recursive_lookup(parent, lookup, doc, depth)
-      end
+
+      return unless parent
+
+      el = find_by_config({ lookup.to_sym => { index: 0 } }, parent)
+      el.exists? ? el : recursive_lookup(parent, lookup, doc, depth)
     end
   end
 end
