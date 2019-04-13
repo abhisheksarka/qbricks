@@ -16,9 +16,12 @@ input[type='text'].form-control, textarea.form-control, select.form-control, inp
 }
 
 form {
-  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  max-width: 800px;
+  label {
+    font-weight: bold;
+  }
 }
 
 h1, h2, h3 {
@@ -53,10 +56,4 @@ table {
 .ace_editor {
   border-radius: 8px;
   width: 100% !important;
-}
-
-form {
-  label {
-    font-weight: bold;
-  }
 }
