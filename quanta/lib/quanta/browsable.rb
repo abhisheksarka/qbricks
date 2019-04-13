@@ -77,9 +77,14 @@ module Quanta
     end
 
     # Sample nearest_config: { label: 'Foo', nearest: 'text_field', val: 'bar' }
+    # Sample nearest_config: { label: { class: 'form-label', visible_text: 'Bar' }, nearest: 'text_field', val: 'bar' }
     def find_by_nearest(nearest_config, doc = browser_client)
       val = nearest_config.values[0]
-      start_node = val.is_a? String ? find_by_text(nearest_config, doc) : find_by_config(nearest_config)
+      start_node = if val.is_a? String
+                     find_by_text(nearest_config, doc)
+                   else
+                     find_by_config(nearest_config.keys[0] => val)
+                   end
       recursive_lookup(start_node, nearest_config[:nearest], doc)
     end
 
