@@ -1,18 +1,23 @@
-<%= form_for [@site, @step] do |f| %>
+<%= form_for [@site, @step], html: {class: 'text-left'} do |f| %>
     <div class='form-group'>
+      <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
     </div>
     <div class="form-group">
+      <%= f.label :step_type %>
       <%= f.select :step_type, Step.step_types, { include_blank: false }, class: 'form-control' %>
     </div>
     <div class='form-group'>
-      <%= f.text_area :config, class: 'form-control', placeholder: 'Config', required: true, value: @step.config.try(:to_json_ea) %>
+      <%= f.label :config %>
+      <%= f.text_area :config, class: 'form-control', placeholder: 'Config', required: true, value: @step.config.try(:to_json_ea), rows: 5 %>
     </div>
     <div class='form-group'>
+      <%= f.label :condition %>
       <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition', required: false, value: @step.display_condition_expression %>
     </div>
     <div class='form-group'>
-      <%= f.text_field :serial, class: 'form-control', placeholder: 'Serial', required: true, value: @step.serial, type: :number %>
+      <%= f.label :serial %>
+      <%= f.text_field :serial, class: 'form-control', placeholder: 'Serial', required: true, value: @step.serial, type: :number, value: @site.steps.count + 1  %>
     </div>
     <% @flows.each do |flow| %>
       <div class="form-group">
@@ -31,3 +36,8 @@
       <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
     <% end %>
 <% end %>
+<script type="text/javascript">
+  $(function() {
+    new JSONEditor('#step_config');
+  })        
+</script>

@@ -1,5 +1,9 @@
 function JSONEditor(textAreaId, json = null, opts = {}) {
-  this.opts = { theme: 'twilight', lang: 'json' };
+  var defaultOpts = { 
+    theme: 'twilight', 
+    lang: 'json' 
+  };
+  this.opts = $.extend(defaultOpts, opts);
   this.elId = textAreaId;
   this.$el = $(textAreaId);
   this.load();
