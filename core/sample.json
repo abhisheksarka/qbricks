@@ -1,0 +1,33 @@
+{
+  "auth": {
+    "uid": "abhisheksarka@gmail.com",
+    "pwd": "Magic0657!",
+    "type": "Broker",
+    "rera_id": ""
+  },
+  "location": {
+    "unit": "A-304",
+    "complex": "Bren Paddington",
+    "locality": "Sarjapur",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "pincode": "560103",
+    "latitude": "12.9184653'",
+    "longitude": "77.6758485",
+    "landmarks": "Motherhood Hospital"
+  },
+  "basic": {
+    "for": "SALE",
+    "type": "BUILDER_FLOOR_APARTMENT",
+    "category": "RESIDENTIAL",
+    "transaction_type": "RESALE",
+    "description": "",
+    "ownership_type": "FREEHOLD"
+  },
+  "availability": {
+    "status": "READY_TO_MOVE_IN",
+    "available_from": "01-05-2018",
+    "age": 3
+  }
+}

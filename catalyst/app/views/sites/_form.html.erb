@@ -8,11 +8,13 @@
     <div class='form-group'>
       <%= f.text_field :domain, class: 'form-control', placeholder: 'Domain', required: true %>
     </div>
-    <div class='form-group'>
-      <%= f.text_area :config, class: 'form-control', placeholder: 'JSON Config', required: true, value: @site.config.try(:to_json) %>
+    <div class='form-group text-left'>
+      <%= f.label :config %>
+      <%= f.text_area :config, class: 'form-control', placeholder: 'JSON Config', required: true, value: @site.config.try(:to_json), rows: 5, autocomplete: 'off' %>
     </div>
-    <div class='form-group'>
-      <%= f.text_area :datamap, class: 'form-control', placeholder: 'JSON Datamap', required: true, value: @site.datamap.try(:to_json), autocomplete: 'off' %>
+    <div class='form-group text-left'>
+      <%= f.label :datamap %>
+      <%= f.text_area :datamap, class: 'form-control', placeholder: 'JSON Datamap', required: true, value: @site.datamap.try(:to_json), autocomplete: 'off', rows: 10 %>
     </div>
     <% if @site.id %>
       <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
@@ -20,3 +22,9 @@
       <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
     <% end %>
 <% end %>
+<script type="text/javascript">
+  $(function() {
+    new JSONEditor('#site_config');
+    new JSONEditor('#site_datamap');
+  })        
+</script>

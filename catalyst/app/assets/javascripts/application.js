@@ -16,6 +16,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require vendor/ace/ace
+//= require vendor/ace/theme-twilight
+//= require vendor/ace/mode-json
+//= require vendor/ace/worker-json
+//= require vendor/jquery-ace.min.js
 //= require json_editor
-//= require json_editor_init
 //= require_tree .
