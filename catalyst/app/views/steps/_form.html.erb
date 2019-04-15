@@ -19,18 +19,20 @@
       <%= f.label :serial %>
       <%= f.text_field :serial, class: 'form-control', placeholder: 'Serial', required: true, type: :number, value: (@step.serial || (@site.steps.count + 1))  %>
     </div>
-    <% @flows.each do |flow| %>
-      <div class="form-group">
-        <% if @step.flows.include? flow %>
-          <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>" checked/>
-        <% else %>
-          <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>"/>
-        <% end %>
-        <input type="number" class="form-control form-control-inline" placeholder="Serial"/>
-        <label for="flow-<%=flow.id%>"><%= flow.name %></label>
-      </div>
-    <% end %>
-
+    <fieldset>
+      <legend>Associate Flows to this Step</legend>
+      <% @flows.each do |flow| %>
+        <div class="form-group">
+          <% if @step.flows.include? flow %>
+            <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>" checked/>
+          <% else %>
+            <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>"/>
+          <% end %>
+          <input type="number" class="form-control form-control-inline" placeholder="Serial"/>
+          <label for="flow-<%=flow.id%>"><%= flow.name %></label>
+        </div>
+      <% end %>
+    </fieldset>
     <% if @step.id %>
       <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
     <% else %>
