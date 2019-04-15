@@ -28,7 +28,7 @@
           <th scope="row"><%= step.serial %></th>
           <td><%= step.name %></td>
           <td><%= step.step_type %></td>
-          <td><%= step.config %></td>
+          <td><%= step.config.try(:to_json_ea) %></td>
           <td><%= step.display_condition_expression %></td>
           <td>
             <%= link_to 'View/edit', { id: step, action: 'edit', site_id: @site.id }, { class: 'btn btn-sm btn-info' } %>

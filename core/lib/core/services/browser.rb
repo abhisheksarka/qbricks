@@ -4,13 +4,15 @@ module Core
       include Quanta::Browsable
       attr_accessor :site,
                     :dataset,
-                    :datamap
+                    :datamap,
+                    :params
 
       def initialize(site, dataset)
         @site = site
         @browsable_config = site.config.with_indifferent_access
         @dataset = dataset
-        @datamap = Quanta::HashMapped.new(dataset, site.datamap || {})
+        @datamap = site.datamap
+        @params = Quanta::HashMapped.new(@dataset, (@datamap || {}))
         @site.dataset = dataset
       end
 
