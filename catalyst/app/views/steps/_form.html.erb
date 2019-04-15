@@ -26,6 +26,7 @@
         <% else %>
           <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>"/>
         <% end %>
+        <input type="number" class="form-control form-control-inline" placeholder="Serial"/>
         <label for="flow-<%=flow.id%>"><%= flow.name %></label>
       </div>
     <% end %>

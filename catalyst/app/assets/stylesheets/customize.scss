@@ -60,3 +60,10 @@ table {
   border-radius: 8px;
   width: 100% !important;
 }
+
+form {
+  .form-control-inline {
+    display: inline;
+    width: auto;
+  }
+}
