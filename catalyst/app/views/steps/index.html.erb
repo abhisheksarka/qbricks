@@ -33,7 +33,7 @@
           <td><%= step.display_condition_expression %></td>
           <% if @flow %>
             <% fs = FlowsStep.find_by(flow_id: @flow.id, step_id: step.id) %>
-            <td>
+            <td style="min-width: 200px">
             <%= form_for(fs) do |f| %>
               <%= f.number_field :serial, class: 'form-control-table', placeholder: 'Serial', required: true, value: fs.try(:serial)%>
               <%= f.submit 'Update', class: 'btn btn-primary btn-sm' %>
