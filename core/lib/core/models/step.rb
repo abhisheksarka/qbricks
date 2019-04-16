@@ -1,7 +1,6 @@
 class Step < ApplicationRecord
   include Conditionable
   include Interpolatable
-  default_scope { order('serial asc') }
 
   belongs_to :site
   has_and_belongs_to_many :flows

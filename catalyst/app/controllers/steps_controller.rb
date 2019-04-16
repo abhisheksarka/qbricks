@@ -14,7 +14,7 @@ class StepsController < ApplicationController
              else
                @site
              end
-    @steps = caller.steps.order('serial ASC')
+    @steps = caller.steps
   end
 
   def edit
@@ -81,7 +81,7 @@ class StepsController < ApplicationController
   end
 
   def allowed_params
-    @allowed_params ||= params.require(:step).permit(:name, :step_type, :config, :condition_expression, :flow_ids, :serial)
+    @allowed_params ||= params.require(:step).permit(:name, :step_type, :config, :condition_expression, :flow_ids)
   end
 
   def format_condition_expression

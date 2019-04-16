@@ -15,20 +15,16 @@
       <%= f.label :condition %>
       <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition', required: false, value: @step.display_condition_expression %>
     </div>
-    <div class='form-group'>
-      <%= f.label :serial %>
-      <%= f.text_field :serial, class: 'form-control', placeholder: 'Serial', required: true, type: :number, value: (@step.serial || (@site.steps.count + 1))  %>
-    </div>
     <fieldset>
       <legend>Associate Flows to this Step</legend>
       <% @flows.each do |flow| %>
+        <% fs = FlowsStep.find_by(flow_id: flow.id, step_id: @step.id) %>
         <div class="form-group">
-          <% if @step.flows.include? flow %>
+          <% if fs.present? %>
             <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>" checked/>
           <% else %>
             <input type="checkbox" name="flow_ids[]" value="<%= flow.id %>" id="flow-<%=flow.id%>"/>
           <% end %>
-          <input type="number" class="form-control form-control-inline" placeholder="Serial"/>
           <label for="flow-<%=flow.id%>"><%= flow.name %></label>
         </div>
       <% end %>

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :flows, only: [:create, :new, :edit, :update] do
     resources :steps, only: [:index]
   end
+
+  resources :flows_steps, only: [:update]
 end

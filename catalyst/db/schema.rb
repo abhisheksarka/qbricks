@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_111416) do
+ActiveRecord::Schema.define(version: 2019_02_14_111418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_111416) do
     t.bigint "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "serial"
     t.index ["flow_id"], name: "index_flows_steps_on_flow_id"
     t.index ["step_id"], name: "index_flows_steps_on_step_id"
   end
@@ -72,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_111416) do
     t.jsonb "config", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "serial", null: false
+    t.jsonb "signature"
     t.index ["name"], name: "index_steps_on_name"
     t.index ["site_id"], name: "index_steps_on_site_id"
     t.index ["step_type"], name: "index_steps_on_step_type"
