@@ -38,8 +38,11 @@ class StepsController < ApplicationController
 
     # If flow_id provided, create the flow join table record
     f = (params[:flow_ids] || []).map(&:to_i)
+
     ActiveRecord::Base.transaction do
-      FlowsStep.where(step_id: @step.id).destroy_all
+      FlowsStep.where(step_id: @step.id).each do |fs|
+        fs.destroy unless f.include? fs.flow_id
+      end
       f.each do |flow_id|
         FlowsStep.find_or_create_by!(step_id: @step.id, flow_id: flow_id)
       end
@@ -62,7 +65,7 @@ class StepsController < ApplicationController
     # If flow_id provided, create the flow join table record
     f = (params[:flow_ids] || []).map(&:to_i)
     f.each do |flow_id|
-      FlowsStep.find_or_create_by(step_id: @step.id, flow_id: flow_id)
+      FlowsStep.find_or_create_by(step_id: @step.id, flow_id: flow_id, serial: FlowsStep.count + 1)
     end
 
     flash[:success] = "Step created"
