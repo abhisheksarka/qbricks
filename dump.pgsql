@@ -354,6 +354,10 @@ COPY public.flows (id, site_id, name, created_at, updated_at) FROM stdin;
 --
 
 COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) FROM stdin;
+37	1	17	2019-04-20 14:45:43.998746	2019-04-20 14:46:08.544835	13
+36	1	16	2019-04-18 16:58:12.677213	2019-04-20 14:46:13.858615	14
+38	1	18	2019-04-20 18:02:06.419448	2019-04-20 18:06:37.780903	15
+39	1	19	2019-04-20 18:02:54.417278	2019-04-20 18:06:43.493647	16
 26	1	12	2019-04-15 16:53:44.543565	2019-04-16 15:51:08.219011	9
 4	1	4	2019-04-08 16:07:04.307873	2019-04-16 16:36:21.512774	1
 22	1	5	2019-04-15 14:22:11.553504	2019-04-18 16:17:15.782129	2
@@ -367,7 +371,6 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 33	1	14	2019-04-18 16:46:43.83084	2019-04-18 16:51:32.624325	11
 34	1	15	2019-04-18 16:57:28.024761	2019-04-18 16:57:28.024761	12
 35	2	15	2019-04-18 16:57:28.037583	2019-04-18 16:57:28.037583	13
-36	1	16	2019-04-18 16:58:12.677213	2019-04-18 16:58:24.861581	13
 \.
 
 
@@ -393,7 +396,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
-1	Magic Bricks	mb	{"browser_type": "chrome"}	{"basics": {"type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-04-18 16:36:59.815752
+1	Magic Bricks	mb	{"browser_type": "chrome"}	{"basics": {"type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}}, "features": {"bedrooms": {"11..": "> 10"}, "balconies": {"11..": "> 10"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-04-20 18:05:42.979727
 \.
 
 
@@ -415,6 +418,9 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 13	1	City	nset	{"div": {"class": "formLabel", "visible_text": "City"}, "set": "<%= params['location']['city'] %>", "nearest": "select"}	2019-04-09 18:12:52.532004	2019-04-18 16:35:03.397962	\N
 15	1	Complex	nset	{"div": {"class": "formLabel", "visible_text": "Name of Project/Society"}, "set": "<%= params['location']['complex']%>", "nearest": "text_field"}	2019-04-18 16:57:28.006246	2019-04-18 16:57:28.006246	\N
 16	1	Unit	nset	{"div": {"class": "formLabel", "visible_text": "Address"}, "set": "<%= params['location']['unit']%>", "nearest": "text_field"}	2019-04-18 16:58:12.62551	2019-04-18 16:58:12.62551	\N
+17	1	Body click	mclick	{"body": {"index": 0}}	2019-04-20 14:45:43.979706	2019-04-20 14:45:43.979706	\N
+18	1	Bedrooms	nset	{"li": {"id": "bedroomsDiv"}, "set": "<%= params['features']['bedrooms'] %>", "nearest": "select"}	2019-04-20 18:02:06.37406	2019-04-20 18:02:06.37406	\N
+19	1	Balconies	nset	{"li": {"id": "balconiesDiv"}, "set": "<%= params['features']['balconies'] %>", "nearest": "select"}	2019-04-20 18:02:54.403707	2019-04-20 18:02:54.403707	\N
 \.
 
 
@@ -443,7 +449,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 36, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 39, true);
 
 
 --
@@ -457,7 +463,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 16, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 19, true);
 
 
 --
