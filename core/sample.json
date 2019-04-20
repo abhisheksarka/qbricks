@@ -29,5 +29,33 @@
     "status": "READY_TO_MOVE_IN",
     "available_from": "01-05-2018",
     "age": 3
+  },
+  "features": {
+    "bhk": 3,
+    "bedrooms": 3,
+    "balconies": 2,
+    "bathrooms": 3,
+    "floor": 3,
+    "floors_total": 5,
+    "floors_allowed": 5,
+    "furnishing": "FURNISHED",
+    "open_sides": 1,
+    "flats_per_floor": 10,
+    "lifts": 4,
+    "construction_done": true,
+    "boundary_wall": false,
+    "gated_colony": true,
+    "cafeteria": false,
+    "personal_bathroom": false,
+    "cabins": 0,
+    "seats": 0,
+    "corner_shop": false,
+    "corner_plot": false,
+    "main_road_facing": false,
+    "facing_direction": "EAST",
+    "distance_from_road": 500,
+    "garden_facing": true,
+    "pool_facing": false,
+    "road_facing": false
   }
 }

@@ -10,13 +10,13 @@ module Quanta
 
     def browser_opts
       @browser_opts ||= {
-        prefs: {
-          profile: {
-            default_content_setting_values: {
-              images: 2
-            }
-          }
-        }
+        # prefs: {
+        #   profile: {
+        #     default_content_setting_values: {
+        #       images: 2
+        #     }
+        #   }
+        # }
       }
     end
 
