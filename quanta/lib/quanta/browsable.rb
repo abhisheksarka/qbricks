@@ -104,12 +104,11 @@ module Quanta
       return if depth > MAX_LOOKUP_DEPTH
 
       depth += 1
-      parent = node.parent
 
-      return unless parent
+      return unless node
 
-      el = find_by_config({ lookup.to_sym => { index: 0 } }, parent)
-      el.exists? ? el : recursive_lookup(parent, lookup, doc, depth)
+      el = node.send(lookup.to_sym, { index: 0 }).wait_until(timeout: 0)
+      el.exists? ? el.to_subtype : recursive_lookup(node.parent, lookup, doc, depth)
     end
   end
 end

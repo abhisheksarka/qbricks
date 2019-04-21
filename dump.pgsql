@@ -358,6 +358,10 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 36	1	16	2019-04-18 16:58:12.677213	2019-04-20 14:46:13.858615	14
 38	1	18	2019-04-20 18:02:06.419448	2019-04-20 18:06:37.780903	15
 39	1	19	2019-04-20 18:02:54.417278	2019-04-20 18:06:43.493647	16
+40	1	20	2019-04-21 12:03:06.001914	2019-04-21 12:03:25.869727	17
+41	1	21	2019-04-21 12:05:07.955178	2019-04-21 12:06:39.53286	18
+42	1	22	2019-04-21 12:06:19.822565	2019-04-21 12:06:44.092988	19
+43	1	23	2019-04-21 12:12:37.738827	2019-04-21 12:12:58.035636	20
 26	1	12	2019-04-15 16:53:44.543565	2019-04-16 15:51:08.219011	9
 4	1	4	2019-04-08 16:07:04.307873	2019-04-16 16:36:21.512774	1
 22	1	5	2019-04-15 14:22:11.553504	2019-04-18 16:17:15.782129	2
@@ -396,7 +400,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
-1	Magic Bricks	mb	{"browser_type": "chrome"}	{"basics": {"type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}}, "features": {"bedrooms": {"11..": "> 10"}, "balconies": {"11..": "> 10"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-04-20 18:05:42.979727
+1	Magic Bricks	mb	{"browser_type": "chrome"}	{"basics": {"type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"11..": "> 10"}, "balconies": {"11..": "> 10"}, "bathrooms": {"0": "None", "11..": "> 10"}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-04-21 12:13:39.953242
 \.
 
 
@@ -405,6 +409,7 @@ COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_
 --
 
 COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at, signature) FROM stdin;
+23	1	Bathrooms	mset	{"set": "<%= params['features']['bathrooms'] %>", "select": {"id": "bathrooms"}}	2019-04-21 12:12:37.720529	2019-04-21 12:12:37.720529	\N
 4	1	Open Login Page	goto	{"url": "https://www.magicbricks.com/userLogin"}	2019-04-08 16:07:04.281331	2019-04-08 16:07:04.281331	\N
 6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-04-08 17:31:34.286912	\N
 8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-04-08 17:37:40.405507	\N
@@ -419,8 +424,11 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 15	1	Complex	nset	{"div": {"class": "formLabel", "visible_text": "Name of Project/Society"}, "set": "<%= params['location']['complex']%>", "nearest": "text_field"}	2019-04-18 16:57:28.006246	2019-04-18 16:57:28.006246	\N
 16	1	Unit	nset	{"div": {"class": "formLabel", "visible_text": "Address"}, "set": "<%= params['location']['unit']%>", "nearest": "text_field"}	2019-04-18 16:58:12.62551	2019-04-18 16:58:12.62551	\N
 17	1	Body click	mclick	{"body": {"index": 0}}	2019-04-20 14:45:43.979706	2019-04-20 14:45:43.979706	\N
-18	1	Bedrooms	nset	{"li": {"id": "bedroomsDiv"}, "set": "<%= params['features']['bedrooms'] %>", "nearest": "select"}	2019-04-20 18:02:06.37406	2019-04-20 18:02:06.37406	\N
-19	1	Balconies	nset	{"li": {"id": "balconiesDiv"}, "set": "<%= params['features']['balconies'] %>", "nearest": "select"}	2019-04-20 18:02:54.403707	2019-04-20 18:02:54.403707	\N
+19	1	Balconies	mset	{"set": "<%= params['features']['balconies'] %>", "select": {"id": "balconies"}}	2019-04-20 18:02:54.403707	2019-04-21 06:51:25.589702	\N
+18	1	Bedrooms	mset	{"set": "<%= params['features']['bedrooms'] %>", "select": {"id": "bedrooms"}}	2019-04-20 18:02:06.37406	2019-04-21 11:35:12.083085	\N
+20	1	Floor	mset	{"set": "<%= params['features']['floor'] %>", "select": {"id": "floorNumber"}}	2019-04-21 12:03:05.965986	2019-04-21 12:03:05.965986	\N
+21	1	Total Floors	mset	{"set": "<%= params['features']['floors_total'] %>", "select": {"id": "totalFloorNumber"}}	2019-04-21 12:05:07.899692	2019-04-21 12:05:07.899692	\N
+22	1	Furnishing	mset	{"set": "<%= params['features']['furnishing'] %>", "select": {"id": "furnished"}}	2019-04-21 12:06:19.811346	2019-04-21 12:06:19.811346	\N
 \.
 
 
@@ -449,7 +457,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 39, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 43, true);
 
 
 --
@@ -463,7 +471,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 19, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 23, true);
 
 
 --
