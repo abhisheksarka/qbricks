@@ -13,7 +13,7 @@
     "state": "Karnataka",
     "country": "India",
     "pincode": "560103",
-    "latitude": "12.9184653'",
+    "latitude": "12.9184653",
     "longitude": "77.6758485",
     "landmarks": "Motherhood Hospital"
   },
@@ -57,5 +57,14 @@
     "garden_facing": true,
     "pool_facing": false,
     "road_facing": false
+  },
+  "dimensions": {
+    "covered_area": { "value": 1500, "unit": "sq-ft" },
+    "carpet_area": { "value": 1400, "unit": "sq-ft" },
+    "plot_area": { "value": 1600, "unit": "sq-ft" },
+    "plot_length": { "value": 40, "unit": "ft" },
+    "plot_breadth": { "value": 40, "unit": "ft" },
+    "entrance_width": { "value": 100, "unit": "ft" },
+    "facing_road_width": { "value": 200, "unit": "ft" }
   }
 }
