@@ -3,7 +3,29 @@ module Quanta
   # Usage
   ######################################################################
   # datamap = {
-  #   # Define the mappings for the value of `city` key in `dataset`
+  # ## Declare variables that can be used withing the map
+  #   _var_: {
+  #     "area_value": {
+  #       "sq-ft": "square-feet"
+  #     }
+  #   },
+  #
+  #
+  # ## Map carpet_area.value(using variable mapping)
+  #   carpet_area: {
+  #     value: {
+  #       "_var_": "area_value"
+  #     }
+  #   },
+  #
+  # ## Map covered_area.value(using variable mapping)
+  #   covered_area: {
+  #     value: {
+  #       "_var_": "area_value"
+  #     }
+  #   },
+  #
+  # ## Map age(using range mapping)
   #   age: {
   #     _r_: {
   #       "..5": "Less than 5 years",
@@ -12,6 +34,7 @@ module Quanta
   #     },
   #     _wc_one_wc_: "Less than 5 years"
   #   },
+  # ## Map city(using wild card, standard and default mapping)
   #   city: {
   #     Bangalore: 'Bengaluru',
   #     Gurgaon: 'Gurugram',
@@ -27,7 +50,7 @@ module Quanta
   # res = Quanta::HashMapped.new({ city: 'Noida' }, datamap)
   # res['city'] # Noida
 
-  # # Simple Mapping
+  # # Standard Mapping
   # res = Quanta::HashMapped.new({ city: 'Bangalore' }, datamap)
   # res['city'] # Bengaluru
 
@@ -42,31 +65,40 @@ module Quanta
   # # Range Mapping
   # res = Quanta::HashMapped.new({age: 1}, datamap)
   # res['age'] # Less than 5 years
+
+  # # Variable Mapping
+  # res = Quanta::HashMapped.new({carpet_area: {value: 'sq-ft'}}, datamap)
+  # res['carpet_area']['value'] # square-feet
   ######################################################################
 
   class HashMapped < HashWithIndifferentAccess
     KEYWORDS = {
       default: '_d_',
       wild_card: '_wc_',
-      range: '_r_'
+      range: '_r_',
+      var: '_var_'
     }.freeze
+
+    VAR_SEPARATOR = '.'
     WILD_CARD_REGEX = '.{0,}'.freeze
     RANGE_SEPARATOR = '..'.freeze
     STRUCTURES = [Hash].freeze
 
     attr_accessor :hash,
-                  :mapped
+                  :mapped,
+                  :vars
 
-    def initialize(hash, mapped)
+    def initialize(hash, mapped, vars = nil)
       @hash = hash
       @mapped = (mapped || {}).with_indifferent_access
+      @vars = (vars || @mapped[KEYWORDS[:var]]) || {}
       super(hash)
     end
 
     def [](key)
       val = super(key)
       if struct?(val)
-        HashMapped.new(val, mapped[key])
+        HashMapped.new(val, mapped[key], @vars)
       else
         map = mapped[key]
         if map.present?
@@ -82,6 +114,7 @@ module Quanta
     def apply(hash, key)
       hash_keys = hash.keys
       apply_standard(hash, hash_keys, key) ||
+        apply_variables(hash, hash_keys, key) ||
         apply_range(hash, hash_keys, key) ||
         apply_wildcard(hash, hash_keys, key) ||
         apply_default(hash, hash_keys, key)
@@ -139,6 +172,13 @@ module Quanta
         end
       end
       res
+    end
+
+    def apply_variables(hash, hash_keys, key)
+      return unless hash_keys.include? KEYWORDS[:var]
+
+      var_key = hash[KEYWORDS[:var]]
+      vars[var_key][key]
     end
 
     def struct?(val)
