@@ -59,6 +59,10 @@ module Quanta
       nearest_config
     end
 
+    def script(js_script, *args)
+      browser.execute_script(js_script, *args)
+    end
+
     private
 
     def format_config(config)

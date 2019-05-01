@@ -19,7 +19,10 @@
 //= require vendor/ace/ace
 //= require vendor/ace/theme-twilight
 //= require vendor/ace/mode-json
+//= require vendor/ace/mode-javascript
 //= require vendor/ace/worker-json
+//= require vendor/ace/worker-javascript
 //= require vendor/jquery-ace.min.js
 //= require json_editor
+//= require script_editor
 //= require_tree .

@@ -23,7 +23,12 @@ module Core
           flow.steps.each do |step|
             next unless step.execute?(binding)
 
-            send(step.step_type, step.interpolated_config(binding))
+            st = step.step_type
+            if st.eql? 'script'
+              send(st, step.script, params)
+            else
+              send(st, step.interpolated_config(binding))
+            end
           end
         end
       end

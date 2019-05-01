@@ -84,7 +84,7 @@ class StepsController < ApplicationController
   end
 
   def allowed_params
-    @allowed_params ||= params.require(:step).permit(:name, :step_type, :config, :condition_expression, :flow_ids)
+    @allowed_params ||= params.require(:step).permit(:name, :step_type, :config, :condition_expression, :flow_ids, :script)
   end
 
   def format_condition_expression
