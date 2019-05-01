@@ -5,7 +5,7 @@
       "RENT",
       "PG"
     ],
-    "basics.sale_type": [
+    "basics.transaction_type": [
       "NEW_PROPERTY",
       "RESALE"
     ],
@@ -16,13 +16,13 @@
     "basics.type": [
       "RESIDENTIAL_PLOT",
       "RESIDENTIAL_HOUSE",
-      "MULTI_STOREY_APARTMENT",
+      "MULTISTOREY_APARTMENT",
       "BUILDER_FLOOR_APARTMENT",
       "VILLA",
       "PENTHOUSE",
       "STUDIO_APARTMENT",
       "FARM_HOUSE",
-      
+
       "COMMERCIAL_LAND",
       "COMMERCIAL_OFFICE_SPACE",
       "COMMERCIAL_SHOP",
@@ -33,6 +33,10 @@
       "INDUSTRIAL_SHED",
       "OFFICE_IN_IT_PARK",
       "AGRICULTURAL_LAND"
+    ],
+    "basics.status": [
+      "READY_TO_MOVE_IN",
+      "UNDER_CONSTRUCTION"
     ]
   },
 	"auth": {
@@ -56,7 +60,8 @@
 	"availability": {},
 	"basics": {
     "transaction": "SALE",
-    "sale_type": "NEW_PROPERTY",
+    "transaction_type": "NEW_PROPERTY",
+    "status": "READY_TO_MOVE_IN",
 		"type": "BUILDER_FLOOR_APARTMENT",
 		"category": "RESIDENTIAL"
 	},
