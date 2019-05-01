@@ -8,11 +8,11 @@
       <%= f.select :step_type, Step.step_types, { include_blank: false }, class: 'form-control' %>
     </div>
     <div class='form-group'>
-      <%= f.label 'config (applicable only when step type is not selected as script)' %>
+      <%= f.label 'config' %>
       <%= f.text_area :config, class: 'form-control', placeholder: 'Config', value: @step.config.try(:to_json_ea), rows: 5 %>
     </div>
     <div class='form-group'>
-      <%= f.label 'script (applicable only when step type is selected as script)' %>
+      <%= f.label 'script' %>
       <%= f.text_area :script, class: 'form-control', placeholder: 'Script', value: @step.script, rows: 5 %>
     </div>
     <div class='form-group'>

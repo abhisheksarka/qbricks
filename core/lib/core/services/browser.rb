@@ -23,12 +23,11 @@ module Core
           flow.steps.each do |step|
             next unless step.execute?(binding)
 
-            st = step.step_type
-            if st.eql? 'script'
-              send(st, step.script, params)
-            else
-              send(st, step.interpolated_config(binding))
-            end
+            iconfig = step.interpolated_config(binding)
+            script = step.script
+
+            send(step.step_type, iconfig) if iconfig.present?
+            send('script', step.script, params) if script.present?
           end
         end
       end

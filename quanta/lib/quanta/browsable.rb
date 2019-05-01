@@ -60,7 +60,7 @@ module Quanta
     end
 
     def script(js_script, *args)
-      browser.execute_script(js_script, *args)
+      browser_client.execute_script(js_script, *args)
     end
 
     private
