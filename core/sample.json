@@ -63,7 +63,9 @@
     "transaction_type": "NEW_PROPERTY",
     "status": "READY_TO_MOVE_IN",
 		"type": "BUILDER_FLOOR_APARTMENT",
-		"category": "RESIDENTIAL"
+    "category": "RESIDENTIAL",
+    "age_in_years": 3,
+    "available_from": "2018-01-01" 
 	},
 	"features": {
 		"bhk": 3,
