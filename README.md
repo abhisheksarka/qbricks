@@ -19,7 +19,7 @@
 
 # Running the Automation
 
-`localhost:4000/sites`
+`localhost:3000/sites`
 
 `Click on view/edit`
 
