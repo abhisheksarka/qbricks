@@ -17,7 +17,6 @@
 		"landmarks": "Motherhood Hospital",
 		"hide_address": false
 	},
-	"availability": {},
 	"basics": {
     "transaction": "SALE",
     "transaction_type": "NEW_PROPERTY",
