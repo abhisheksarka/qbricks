@@ -369,6 +369,7 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 47	1	27	2019-04-21 12:53:56.234078	2019-04-21 12:54:11.207441	24
 48	1	28	2019-05-01 16:48:03.85879	2019-05-01 16:48:03.85879	26
 49	1	29	2019-05-01 16:54:56.126326	2019-05-01 16:54:56.126326	27
+50	1	30	2019-05-02 16:05:37.11033	2019-05-02 16:05:37.11033	28
 26	1	12	2019-04-15 16:53:44.543565	2019-04-16 15:51:08.219011	9
 4	1	4	2019-04-08 16:07:04.307873	2019-04-16 16:36:21.512774	1
 22	1	5	2019-04-15 14:22:11.553504	2019-04-18 16:17:15.782129	2
@@ -408,7 +409,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
-1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_TO_MOVE_IN": "Ready to Move", "UNDER_CONSTRUCTION": "Under Construction"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "transaction_type": {"_var_": "basics_transaction_type"}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"11..": "> 10"}, "balconies": {"11..": "> 10"}, "bathrooms": {"0": "None", "11..": "> 10"}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-01 16:54:05.582455
+1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_TO_MOVE_IN": "Ready to Move", "UNDER_CONSTRUCTION": "Under Construction"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-02 16:21:23.416107
 \.
 
 
@@ -428,6 +429,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 27	1	Carpet Area Unit	mset	{"set": "<%= params['dimensions']['carpet_area']['unit'] %>", "select": {"id": "carpetAreaType"}}	2019-04-21 12:53:56.183001	2019-04-21 12:53:56.183001	\N	\N
 29	1	Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-01 16:54:56.1117	2019-05-01 16:54:56.1117	\N	
 7	1	Enter Password	nset	{"set": "<%= params['auth']['pwd'] %>", "label": "Password", "nearest": "text_field"}	2019-04-08 17:34:18.374361	2019-04-15 14:28:03.507071	\N	\N
+30	1	Age of Construction	mset	{"set": "<%= params['basics']['age_in_years']%>", "select": {"id": "ageofcons"}}	2019-05-02 16:05:37.045948	2019-05-02 16:05:37.045948	\N	
 12	1	Property Type	nset	{"div": {"class": "formLabel", "visible_text": "Property Type"}, "set": "<%= params['basics']['type'] %>", "nearest": "select"}	2019-04-09 18:00:18.818261	2019-04-15 16:53:44.490661	\N	\N
 11	1	Property For	nset	{"set": true, "label": "<%= params['basics']['transaction'] %>", "nearest": "radio"}	2019-04-09 17:44:56.237586	2019-04-15 16:54:35.038174	\N	\N
 14	1	Locality	nset	{"div": {"class": "formLabel", "visible_text": "Locality"}, "set": "<%= params['location']['locality']%>", "nearest": "text_field"}	2019-04-18 16:32:37.029131	2019-04-18 16:33:46.730939	\N	\N
@@ -471,7 +473,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 49, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 50, true);
 
 
 --
@@ -485,7 +487,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 29, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 30, true);
 
 
 --

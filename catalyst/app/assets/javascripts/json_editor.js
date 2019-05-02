@@ -38,7 +38,11 @@ JSONEditor.prototype.registerEvents = function() {
   var that = this;
   this.ace.on('change', function(e) {
     var json;
-    try { json = that.getValue(); } catch(ex) { };
-    that.$el.val(JSON.stringify(json || { }));
+    try { 
+      json = that.getValue(); 
+      that.$el.val(JSON.stringify(json));
+    } catch(ex) { 
+      
+    };
   });
 };
