@@ -1,0 +1,40 @@
+{
+  "basics.transaction": [
+    "SALE", 
+    "RENT",
+    "PG"
+  ],
+  "basics.transaction_type": [
+    "NEW_PROPERTY",
+    "RESALE"
+  ],
+  "basics.category": [
+    "RESIDENTIAL",
+    "COMMERCIAL"
+  ],
+  "basics.type": [
+    "RESIDENTIAL_PLOT",
+    "RESIDENTIAL_HOUSE",
+    "MULTISTOREY_APARTMENT",
+    "BUILDER_FLOOR_APARTMENT",
+    "VILLA",
+    "PENTHOUSE",
+    "STUDIO_APARTMENT",
+    "FARM_HOUSE",
+
+    "COMMERCIAL_LAND",
+    "COMMERCIAL_OFFICE_SPACE",
+    "COMMERCIAL_SHOP",
+    "COMMERCIAL_SHOWROOM",
+    "WAREHOUSE_OR_GODOWN",
+    "INDUSTRIAL_LAND",
+    "INDUSTRIAL_BUILDING",
+    "INDUSTRIAL_SHED",
+    "OFFICE_IN_IT_PARK",
+    "AGRICULTURAL_LAND"
+  ],
+  "basics.status": [
+    "READY_TO_MOVE_IN",
+    "UNDER_CONSTRUCTION"
+  ]
+}
