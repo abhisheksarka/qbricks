@@ -6,18 +6,27 @@
 
 # Set up
 `git clone git@github.com:abhisheksarka/qubricks.git`
+
 `cd catalyst`
+
 `bundle install`
+
 `bundle exec rake db:setup`
+
 `psql qubricks_dev < dump.pgsql`
+
 `rails s`
 
 # Running the Automation
 
 `localhost:4000/sites`
+
 `Click on view/edit`
+
 `Click on run`
+
 `Copy sample.json to the dataset field`
+
 `Click Start Browser`
 
 
