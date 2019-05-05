@@ -12,6 +12,7 @@ module Quanta
             $("#{js_selector} option:contains('#{value}')").attr('selected', 'selected')
           }.strip
         )
+        js_value_validate!(value)
         broadcast_change
       end
     end

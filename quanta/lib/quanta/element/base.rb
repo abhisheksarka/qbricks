@@ -35,6 +35,14 @@ module Quanta
         res
       end
 
+      def js_value_validate!(value)
+        raise 'ValueMismatchError' if el.value.to_s != value.to_s
+      end
+
+      def js_checked_validate!(state)
+        raise 'CheckedMismatchError' if el.checked? != value
+      end
+
       def js_set
         raise NotImplementedError
       end

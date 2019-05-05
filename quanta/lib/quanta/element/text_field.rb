@@ -12,6 +12,7 @@ module Quanta
             $("#{js_selector})").val("#{value}")
           }.strip
         )
+        js_value_validate!(value)
         broadcast_change
       end
     end

@@ -12,6 +12,7 @@ module Quanta
             $("#{js_selector})").prop("checked",#{value.present?})
           }.strip
         )
+        js_checked_validate!(value.present?)
         broadcast_change
       end
     end
