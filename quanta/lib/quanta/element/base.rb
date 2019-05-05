@@ -1,7 +1,7 @@
 module Quanta
   module Element
     class Base
-      SIGNATURE_ATTRS = %i[id class type].freeze
+      SIGNATURE_ATTRS = %i[id class type name].freeze
 
       attr_accessor :el
 
@@ -25,6 +25,22 @@ module Quanta
         {
           el.tag_name.to_sym => signature_attrs
         }
+      end
+
+      def js_selector
+        res = ''
+        signature_attrs.each do |k, v|
+          res += "[#{k}='#{v}']"
+        end
+        res
+      end
+
+      def js_set
+        raise NotImplementedError
+      end
+
+      def browser_client
+        @browser_client ||= el.browser
       end
     end
   end

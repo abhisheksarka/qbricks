@@ -1,7 +1,7 @@
 module Quanta
   module Browsable
     include Support
-    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2)
+    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2, js: 3)
     attr_accessor :browsable_config
 
     def browser_type
@@ -29,11 +29,15 @@ module Quanta
       browser_client.goto(config['url'])
     end
 
-    # Sample - { input: { id: 'foo' }, set: 'bar' }
+    # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false }
     def mset(config)
       config = format_config(config)
-      el = find_by_config(config)
-      wrap_el(el).set(config['set'])
+      el = wrap_el(find_by_config(config))
+      if config['js']
+        el.js_set(config['set'])
+      else
+        el.set(config['set'])
+      end
       config
     end
 
@@ -44,11 +48,15 @@ module Quanta
       config
     end
 
-    # Sample - { label: 'Foo', nearest: 'text_field', set: 'bar' }
+    # Sample - { label: 'Foo', nearest: 'text_field', set: 'bar', js: true/false }
     def nset(nearest_config)
       nearest_config = format_config(nearest_config)
-      el = find_by_nearest(nearest_config)
-      wrap_el(el).set(nearest_config['set'])
+      el = wrap_el(find_by_nearest(nearest_config))
+      if nearest_config['js']
+        el.js_set(nearest_config['set'])
+      else
+        el.set(nearest_config['set'])
+      end
       nearest_config
     end
 

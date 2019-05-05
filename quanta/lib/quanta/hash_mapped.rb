@@ -100,6 +100,7 @@ module Quanta
       if struct?(val)
         HashMapped.new(val, mapped[key], @vars)
       else
+        val = val.to_s
         map = mapped[key]
         if map.present?
           apply(map, val)
