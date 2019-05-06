@@ -332,6 +332,8 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 6	<%= params['basics']['status'] == 'Ready to Move' %>	Step	30	2019-05-04 16:42:04.79051	2019-05-04 16:42:04.79051
 7	<%= params['basics']['status'] == 'Under Construction' %>	Step	31	2019-05-04 16:45:33.579796	2019-05-04 16:45:33.579796
 8	<%= params['basics']['status'] == 'Under Construction' %>	Step	32	2019-05-04 16:46:38.295306	2019-05-04 16:46:38.295306
+9	<%= params['basics']['transaction'] == 'Sale' %>	Step	33	2019-05-06 15:53:12.620785	2019-05-06 15:59:44.052434
+10	<%= params['basics']['transaction'] == 'Sale' && params['prices']['sale']['includes']['plc'] == 'true' %>	Step	34	2019-05-06 16:11:30.757417	2019-05-06 16:20:58.162775
 \.
 
 
@@ -376,6 +378,8 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 26	1	12	2019-04-15 16:53:44.543565	2019-04-16 15:51:08.219011	9
 51	1	31	2019-05-04 16:45:33.642247	2019-05-04 16:45:33.642247	29
 52	1	32	2019-05-04 16:46:38.311194	2019-05-04 16:46:38.311194	30
+53	1	33	2019-05-06 15:53:12.65036	2019-05-06 15:53:12.65036	31
+54	1	34	2019-05-06 16:11:30.810303	2019-05-06 16:11:30.810303	32
 4	1	4	2019-04-08 16:07:04.307873	2019-04-16 16:36:21.512774	1
 22	1	5	2019-04-15 14:22:11.553504	2019-04-18 16:17:15.782129	2
 8	1	6	2019-04-08 17:31:34.323879	2019-04-18 16:26:26.626257	3
@@ -449,6 +453,8 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 22	1	Furnishing	mset	{"set": "<%= params['features']['furnishing'] %>", "select": {"id": "furnished"}}	2019-04-21 12:06:19.811346	2019-04-21 12:06:19.811346	\N	\N
 31	1	Available From Month	mset	{"js": true, "set": "<%= params['basics']['available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-05 12:03:38.236299	\N	
 32	1	Available From Year	mset	{"js": true, "set": "<%= params['basics']['available_from']['year'] %>", "select": {"id": "availFromYear"}}	2019-05-04 16:46:38.284648	2019-05-05 12:04:02.051169	\N	
+33	1	Sale Price	mset	{"set": "<%= params[:prices][:sale][:value] %>", "input": {"id": "totalPrice"}}	2019-05-06 15:53:12.55185	2019-05-06 15:53:12.55185	\N	
+34	1	Price includes PLC	nset	{"set": true, "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-06 17:10:07.16	\N	
 4	1	Open Login Page	goto	{"url": "https://www.magicbricks.com/userLogin"}	2019-04-08 16:07:04.281331	2019-05-01 16:14:24.966746	\N	
 5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-05-01 16:20:45.228859	\N	
 28	1	Transaction Type	nset	{"set": true, "label": "<%= params['basics']['transaction_type'] %>", "nearest": "radio"}	2019-05-01 16:48:03.818926	2019-05-01 16:48:03.818926	\N	
@@ -459,7 +465,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 8, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 10, true);
 
 
 --
@@ -480,7 +486,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 52, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 54, true);
 
 
 --
@@ -494,7 +500,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 32, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 34, true);
 
 
 --

@@ -87,5 +87,30 @@
 			"value": 200,
 			"unit": "ft"
 		}
+	},
+	"prices": {
+		"sale": {
+			"value": "10000000",
+			"currency": "rs",
+			"frequency": null,
+			"includes": {
+				"car_parking": true,
+				"plc": true,
+				"club_membership": true
+			},
+			"meta": {
+				"negotiable": true,
+				"upwards": false,
+				"call": true
+			}
+		},
+		"rent": {
+			"value": "35000",
+			"currency": "rs",
+			"frequency": "monthly",
+			"includes": {
+				"maintenance": true
+			}
+		}
 	}
 }

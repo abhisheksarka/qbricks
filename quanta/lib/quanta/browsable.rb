@@ -1,7 +1,7 @@
 module Quanta
   module Browsable
     include Support
-    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2, js: 3)
+    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2, js: 3, body_click: 4)
     attr_accessor :browsable_config
 
     def browser_type
@@ -25,13 +25,13 @@ module Quanta
     end
 
     def goto(config)
-      config = format_config(config)
+      config = before_exec(config)
       browser_client.goto(config['url'])
     end
 
-    # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false }
+    # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false, body_click: true/false }
     def mset(config)
-      config = format_config(config)
+      config = before_exec(config)
       el = wrap_el(find_by_config(config))
       if config['js']
         el.js_set(config['set'])
@@ -43,14 +43,14 @@ module Quanta
 
     # Sample - { button: { id: 'foo' } }
     def mclick(config)
-      config = format_config(config)
+      config = before_exec(config)
       find_by_config(config).click
       config
     end
 
-    # Sample - { label: 'Foo', nearest: 'text_field', set: 'bar', js: true/false }
+    # Sample - { label: 'Foo', nearest: 'text_field', set: 'bar', js: true/false, body_click: true/false }
     def nset(nearest_config)
-      nearest_config = format_config(nearest_config)
+      nearest_config = before_exec(nearest_config)
       el = wrap_el(find_by_nearest(nearest_config))
       if nearest_config['js']
         el.js_set(nearest_config['set'])
@@ -62,7 +62,7 @@ module Quanta
 
     # Sample - { label: 'Foo', nearest: 'button' }
     def nclick(nearest_config)
-      nearest_config = format_config(nearest_config)
+      nearest_config = before_exec(nearest_config)
       find_by_nearest(nearest_config).click
       nearest_config
     end
@@ -73,10 +73,14 @@ module Quanta
 
     private
 
-    def format_config(config)
-      HashWithIndifferentAccess.new(
+    def before_exec(config)
+      c = HashWithIndifferentAccess.new(
         config.sort_by { |k, _v| KEYWORD_ORDER[k] }.to_h
       )
+      # click the body, sometimes acts as a refresher when the element
+      # has moved or something, weird stuff
+      mclick(body: { index: 0 }) if c['body_click']
+      c
     end
 
     def wrap_el(el)
