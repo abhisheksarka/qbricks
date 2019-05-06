@@ -39,3 +39,5 @@ tmp/
 log/
 .idea/
 dump.rdb
+catalyst/.rvmrc
+

@@ -18,14 +18,14 @@ development:
 
 test:
   <<: *default
-  database: qubricks_test
+  database: <%= ENV.fetch("QUBRICKS_DB_NAME") %>
   host: localhost
-  username: abhishek
-  password: password
+  username: <%= ENV.fetch("QUBRICKS_DB_USER") %>
+  password: <%= ENV.fetch("QUBRICKS_DB_PASS") %>
 
 production:
   <<: *default
-  database: qubricks_prod
+  database: <%= ENV.fetch("QUBRICKS_DB_NAME") %>
   host: localhost
-  username: abhishek
-  password: password
+  username: <%= ENV.fetch("QUBRICKS_DB_USER") %>
+  password: <%= ENV.fetch("QUBRICKS_DB_PASS") %>
