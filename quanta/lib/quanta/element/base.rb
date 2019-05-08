@@ -40,7 +40,7 @@ module Quanta
       end
 
       def js_checked_validate!(state)
-        raise 'CheckedMismatchError' if el.checked? != value
+        raise 'CheckedMismatchError' if el.checked? != state
       end
 
       def js_set

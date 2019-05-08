@@ -96,13 +96,26 @@
 			"includes": {
 				"car_parking": true,
 				"plc": true,
-				"club_membership": true
+				"club_membership": true,
+				"stamp_and_registration": true
 			},
 			"meta": {
 				"negotiable": true,
 				"upwards": false,
 				"call": true
 			}
+		},
+		"sale_token": {
+			"value": "100000",
+			"currency": "rs",
+			"frequency": null,
+			"includes": {}
+		},
+		"maintenance": {
+			"value": 60000,
+			"currency": "rs",
+			"frequency": "yearly",
+			"includes": {}
 		},
 		"rent": {
 			"value": "35000",

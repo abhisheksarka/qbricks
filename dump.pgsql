@@ -336,6 +336,10 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 10	<%= params['basics']['transaction'] == 'Sale' %>	Step	34	2019-05-06 16:11:30.757417	2019-05-06 17:14:10.438231
 11	<%= params['basics']['transaction'] == 'Sale' %>	Step	35	2019-05-06 17:14:27.469295	2019-05-06 17:14:27.469295
 12	<%= params['basics']['transaction'] == 'Sale' %>	Step	36	2019-05-06 18:03:12.612091	2019-05-06 18:03:12.612091
+13	<%= params['basics']['transaction'] == 'Sale' %>	Step	37	2019-05-08 16:37:31.263903	2019-05-08 16:37:31.263903
+14	<%= params['basics']['transaction'] == 'Sale' %>	Step	38	2019-05-08 16:38:54.019792	2019-05-08 16:38:54.019792
+15	<%= params['basics']['transaction'] == 'Sale' %>	Step	39	2019-05-08 16:44:19.924998	2019-05-08 16:44:19.924998
+16	<%= params['basics']['transaction'] == 'Sale' %>	Step	40	2019-05-08 16:51:03.436189	2019-05-08 16:51:03.436189
 \.
 
 
@@ -386,12 +390,16 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 22	1	5	2019-04-15 14:22:11.553504	2019-04-18 16:17:15.782129	2
 55	1	35	2019-05-06 17:14:27.482608	2019-05-06 17:14:27.482608	33
 56	1	36	2019-05-06 18:03:12.644135	2019-05-06 18:03:12.644135	34
+57	1	37	2019-05-08 16:33:22.027109	2019-05-08 16:33:22.027109	35
 8	1	6	2019-04-08 17:31:34.323879	2019-04-18 16:26:26.626257	3
 23	1	7	2019-04-15 14:28:03.574057	2019-04-18 16:26:36.441543	4
 11	1	8	2019-04-08 17:37:40.463174	2019-04-18 16:26:46.137017	5
 12	1	9	2019-04-08 17:39:26.569025	2019-04-18 16:27:02.015049	6
 13	1	10	2019-04-09 16:11:59.076245	2019-04-18 16:27:11.326916	7
 27	1	11	2019-04-15 16:54:35.095776	2019-04-18 16:27:35.022745	8
+58	1	38	2019-05-08 16:38:54.035652	2019-05-08 16:38:54.035652	36
+59	1	39	2019-05-08 16:44:26.437433	2019-05-08 16:44:26.437433	\N
+60	1	40	2019-05-08 16:51:03.455524	2019-05-08 16:51:03.455524	38
 30	1	13	2019-04-18 16:35:03.418337	2019-04-18 16:39:42.368213	10
 33	1	14	2019-04-18 16:46:43.83084	2019-04-18 16:51:32.624325	11
 34	1	15	2019-04-18 16:57:28.024761	2019-04-18 16:57:28.024761	12
@@ -422,7 +430,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
-1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_TO_MOVE_IN": "Ready to Move", "UNDER_CONSTRUCTION": "Under Construction"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "available_from": {"month": {"_var_": "months"}}, "transaction_type": {"_var_": "basics_transaction_type"}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-04 16:40:06.417368
+1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_TO_MOVE_IN": "Ready to Move", "UNDER_CONSTRUCTION": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "available_from": {"month": {"_var_": "months"}}, "transaction_type": {"_var_": "basics_transaction_type"}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-08 16:49:23.784206
 \.
 
 
@@ -458,12 +466,16 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 31	1	Available From Month	mset	{"js": true, "set": "<%= params['basics']['available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-05 12:03:38.236299	\N	
 32	1	Available From Year	mset	{"js": true, "set": "<%= params['basics']['available_from']['year'] %>", "select": {"id": "availFromYear"}}	2019-05-04 16:46:38.284648	2019-05-05 12:04:02.051169	\N	
 33	1	Sale Price	mset	{"set": "<%= params[:prices][:sale][:value] %>", "input": {"id": "totalPrice"}}	2019-05-06 15:53:12.55185	2019-05-06 15:53:12.55185	\N	
-34	1	Price includes PLC	nset	{"set": true, "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-06 17:10:07.16	\N	
+36	1	Price includes Club Membership	nset	{"set": "<%=params['prices']['sale']['includes']['club_membership']%>", "label": "Club Membership", "nearest": "checkbox", "body_click": true}	2019-05-06 18:03:12.599617	2019-05-06 18:25:44.104327	\N	
 4	1	Open Login Page	goto	{"url": "https://www.magicbricks.com/userLogin"}	2019-04-08 16:07:04.281331	2019-05-01 16:14:24.966746	\N	
-35	1	Price includes Car Parking	nset	{"set": true, "label": "Car Parking", "nearest": "checkbox", "body_click": true}	2019-05-06 17:14:27.419453	2019-05-06 17:14:27.419453	\N	
-36	1	Price includes Club Membership	nset	{"set": true, "label": "Club Membership", "nearest": "checkbox", "body_click": true}	2019-05-06 18:03:12.599617	2019-05-06 18:03:12.599617	\N	
 5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-05-01 16:20:45.228859	\N	
 28	1	Transaction Type	nset	{"set": true, "label": "<%= params['basics']['transaction_type'] %>", "nearest": "radio"}	2019-05-01 16:48:03.818926	2019-05-01 16:48:03.818926	\N	
+35	1	Price includes Car Parking	nset	{"set": "<%=params['prices']['sale']['includes']['car_parking']%>", "label": "Car Parking", "nearest": "checkbox", "body_click": true}	2019-05-06 17:14:27.419453	2019-05-06 18:25:28.614657	\N	
+38	1	Sale Booking Amount	mset	{"set": "<%=params['prices']['sale_token']['value']%>", "input": {"id": "bookingAmount"}}	2019-05-08 16:38:54.004021	2019-05-08 16:41:08.514781	\N	
+34	1	Price includes PLC	nset	{"set": "<%=params['prices']['sale']['includes']['plc']%>", "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-08 16:27:58.908493	\N	
+37	1	Price includes Stamp and Registration Charges	mset	{"set": "<%=params['prices']['sale']['includes']['stamp_and_registration']%>", "input": {"id": "stampAndOtherCharges", "type": "checkbox"}, "body_click": true}	2019-05-08 16:33:21.985799	2019-05-08 16:33:21.985799	\N	
+39	1	Maintenance Value	mset	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
+40	1	Maintenance Frequency	mset	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
 \.
 
 
@@ -471,7 +483,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 12, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 16, true);
 
 
 --
@@ -492,7 +504,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 56, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 60, true);
 
 
 --
@@ -506,7 +518,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 36, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 40, true);
 
 
 --
