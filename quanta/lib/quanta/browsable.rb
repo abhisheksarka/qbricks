@@ -33,11 +33,15 @@ module Quanta
     def mset(config)
       config = before_exec(config)
       el = wrap_el(find_by_config(config))
-      if config['js']
-        el.js_set(config['set'])
-      else
-        el.set(config['set'])
+      setv = ([JSON.parse(config[:set])] rescue [config[:set]]).flatten
+      setv.each do |s|
+        if config['js']
+          el.js_set(s)
+        else
+          el.set(s)
+        end
       end
+
       config
     end
 
@@ -52,10 +56,13 @@ module Quanta
     def nset(nearest_config)
       nearest_config = before_exec(nearest_config)
       el = wrap_el(find_by_nearest(nearest_config))
-      if nearest_config['js']
-        el.js_set(nearest_config['set'])
-      else
-        el.set(nearest_config['set'])
+      setv = ([JSON.parse(config[:set])] rescue [config[:set]]).flatten
+      setv.each do |s|
+        if nearest_config['js']
+          el.js_set(s)
+        else
+          el.set(s)
+        end
       end
       nearest_config
     end

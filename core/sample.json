@@ -114,16 +114,24 @@
 		"maintenance": {
 			"value": 60000,
 			"currency": "rs",
-			"frequency": "yearly",
+			"frequency": "YEARLY",
 			"includes": {}
 		},
 		"rent": {
 			"value": "35000",
 			"currency": "rs",
-			"frequency": "monthly",
+			"frequency": "MONTHLY",
 			"includes": {
 				"maintenance": true
 			}
+		}
+	},
+	"photos": {
+		"bedrooms": {
+			"urls": [ ]
+		},
+		"bathrooms": {
+			"urls": [ ]
 		}
 	}
 }
