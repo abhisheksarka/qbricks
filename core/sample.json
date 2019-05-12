@@ -18,17 +18,17 @@
 		"hide_address": false
 	},
 	"basics": {
-    "transaction": "SALE",
-    "transaction_type": "NEW_PROPERTY",
-    "status": "READY_TO_MOVE_IN",
+		"transaction": "SALE",
+		"transaction_type": "NEW_PROPERTY",
+		"status": "READY_TO_MOVE_IN",
 		"type": "BUILDER_FLOOR_APARTMENT",
-    "category": "RESIDENTIAL",
-    "age_in_years": 3,
-    "available_from": {
-      "year": 2018,
-      "month": 1,
-      "day": 1
-    }
+		"category": "RESIDENTIAL",
+		"age_in_years": 3,
+		"available_from": {
+			"year": 2018,
+			"month": 1,
+			"day": 1
+		}
 	},
 	"features": {
 		"bhk": 3,
@@ -128,10 +128,21 @@
 	},
 	"photos": {
 		"bedrooms": {
-			"urls": [ ]
+			"urls": [
+				"https://static.dezeen.com/uploads/2018/10/big-dortheavej-residence-affordable-housing-copenhagen_dezeen_2364_hero-1704x1149.jpg"
+			]
+		},
+		"exteriors": {
+			"urls": []
 		},
 		"bathrooms": {
-			"urls": [ ]
+			"urls": []
+		},
+		"living_rooms": {
+			"url": []
+		},
+		"kitchen": {
+			"url": []
 		}
 	}
 }
