@@ -21,7 +21,7 @@
 <% end %>
 <br>
 <% if @flow.id %>
-  <%= form_for @flow, html: { class: 'text-left' } do |f| %>
+  <%= form_for @flow, url: { action: :clone }, html: { class: 'text-left' }, method: 'post' do |f| %>
     <div class="text-center">
       <%= f.submit 'Clone', class: 'btn btn-primary btn-lg', data: { 
         confirm: 'This will create an exact copy of this flow and associate all the steps as well. Proceed?' 

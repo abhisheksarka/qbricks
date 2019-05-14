@@ -23,13 +23,15 @@ class FlowsController < ApplicationController
   end
 
   def clone
-    @cloned_flow = Flow.create!(@flow.attributes.except('id', 'created_at', 'updated_at'))
-    @flow.flow_steps.each do |fs|
-      @cloned_flow.flow_steps.create!(
-        fs.attributes.except('id', 'created_at', 'updated_at', 'flow_id')
-      )
+    ActiveRecord::Base.transaction do
+      @cloned_flow = Flow.create!(@flow.attributes.except('id', 'created_at', 'updated_at'))
+      @flow.flows_steps.each do |fs|
+        @cloned_flow.flows_steps.create!(
+          fs.attributes.except('id', 'created_at', 'updated_at', 'flow_id')
+        )
+      end
     end
-    redirect_to edit_site_flow_path(@cloned_flow)
+    redirect_to edit_site_flow_path(@flow.site, @cloned_flow)
   end
 
   def show
@@ -50,7 +52,7 @@ class FlowsController < ApplicationController
       end
     end
     flash[:success] = "Flow updated"
-    redirect_to edit_site_flow_path(@flow)
+    redirect_to edit_site_flow_path(@flow.site, @flow)
   end
 
   private
