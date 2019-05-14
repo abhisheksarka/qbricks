@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :flows, only: [:create, :new, :edit, :update] do
+    member do
+      post :clone
+    end
     resources :steps, only: [:index]
   end
 

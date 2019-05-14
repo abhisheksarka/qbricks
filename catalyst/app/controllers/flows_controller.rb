@@ -1,6 +1,6 @@
 class FlowsController < ApplicationController
-  before_action :load_flow, only: [:update, :edit]
-  before_action :load_site
+  before_action :load_flow, only: [:update, :edit, :clone]
+  before_action :load_site, except: [:clone]
   before_action :format_condition_expression, only: [:create, :update]
 
   def index
@@ -20,6 +20,16 @@ class FlowsController < ApplicationController
     @flow.create_condition(expression: c) if c.present?
     flash[:success] = "Flow created"
     render :new
+  end
+
+  def clone
+    @cloned_flow = Flow.create!(@flow.attributes.except('id', 'created_at', 'updated_at'))
+    @flow.flow_steps.each do |fs|
+      @cloned_flow.flow_steps.create!(
+        fs.attributes.except('id', 'created_at', 'updated_at', 'flow_id')
+      )
+    end
+    redirect_to edit_site_flow_path(@cloned_flow)
   end
 
   def show

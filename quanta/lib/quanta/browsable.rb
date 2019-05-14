@@ -1,7 +1,7 @@
 module Quanta
   module Browsable
     include Support
-    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2, js: 3, body_click: 4)
+    KEYWORD_ORDER = HashWithIndifferentAccess.new(0).merge(nearest: 1, set: 2, js: 3, body_click: 4, after_wait: 5, before_wait: 6)
     attr_accessor :browsable_config
 
     def browser_type
@@ -27,6 +27,8 @@ module Quanta
     def goto(config)
       config = before_exec(config)
       browser_client.goto(config['url'])
+      after_exec(config)
+      config
     end
 
     # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false, body_click: true/false }
@@ -42,7 +44,7 @@ module Quanta
           el.set(s)
         end
       end
-
+      after_exec(config)
       config
     end
 
@@ -50,6 +52,7 @@ module Quanta
     def mclick(config)
       config = before_exec(config)
       find_by_config(config).click
+      after_exec(config)
       config
     end
 
@@ -66,6 +69,7 @@ module Quanta
           el.set(s)
         end
       end
+      after_exec(nearest_config)
       nearest_config
     end
 
@@ -73,6 +77,7 @@ module Quanta
     def nclick(nearest_config)
       nearest_config = before_exec(nearest_config)
       find_by_nearest(nearest_config).click
+      after_exec(nearest_config)
       nearest_config
     end
 
@@ -88,8 +93,13 @@ module Quanta
       )
       # click the body, sometimes acts as a refresher when the element
       # has moved or something, weird stuff
-      mclick(body: { index: 0 }) if c['body_click']
+      mclick(body: { index: 0 }) if c[:body_click]
+      sleep(c[:before_wait].to_i) if c[:before_wait]
       c
+    end
+
+    def after_exec(config)
+      sleep(config[:after_wait].to_i) if config[:after_wait]
     end
 
     def wrap_el(el)

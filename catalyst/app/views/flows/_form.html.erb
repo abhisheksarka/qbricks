@@ -11,9 +11,21 @@
       <%= f.label :condition %>
       <%= f.text_area :condition_expression, class: 'form-control', placeholder: 'Condition Expression', required: false, value: @flow.display_condition_expression %>
     </div>
-    <% if @flow.id %>
-        <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
-    <% else %>
-        <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
-    <% end %>
+    <div class="text-center">
+      <% if @flow.id %>
+          <%= f.submit 'Update', class: 'btn btn-primary btn-lg' %>
+      <% else %>
+          <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
+      <% end %>
+    </div>
+<% end %>
+<br>
+<% if @flow.id %>
+  <%= form_for @flow, html: { class: 'text-left' } do |f| %>
+    <div class="text-center">
+      <%= f.submit 'Clone', class: 'btn btn-primary btn-lg', data: { 
+        confirm: 'This will create an exact copy of this flow and associate all the steps as well. Proceed?' 
+      } %>
+    </div>
+  <% end %>
 <% end %>

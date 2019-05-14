@@ -328,7 +328,6 @@ environment	development	2019-04-04 15:42:11.296652	2019-04-04 15:42:11.296652
 COPY public.conditions (id, expression, conditionable_type, conditionable_id, created_at, updated_at) FROM stdin;
 3	<%= 1==1 %>	Step	2	2019-04-04 18:05:32.232863	2019-04-04 18:05:32.232863
 4	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	1	2019-04-09 16:25:53.544373	2019-04-09 16:31:55.98755
-5	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'VILLA' %>	Flow	2	2019-04-18 16:16:30.365608	2019-04-18 16:16:30.365608
 6	<%= params['basics']['status'] == 'Ready to Move' %>	Step	30	2019-05-04 16:42:04.79051	2019-05-04 16:42:04.79051
 7	<%= params['basics']['status'] == 'Under Construction' %>	Step	31	2019-05-04 16:45:33.579796	2019-05-04 16:45:33.579796
 8	<%= params['basics']['status'] == 'Under Construction' %>	Step	32	2019-05-04 16:46:38.295306	2019-05-04 16:46:38.295306
@@ -340,6 +339,7 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 14	<%= params['basics']['transaction'] == 'Sale' %>	Step	38	2019-05-08 16:38:54.019792	2019-05-08 16:38:54.019792
 15	<%= params['basics']['transaction'] == 'Sale' %>	Step	39	2019-05-08 16:44:19.924998	2019-05-08 16:44:19.924998
 16	<%= params['basics']['transaction'] == 'Sale' %>	Step	40	2019-05-08 16:51:03.436189	2019-05-08 16:51:03.436189
+5	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	2	2019-04-18 16:16:30.365608	2019-05-14 15:16:11.601862
 \.
 
 
@@ -357,7 +357,6 @@ COPY public.datasets (id, content, type, site_id, created_at, updated_at) FROM s
 
 COPY public.flows (id, site_id, name, created_at, updated_at) FROM stdin;
 1	1	Sale of Builder Floor Apartment	2019-04-04 17:14:48.742893	2019-04-04 17:14:48.742893
-2	1	Sale of Villa	2019-04-15 17:07:29.464592	2019-04-15 17:07:29.464592
 \.
 
 
@@ -405,7 +404,6 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 61	1	41	2019-05-09 16:45:26.336092	2019-05-12 17:26:44.41343	40
 33	1	14	2019-04-18 16:46:43.83084	2019-04-18 16:51:32.624325	11
 34	1	15	2019-04-18 16:57:28.024761	2019-04-18 16:57:28.024761	12
-35	2	15	2019-04-18 16:57:28.037583	2019-04-18 16:57:28.037583	13
 63	1	43	2019-05-12 17:29:47.805085	2019-05-12 17:29:47.805085	41
 64	1	44	2019-05-12 17:30:54.782723	2019-05-12 17:30:54.782723	42
 \.
@@ -480,10 +478,10 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 37	1	Price includes Stamp and Registration Charges	mset	{"set": "<%=params['prices']['sale']['includes']['stamp_and_registration']%>", "input": {"id": "stampAndOtherCharges", "type": "checkbox"}, "body_click": true}	2019-05-08 16:33:21.985799	2019-05-08 16:33:21.985799	\N	
 39	1	Maintenance Value	mset	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
 40	1	Maintenance Frequency	mset	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
-41	1	Upload Exterior Photos	mset	{"set": "<%=params['photos']['exteriors']['urls']%>", "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-12 17:26:59.23099	\N	
 42	1	Select Exterior Photos	mclick	{"a": {"visible_text": "Exterior View"}}	2019-05-12 17:26:03.289687	2019-05-12 17:28:37.502784	\N	
 43	1	Select Living Room Photos	mclick	{"a": {"visible_text": "Living Room"}}	2019-05-12 17:29:47.788059	2019-05-12 17:29:47.788059	\N	
-44	1	Upload Living Room Photos	mset	{"set": "<%=params['photos']['living_rooms']['urls']%>", "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-12 17:30:54.751981	\N	
+44	1	Upload Living Room Photos	mset	{"set": "<%=params['photos']['living_rooms']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-14 15:11:17.337849	\N	
+41	1	Upload Exterior Photos	mset	{"set": "<%=params['photos']['exteriors']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-14 15:11:20.000146	\N	
 \.
 
 
@@ -512,7 +510,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 2, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 64, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 66, true);
 
 
 --
