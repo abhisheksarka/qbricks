@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     resources :steps, only: [:index]
   end
 
-  resources :flows_steps, only: [:update]
+  resources :flows_steps, only: [:update, :destroy]
 end

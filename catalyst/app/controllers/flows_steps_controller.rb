@@ -1,9 +1,14 @@
 class FlowsStepsController < ApplicationController
-  before_action :load_flows_step, only: [:update]
+  before_action :load_flows_step, only: [:update, :destroy]
 
   def update
     @flows_step.update_attributes!(allowed_params)
     flash[:success] = 'Serial order updated...'
+    redirect_to request.referrer
+  end
+
+  def destroy
+    @flows_step.destroy!
     redirect_to request.referrer
   end
 

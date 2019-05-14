@@ -153,7 +153,7 @@ CREATE TABLE public.flows_steps (
     step_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    serial integer
+    serial double precision
 );
 
 
@@ -438,7 +438,6 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 135	5	31	2019-05-14 15:58:50.220695	2019-05-14 15:58:50.220695	29
 136	5	32	2019-05-14 15:58:50.225316	2019-05-14 15:58:50.225316	30
 137	5	33	2019-05-14 15:58:50.229581	2019-05-14 15:58:50.229581	31
-138	5	34	2019-05-14 15:58:50.2318	2019-05-14 15:58:50.2318	32
 139	5	35	2019-05-14 15:58:50.234018	2019-05-14 15:58:50.234018	33
 140	5	36	2019-05-14 15:58:50.236552	2019-05-14 15:58:50.236552	34
 141	5	37	2019-05-14 15:58:50.238935	2019-05-14 15:58:50.238935	35
@@ -467,6 +466,7 @@ COPY public.schema_migrations (version) FROM stdin;
 20190214111417
 20190214111418
 20190214111419
+20190214111420
 \.
 
 
