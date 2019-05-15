@@ -328,7 +328,6 @@ environment	development	2019-04-04 15:42:11.296652	2019-04-04 15:42:11.296652
 COPY public.conditions (id, expression, conditionable_type, conditionable_id, created_at, updated_at) FROM stdin;
 3	<%= 1==1 %>	Step	2	2019-04-04 18:05:32.232863	2019-04-04 18:05:32.232863
 4	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	1	2019-04-09 16:25:53.544373	2019-04-09 16:31:55.98755
-6	<%= params['basics']['status'] == 'Ready to Move' %>	Step	30	2019-05-04 16:42:04.79051	2019-05-04 16:42:04.79051
 7	<%= params['basics']['status'] == 'Under Construction' %>	Step	31	2019-05-04 16:45:33.579796	2019-05-04 16:45:33.579796
 8	<%= params['basics']['status'] == 'Under Construction' %>	Step	32	2019-05-04 16:46:38.295306	2019-05-04 16:46:38.295306
 9	<%= params['basics']['transaction'] == 'Sale' %>	Step	33	2019-05-06 15:53:12.620785	2019-05-06 15:59:44.052434
@@ -336,11 +335,13 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 11	<%= params['basics']['transaction'] == 'Sale' %>	Step	35	2019-05-06 17:14:27.469295	2019-05-06 17:14:27.469295
 12	<%= params['basics']['transaction'] == 'Sale' %>	Step	36	2019-05-06 18:03:12.612091	2019-05-06 18:03:12.612091
 13	<%= params['basics']['transaction'] == 'Sale' %>	Step	37	2019-05-08 16:37:31.263903	2019-05-08 16:37:31.263903
-14	<%= params['basics']['transaction'] == 'Sale' %>	Step	38	2019-05-08 16:38:54.019792	2019-05-08 16:38:54.019792
 5	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	2	2019-04-18 16:16:30.365608	2019-05-14 15:16:11.601862
 17	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	5	2019-05-14 15:59:16.597053	2019-05-14 15:59:16.597053
 15	<%= ['Sale', 'Rent'].include?(params['basics']['transaction']) %>	Step	39	2019-05-08 16:44:19.924998	2019-05-14 16:19:37.332061
 16	<%= ['Sale', 'Rent'].include?(params['basics']['transaction']) %>	Step	40	2019-05-08 16:51:03.436189	2019-05-14 16:20:01.383006
+18	<%= params['basics']['transaction'] == 'Rent' %>	Step	45	2019-05-15 14:55:41.685411	2019-05-15 14:55:41.685411
+14	<%= ['Sale', 'Rent'].include?(params['basics']['transaction']) %>	Step	38	2019-05-08 16:38:54.019792	2019-05-15 14:58:25.060349
+6	<%= (params['basics']['transaction'] == 'Rent') || (params['basics']['transaction'] == 'Sale' && params['basics']['status'] == 'Ready to Move') %>	Step	30	2019-05-04 16:42:04.79051	2019-05-15 15:26:36.144311
 \.
 
 
@@ -406,7 +407,6 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 61	1	41	2019-05-09 16:45:26.336092	2019-05-12 17:26:44.41343	40
 33	1	14	2019-04-18 16:46:43.83084	2019-04-18 16:51:32.624325	11
 34	1	15	2019-04-18 16:57:28.024761	2019-04-18 16:57:28.024761	12
-108	5	4	2019-05-14 15:58:50.09451	2019-05-14 15:58:50.09451	1
 63	1	43	2019-05-12 17:29:47.805085	2019-05-12 17:29:47.805085	41
 64	1	44	2019-05-12 17:30:54.782723	2019-05-12 17:30:54.782723	42
 109	5	5	2019-05-14 15:58:50.097711	2019-05-14 15:58:50.097711	2
@@ -438,6 +438,10 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 146	5	41	2019-05-14 15:58:50.267746	2019-05-14 15:58:50.267746	40
 147	5	43	2019-05-14 15:58:50.272572	2019-05-14 15:58:50.272572	41
 148	5	44	2019-05-14 15:58:50.277336	2019-05-14 15:58:50.277336	42
+149	5	45	2019-05-15 14:55:41.750514	2019-05-15 14:56:17.461649	25
+150	5	38	2019-05-15 14:58:25.08137	2019-05-15 14:58:45.166197	26
+151	5	30	2019-05-15 15:26:36.161524	2019-05-15 15:31:17.397096	24.1000000000000014
+108	5	4	2019-05-14 15:58:50.09451	2019-05-15 15:32:59.139937	1
 \.
 
 
@@ -506,7 +510,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-05-01 16:20:45.228859	\N	
 28	1	Transaction Type	nset	{"set": true, "label": "<%= params['basics']['transaction_type'] %>", "nearest": "radio"}	2019-05-01 16:48:03.818926	2019-05-01 16:48:03.818926	\N	
 35	1	Price includes Car Parking	nset	{"set": "<%=params['prices']['sale']['includes']['car_parking']%>", "label": "Car Parking", "nearest": "checkbox", "body_click": true}	2019-05-06 17:14:27.419453	2019-05-06 18:25:28.614657	\N	
-38	1	Sale Booking Amount	mset	{"set": "<%=params['prices']['sale_token']['value']%>", "input": {"id": "bookingAmount"}}	2019-05-08 16:38:54.004021	2019-05-08 16:41:08.514781	\N	
+38	1	Booking Amount	mset	{"set": "<%=params['prices']['booking_deposit']['value']%>", "input": {"id": "bookingAmount"}}	2019-05-08 16:38:54.004021	2019-05-15 14:58:57.476949	\N	
 34	1	Price includes PLC	nset	{"set": "<%=params['prices']['sale']['includes']['plc']%>", "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-08 16:27:58.908493	\N	
 37	1	Price includes Stamp and Registration Charges	mset	{"set": "<%=params['prices']['sale']['includes']['stamp_and_registration']%>", "input": {"id": "stampAndOtherCharges", "type": "checkbox"}, "body_click": true}	2019-05-08 16:33:21.985799	2019-05-08 16:33:21.985799	\N	
 39	1	Maintenance Value	mset	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
@@ -515,6 +519,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 43	1	Select Living Room Photos	mclick	{"a": {"visible_text": "Living Room"}}	2019-05-12 17:29:47.788059	2019-05-12 17:29:47.788059	\N	
 44	1	Upload Living Room Photos	mset	{"set": "<%=params['photos']['living_rooms']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-14 15:11:17.337849	\N	
 41	1	Upload Exterior Photos	mset	{"set": "<%=params['photos']['exteriors']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-14 15:11:20.000146	\N	
+45	1	Rent Price	mset	{"set": "<%=params['prices']['rent']['value']%>", "input": {"id": "totalPrice"}}	2019-05-15 14:55:41.574279	2019-05-15 14:55:41.574279	\N	
 \.
 
 
@@ -522,7 +527,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 17, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 18, true);
 
 
 --
@@ -543,7 +548,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 5, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 148, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 151, true);
 
 
 --
@@ -557,7 +562,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 44, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 45, true);
 
 
 --

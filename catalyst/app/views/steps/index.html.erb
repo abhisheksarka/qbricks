@@ -35,7 +35,7 @@
             <% fs = FlowsStep.find_by(flow_id: @flow.id, step_id: step.id) %>
             <td style="min-width: 250px">
             <%= form_for(fs, html: { class: 'form-inline', style: 'display: inline-block'  }) do |f| %>
-              <%= f.number_field :serial, class: 'form-control-table', placeholder: 'Serial', required: true, value: fs.try(:serial)%>
+              <%= f.number_field :serial, class: 'form-control-table', placeholder: 'Serial', required: true, value: fs.try(:serial), step: '.01'%>
               <%= f.submit 'Update', class: 'btn btn-primary btn-sm' %>
             <% end %>
             <%= link_to 'Unlink', flows_step_path(fs), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %> 
