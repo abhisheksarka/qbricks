@@ -58,6 +58,17 @@
 		"pool_facing": false,
 		"road_facing": false
 	},
+	"furnishing": {
+		"ac": 2,
+		"bed": 2,
+		"wardrobe": 2,
+		"fridge": 1,
+		"tv": 1,
+		"gas_connection": 1,
+		"dining_table": 1,
+		"washing_machine": 1,
+		"microwave": 1
+	},
 	"dimensions": {
 		"covered_area": {
 			"value": 1500,
