@@ -34,7 +34,9 @@
     "AGRICULTURAL_LAND"
   ],
   "basics.status": [
-    "READY_TO_MOVE_IN",
-    "UNDER_CONSTRUCTION"
+    "READY_FOR_SALE_NOW",
+    "READY_FOR_SALE_FROM",
+    "READY_FOR_RENT_NOW",
+    "READY_FOR_RENT_FROM"
   ]
 }

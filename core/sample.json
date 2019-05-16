@@ -24,7 +24,12 @@
 		"type": "BUILDER_FLOOR_APARTMENT",
 		"category": "RESIDENTIAL",
 		"age_in_years": 3,
-		"available_from": {
+		"rent_available_from": {
+			"year": 2018,
+			"month": 1,
+			"day": 1
+		},
+		"sale_available_from": {
 			"year": 2018,
 			"month": 1,
 			"day": 1

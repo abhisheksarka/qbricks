@@ -9,7 +9,7 @@ module Quanta
       def js_set(value)
         browser_client.execute_script(
           %{
-            $("#{js_selector})").val("#{value}")
+            $("#{js_selector}").val("#{value}")
           }.strip
         )
         js_value_validate!(value)
