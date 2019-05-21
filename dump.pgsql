@@ -445,6 +445,10 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 152	5	46	2019-05-16 15:57:34.463154	2019-05-16 15:58:17.491629	24.1000000000000014
 151	5	30	2019-05-15 15:26:36.161524	2019-05-16 15:58:29.169019	24.1999999999999993
 153	5	47	2019-05-16 16:11:27.925459	2019-05-16 16:12:04.329015	24.3000000000000007
+154	5	48	2019-05-21 14:35:51.987661	2019-05-21 14:40:19.317609	20.1000000000000014
+155	5	49	2019-05-21 14:36:41.154595	2019-05-21 14:40:27.431037	20.1999999999999993
+156	5	50	2019-05-21 14:38:04.837402	2019-05-21 14:40:34.324435	20.3000000000000007
+157	5	51	2019-05-21 14:38:48.596115	2019-05-21 14:40:40.497551	20.3999999999999986
 \.
 
 
@@ -472,7 +476,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
-1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-16 16:27:54.293467
+1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}, "furnishing": {"ac": {"_r_": {"..0": "Select", "4..": "3+"}}, "tv": {"_r_": {"..0": "Select", "4..": "3+"}}, "bed": {"_r_": {"..0": "Select", "4..": "3+"}}, "wardrobe": {"_r_": {"..0": "Select", "4..": "3+"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-21 14:58:05.684716
 \.
 
 
@@ -525,6 +529,10 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 45	1	Rent Price	mset	{"set": "<%=params['prices']['rent']['value']%>", "input": {"id": "totalPrice"}}	2019-05-15 14:55:41.574279	2019-05-15 14:55:41.574279	\N	
 46	1	Rent Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-16 15:57:34.441069	2019-05-16 15:57:34.441069	\N	
 47	1	Rent From Date	mset	{"js": true, "set": "<%=params['basics']['rent_available_from']['day'] + '-' + params['basics']['rent_available_from']['month'] + '-' + params['basics']['rent_available_from']['year']%>", "input": {"id": "availableDateStr"}}	2019-05-16 16:11:27.817106	2019-05-16 16:29:43.601151	\N	
+51	1	Rent TV Count	mset	{"js": true, "set": "<%= params['furnishing']['tv'] %>", "select": {"id": "tvCount"}}	2019-05-21 14:38:48.579986	2019-05-21 15:17:06.044006	\N	
+49	1	Rent Bed Count	mset	{"js": true, "set": "<%= params['furnishing']['bed'] %>", "select": {"id": "bedCount"}}	2019-05-21 14:36:41.099919	2019-05-21 15:17:23.33685	\N	
+48	1	Rent AC Count	mset	{"js": true, "set": "<%= params['furnishing']['ac'] %>", "select": {"id": "acCount"}}	2019-05-21 14:35:51.921437	2019-05-21 15:17:37.346474	\N	
+50	1	Rent Wadrobe Count	mset	{"js": true, "set": "<%= params['furnishing']['wardrobe'] %>", "select": {"id": "wardrobeCount"}}	2019-05-21 14:38:04.819335	2019-05-21 15:17:57.476701	\N	
 \.
 
 
@@ -553,7 +561,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 5, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 153, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 157, true);
 
 
 --
@@ -567,7 +575,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 47, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 51, true);
 
 
 --

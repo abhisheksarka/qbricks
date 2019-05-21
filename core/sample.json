@@ -20,7 +20,7 @@
 	"basics": {
 		"transaction": "RENT",
 		"transaction_type": "NEW_PROPERTY",
-		"status": "READY_TO_MOVE_IN",
+		"status": "READY_FOR_RENT_FROM",
 		"type": "BUILDER_FLOOR_APARTMENT",
 		"category": "RESIDENTIAL",
 		"age_in_years": 3,
@@ -64,11 +64,11 @@
 		"road_facing": false
 	},
 	"furnishing": {
-		"ac": 2,
+		"ac": 1,
 		"bed": 2,
 		"wardrobe": 2,
 		"fridge": 1,
-		"tv": 1,
+		"tv": 0,
 		"gas_connection": 1,
 		"dining_table": 1,
 		"washing_machine": 1,
