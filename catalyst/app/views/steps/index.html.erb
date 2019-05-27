@@ -14,9 +14,11 @@
   <table class="table table-bordered table-striped table-dark">
     <thead>
     <tr>
+      <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Type</th>
       <th scope="col">Config</th>
+      <th scope="col">Script</th>
       <th scope="col">Condition Expression</th>
       <% if @flow %>
         <th scope="col">Serial</th>
@@ -27,9 +29,11 @@
     <tbody>
     <% @steps.each_with_index do |step, i| %>
         <tr>
+          <td><%= step.id %></td>
           <td><%= step.name %></td>
           <td><%= step.step_type %></td>
           <td><%= step.config.try(:to_json_ea) %></td>
+          <td><%= step.script %></td>
           <td><%= step.display_condition_expression %></td>
           <% if @flow %>
             <% fs = FlowsStep.find_by(flow_id: @flow.id, step_id: step.id) %>

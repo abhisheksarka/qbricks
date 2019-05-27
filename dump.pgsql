@@ -343,6 +343,11 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 14	<%= ['Sale', 'Rent'].include?(params['basics']['transaction']) %>	Step	38	2019-05-08 16:38:54.019792	2019-05-15 14:58:25.060349
 6	<%= (params['basics']['transaction'] == 'Rent') || (params['basics']['transaction'] == 'Sale' && params['basics']['status'] == 'Ready to Move') %>	Step	30	2019-05-04 16:42:04.79051	2019-05-15 15:26:36.144311
 19	<%= params['basics']['status']=='Select Date' %>	Step	47	2019-05-16 16:11:27.839702	2019-05-16 16:11:27.839702
+20	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	6	2019-05-23 14:09:07.806501	2019-05-23 14:09:07.806501
+21	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'BUILDER_FLOOR_APARTMENT' %>	Flow	7	2019-05-23 14:23:41.385731	2019-05-23 14:23:41.385731
+22	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'VILLA' %>	Flow	8	2019-05-23 14:25:35.642008	2019-05-23 14:25:35.642008
+23	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	9	2019-05-23 14:26:44.402745	2019-05-23 14:26:44.402745
+24	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	10	2019-05-23 14:31:24.579623	2019-05-23 14:31:24.579623
 \.
 
 
@@ -361,6 +366,10 @@ COPY public.datasets (id, content, type, site_id, created_at, updated_at) FROM s
 COPY public.flows (id, site_id, name, created_at, updated_at) FROM stdin;
 1	1	Sale of Builder Floor Apartment	2019-04-04 17:14:48.742893	2019-04-04 17:14:48.742893
 5	1	Rent of Builder Floor Apartment	2019-05-14 15:58:50.083692	2019-05-14 15:59:16.547459
+6	2	Sale of Builder Floor Apartment	2019-05-23 14:09:07.737874	2019-05-23 14:09:07.737874
+7	2	Rent of Builder Floor Apartment	2019-05-23 14:23:41.362577	2019-05-23 14:23:41.362577
+8	2	Sale of Villa	2019-05-23 14:25:35.555433	2019-05-23 14:25:35.555433
+10	2	Rent of Villa	2019-05-23 14:31:24.567415	2019-05-23 14:31:24.567415
 \.
 
 
@@ -449,6 +458,26 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 155	5	49	2019-05-21 14:36:41.154595	2019-05-21 14:40:27.431037	20.1999999999999993
 156	5	50	2019-05-21 14:38:04.837402	2019-05-21 14:40:34.324435	20.3000000000000007
 157	5	51	2019-05-21 14:38:48.596115	2019-05-21 14:40:40.497551	20.3999999999999986
+158	6	52	2019-05-23 14:34:03.338705	2019-05-23 14:34:03.338705	81
+159	7	52	2019-05-23 14:34:03.348216	2019-05-23 14:34:03.348216	82
+160	8	52	2019-05-23 14:34:03.355342	2019-05-23 14:34:03.355342	83
+161	10	52	2019-05-23 14:34:03.364661	2019-05-23 14:34:03.364661	84
+162	6	53	2019-05-27 14:32:29.682466	2019-05-27 14:32:29.682466	85
+163	7	53	2019-05-27 14:32:29.742737	2019-05-27 14:32:29.742737	86
+164	8	53	2019-05-27 14:32:29.76748	2019-05-27 14:32:29.76748	87
+165	10	53	2019-05-27 14:32:29.783973	2019-05-27 14:32:29.783973	88
+166	6	54	2019-05-27 14:33:12.120482	2019-05-27 14:33:12.120482	89
+167	7	54	2019-05-27 14:33:12.214952	2019-05-27 14:33:12.214952	90
+168	8	54	2019-05-27 14:33:12.224391	2019-05-27 14:33:12.224391	91
+169	10	54	2019-05-27 14:33:12.233816	2019-05-27 14:33:12.233816	92
+170	6	55	2019-05-27 14:34:39.054104	2019-05-27 14:34:39.054104	93
+171	7	55	2019-05-27 14:34:39.063158	2019-05-27 14:34:39.063158	94
+172	8	55	2019-05-27 14:34:39.117348	2019-05-27 14:34:39.117348	95
+173	10	55	2019-05-27 14:34:39.127035	2019-05-27 14:34:39.127035	96
+183	7	58	2019-05-27 15:30:17.764154	2019-05-27 15:31:21.096401	82.5
+182	6	58	2019-05-27 15:30:17.632268	2019-05-27 15:30:41.372651	81.5
+184	8	58	2019-05-27 15:30:17.773522	2019-05-27 15:37:18.347441	83.5
+185	10	58	2019-05-27 15:30:17.804485	2019-05-27 15:37:35.062256	84.5
 \.
 
 
@@ -477,6 +506,7 @@ COPY public.schema_migrations (version) FROM stdin;
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
 1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}, "furnishing": {"ac": {"_r_": {"..0": "Select", "4..": "3+"}}, "tv": {"_r_": {"..0": "Select", "4..": "3+"}}, "bed": {"_r_": {"..0": "Select", "4..": "3+"}}, "wardrobe": {"_r_": {"..0": "Select", "4..": "3+"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-21 14:58:05.684716
+2	CommonFloor	cf	{"browser_type": "chrome"}	{}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-21 15:26:49.203975
 \.
 
 
@@ -529,10 +559,15 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 45	1	Rent Price	mset	{"set": "<%=params['prices']['rent']['value']%>", "input": {"id": "totalPrice"}}	2019-05-15 14:55:41.574279	2019-05-15 14:55:41.574279	\N	
 46	1	Rent Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-16 15:57:34.441069	2019-05-16 15:57:34.441069	\N	
 47	1	Rent From Date	mset	{"js": true, "set": "<%=params['basics']['rent_available_from']['day'] + '-' + params['basics']['rent_available_from']['month'] + '-' + params['basics']['rent_available_from']['year']%>", "input": {"id": "availableDateStr"}}	2019-05-16 16:11:27.817106	2019-05-16 16:29:43.601151	\N	
+52	2	Open Listing Page	goto	{"url": "https://www.commonfloor.com/list-your-property"}	2019-05-23 14:34:03.303234	2019-05-27 15:33:12.621446	\N	
+58	2	Open Login Modal	nset	{}	2019-05-27 15:30:17.564742	2019-05-27 15:43:15.139662	\N	$(\r\n    function () { \r\n        $('#login-details ul li:first-child a:first-child').trigger('click');\r\n    }\r\n)
 51	1	Rent TV Count	mset	{"js": true, "set": "<%= params['furnishing']['tv'] %>", "select": {"id": "tvCount"}}	2019-05-21 14:38:48.579986	2019-05-21 15:17:06.044006	\N	
 49	1	Rent Bed Count	mset	{"js": true, "set": "<%= params['furnishing']['bed'] %>", "select": {"id": "bedCount"}}	2019-05-21 14:36:41.099919	2019-05-21 15:17:23.33685	\N	
 48	1	Rent AC Count	mset	{"js": true, "set": "<%= params['furnishing']['ac'] %>", "select": {"id": "acCount"}}	2019-05-21 14:35:51.921437	2019-05-21 15:17:37.346474	\N	
 50	1	Rent Wadrobe Count	mset	{"js": true, "set": "<%= params['furnishing']['wardrobe'] %>", "select": {"id": "wardrobeCount"}}	2019-05-21 14:38:04.819335	2019-05-21 15:17:57.476701	\N	
+54	2	Enter Password	mset	{"set": "<%= params['auth']['pwd'] %>", "input": {"id": "login-password-id"}}	2019-05-27 14:33:12.061881	2019-05-27 15:09:57.896199	\N	
+53	2	Enter Email	mset	{"set": "<%= params['auth']['uid'] %>", "input": {"id": "login-email-id"}}	2019-05-27 14:32:29.472555	2019-05-27 15:10:01.686465	\N	
+55	2	Login	mclick	{"input": {"type": "button", "value": "Login"}}	2019-05-27 14:34:38.953548	2019-05-27 15:10:33.941548	\N	
 \.
 
 
@@ -540,7 +575,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 19, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 24, true);
 
 
 --
@@ -554,28 +589,28 @@ SELECT pg_catalog.setval('public.datasets_id_seq', 1, false);
 -- Name: flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_id_seq', 5, true);
+SELECT pg_catalog.setval('public.flows_id_seq', 10, true);
 
 
 --
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 157, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 185, true);
 
 
 --
 -- Name: sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.sites_id_seq', 1, true);
+SELECT pg_catalog.setval('public.sites_id_seq', 2, true);
 
 
 --
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 51, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 58, true);
 
 
 --

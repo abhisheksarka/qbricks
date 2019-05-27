@@ -8,7 +8,7 @@ class FlowsController < ApplicationController
   end
 
   def new
-    @flow = Flow.new(site_id: @site.id)
+    @flow ||= Flow.new(site_id: @site.id)
   end
 
   def edit
@@ -19,7 +19,7 @@ class FlowsController < ApplicationController
     c = allowed_params[:condition_expression]
     @flow.create_condition(expression: c) if c.present?
     flash[:success] = "Flow created"
-    render :new
+    redirect_to edit_site_flow_path(@flow.site, @flow)
   end
 
   def clone
