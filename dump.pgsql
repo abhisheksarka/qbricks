@@ -478,6 +478,18 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 182	6	58	2019-05-27 15:30:17.632268	2019-05-27 15:30:41.372651	81.5
 184	8	58	2019-05-27 15:30:17.773522	2019-05-27 15:37:18.347441	83.5
 185	10	58	2019-05-27 15:30:17.804485	2019-05-27 15:37:35.062256	84.5
+186	6	59	2019-05-28 14:40:07.874166	2019-05-28 14:40:07.874166	101
+187	7	59	2019-05-28 14:40:07.929045	2019-05-28 14:40:07.929045	102
+188	8	59	2019-05-28 14:40:07.94034	2019-05-28 14:40:07.94034	103
+189	10	59	2019-05-28 14:40:07.954299	2019-05-28 14:40:07.954299	104
+190	6	60	2019-05-29 15:47:12.071144	2019-05-29 15:47:12.071144	105
+192	8	60	2019-05-29 15:47:12.100381	2019-05-29 15:47:12.100381	107
+193	10	60	2019-05-29 15:47:12.109008	2019-05-29 15:47:12.109008	108
+191	7	60	2019-05-29 15:47:12.089203	2019-05-29 15:47:31.807213	95
+194	6	61	2019-05-29 16:07:06.271644	2019-05-29 16:07:06.271644	109
+196	8	61	2019-05-29 16:07:06.293795	2019-05-29 16:07:06.293795	111
+197	10	61	2019-05-29 16:07:06.30257	2019-05-29 16:07:06.30257	112
+195	7	61	2019-05-29 16:07:06.283693	2019-05-29 16:07:33.350619	94.5
 \.
 
 
@@ -506,7 +518,7 @@ COPY public.schema_migrations (version) FROM stdin;
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
 1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}, "furnishing": {"ac": {"_r_": {"..0": "Select", "4..": "3+"}}, "tv": {"_r_": {"..0": "Select", "4..": "3+"}}, "bed": {"_r_": {"..0": "Select", "4..": "3+"}}, "wardrobe": {"_r_": {"..0": "Select", "4..": "3+"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-21 14:58:05.684716
-2	CommonFloor	cf	{"browser_type": "chrome"}	{}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-21 15:26:49.203975
+2	CommonFloor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-28 14:40:27.849425
 \.
 
 
@@ -568,6 +580,9 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 54	2	Enter Password	mset	{"set": "<%= params['auth']['pwd'] %>", "input": {"id": "login-password-id"}}	2019-05-27 14:33:12.061881	2019-05-27 15:09:57.896199	\N	
 53	2	Enter Email	mset	{"set": "<%= params['auth']['uid'] %>", "input": {"id": "login-email-id"}}	2019-05-27 14:32:29.472555	2019-05-27 15:10:01.686465	\N	
 55	2	Login	mclick	{"input": {"type": "button", "value": "Login"}}	2019-05-27 14:34:38.953548	2019-05-27 15:10:33.941548	\N	
+59	2	User Role	jsclick	{"li": {"id": "<%= params['auth']['role'] %>"}}	2019-05-28 14:40:07.618924	2019-05-29 15:38:05.469752	\N	
+60	2	Page load wait	mclick	{"input": {"id": "UserName"}}	2019-05-29 15:47:12.030884	2019-05-29 16:05:42.954435	\N	
+61	2	After login open listing	goto	{"url": "https://www.commonfloor.com/list-your-property"}	2019-05-29 16:07:06.258375	2019-05-29 16:07:06.258375	\N	
 \.
 
 
@@ -596,7 +611,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 10, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 185, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 197, true);
 
 
 --
@@ -610,7 +625,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 2, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 58, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 61, true);
 
 
 --

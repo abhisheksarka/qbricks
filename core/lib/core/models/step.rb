@@ -15,7 +15,7 @@ class Step < ApplicationRecord
 
   class << self
     def step_types
-      %w[nset nclick goto mset mclick jclick jset]
+      %w[goto mset mclick jsclick jsset]
     end
   end
 end

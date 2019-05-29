@@ -11,7 +11,7 @@ module Quanta
 
     # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false, body_click: true/false }
     def jsclick(config)
-      config = before_exec(config)
+      config = js_before_exec(config)
       js_selector = js_selector_from_config(config)
       js_validate_presence!(js_selector)
       script("#{js_selector}.click()")
@@ -20,7 +20,7 @@ module Quanta
 
     # Sample - { button: { id: 'foo' } }
     def jsset(config)
-      config = before_exec(config)
+      config = js_before_exec(config)
       js_selector = js_selector_from_config(config)
       js_validate_presence!(js_selector)
       script("#{js_selector}.val('#{config[:set]}')")
