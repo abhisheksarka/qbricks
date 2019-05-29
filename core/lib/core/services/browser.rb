@@ -1,7 +1,9 @@
 module Core
   module Services
     class Browser
-      include Quanta::Browsable
+      include Quanta::BrowsableRb
+      include Quanta::BrowsableJs
+      
       attr_accessor :site,
                     :dataset,
                     :datamap,

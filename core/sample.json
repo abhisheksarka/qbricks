@@ -2,7 +2,8 @@
 	"auth": {
 		"uid": "abhisheksarka@gmail.com",
 		"pwd": "Magic0657!",
-		"rera_id": ""
+		"rera_id": "",
+		"role": "agent"
 	},
 	"location": {
 		"unit": "A-304",
