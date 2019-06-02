@@ -15,7 +15,7 @@ class Step < ApplicationRecord
 
   class << self
     def step_types
-      %w[goto mset mclick jsclick jsset]
+      %w[goto m_set m_click js_click js_set js_autocomplete]
     end
   end
 end

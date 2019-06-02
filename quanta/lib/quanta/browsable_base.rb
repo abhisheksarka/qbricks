@@ -7,7 +7,9 @@ module Quanta
       js: 3,
       body_click: 4,
       after_wait: 5,
-      before_wait: 6
+      before_wait: 6,
+      complete: 7,
+      items: 8
     )
     attr_accessor :browsable_config
 

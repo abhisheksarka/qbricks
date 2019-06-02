@@ -10,7 +10,7 @@ module Quanta
     end
 
     # Sample - { input: { id: 'foo' }, set: 'bar', js: true/false, body_click: true/false }
-    def mset(config)
+    def m_set(config)
       config = before_exec(config)
       el = wrap_el(find_by_config(config))
       setv = ([JSON.parse(config[:set])] rescue [config[:set]]).flatten.compact
@@ -27,7 +27,7 @@ module Quanta
     end
 
     # Sample - { button: { id: 'foo' } }
-    def mclick(config)
+    def m_click(config)
       config = before_exec(config)
       find_by_config(config).click
       after_exec(config)
@@ -67,7 +67,7 @@ module Quanta
       )
       # click the body, sometimes acts as a refresher when the element
       # has moved or something, weird stuff
-      mclick(body: { index: 0 }) if c[:body_click]
+      m_click(body: { index: 0 }) if c[:body_click]
       sleep(c[:before_wait].to_i) if c[:before_wait]
       c
     end
