@@ -490,6 +490,14 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 196	8	61	2019-05-29 16:07:06.293795	2019-05-29 16:07:06.293795	111
 197	10	61	2019-05-29 16:07:06.30257	2019-05-29 16:07:06.30257	112
 195	7	61	2019-05-29 16:07:06.283693	2019-05-29 16:07:33.350619	94.5
+198	6	62	2019-05-31 15:17:09.023411	2019-05-31 15:17:09.023411	113
+199	7	62	2019-05-31 15:17:09.042283	2019-05-31 15:17:09.042283	114
+200	8	62	2019-05-31 15:17:09.09986	2019-05-31 15:17:09.09986	115
+201	10	62	2019-05-31 15:17:09.138347	2019-05-31 15:17:09.138347	116
+202	6	63	2019-05-31 15:32:00.300933	2019-05-31 15:32:00.300933	117
+203	7	63	2019-05-31 15:32:00.323892	2019-05-31 15:32:00.323892	118
+204	8	63	2019-05-31 15:32:00.345967	2019-05-31 15:32:00.345967	119
+205	10	63	2019-05-31 15:32:00.361463	2019-05-31 15:32:00.361463	120
 \.
 
 
@@ -518,7 +526,7 @@ COPY public.schema_migrations (version) FROM stdin;
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
 1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}, "furnishing": {"ac": {"_r_": {"..0": "Select", "4..": "3+"}}, "tv": {"_r_": {"..0": "Select", "4..": "3+"}}, "bed": {"_r_": {"..0": "Select", "4..": "3+"}}, "wardrobe": {"_r_": {"..0": "Select", "4..": "3+"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-21 14:58:05.684716
-2	CommonFloor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-28 14:40:27.849425
+2	CommonFloor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-31 15:27:12.50577
 \.
 
 
@@ -527,62 +535,64 @@ COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_
 --
 
 COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at, signature, script) FROM stdin;
-23	1	Bathrooms	mset	{"set": "<%= params['features']['bathrooms'] %>", "select": {"id": "bathrooms"}}	2019-04-21 12:12:37.720529	2019-04-21 12:12:37.720529	\N	\N
 6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-04-08 17:31:34.286912	\N	\N
-24	1	Covered Area	mset	{"set": "<%= params['dimensions']['covered_area']['value'] %>", "input": {"id": "coveredArea"}}	2019-04-21 12:36:37.001336	2019-04-21 12:51:01.292567	\N	\N
+10	1	Close Buy Dialog	m_click	{"a": {"class": "md-close"}}	2019-04-09 16:11:58.997602	2019-04-09 16:11:58.997602	\N	\N
 8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-04-08 17:37:40.405507	\N	\N
 9	1	Open Listing Page	goto	{"url": "https://post.magicbricks.com/"}	2019-04-08 17:39:26.54559	2019-04-08 17:39:26.54559	\N	\N
-10	1	Close Buy Dialog	mclick	{"a": {"class": "md-close"}}	2019-04-09 16:11:58.997602	2019-04-09 16:11:58.997602	\N	\N
-25	1	Carpet Area	mset	{"set": "<%= params['dimensions']['carpet_area']['value'] %>", "input": {"id": "carpetArea"}}	2019-04-21 12:51:21.404833	2019-04-21 12:51:21.404833	\N	\N
-26	1	Covered Area Unit	mset	{"set": "<%= params['dimensions']['covered_area']['unit'] %>", "select": {"id": "coveredAreaType"}}	2019-04-21 12:53:21.381496	2019-04-21 12:53:21.381496	\N	\N
-27	1	Carpet Area Unit	mset	{"set": "<%= params['dimensions']['carpet_area']['unit'] %>", "select": {"id": "carpetAreaType"}}	2019-04-21 12:53:56.183001	2019-04-21 12:53:56.183001	\N	\N
 29	1	Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-01 16:54:56.1117	2019-05-01 16:54:56.1117	\N	
 7	1	Enter Password	nset	{"set": "<%= params['auth']['pwd'] %>", "label": "Password", "nearest": "text_field"}	2019-04-08 17:34:18.374361	2019-04-15 14:28:03.507071	\N	\N
-30	1	Age of Construction	mset	{"set": "<%= params['basics']['age_in_years']%>", "select": {"id": "ageofcons"}}	2019-05-02 16:05:37.045948	2019-05-02 16:05:37.045948	\N	
 12	1	Property Type	nset	{"div": {"class": "formLabel", "visible_text": "Property Type"}, "set": "<%= params['basics']['type'] %>", "nearest": "select"}	2019-04-09 18:00:18.818261	2019-04-15 16:53:44.490661	\N	\N
 11	1	Property For	nset	{"set": true, "label": "<%= params['basics']['transaction'] %>", "nearest": "radio"}	2019-04-09 17:44:56.237586	2019-04-15 16:54:35.038174	\N	\N
 14	1	Locality	nset	{"div": {"class": "formLabel", "visible_text": "Locality"}, "set": "<%= params['location']['locality']%>", "nearest": "text_field"}	2019-04-18 16:32:37.029131	2019-04-18 16:33:46.730939	\N	\N
 13	1	City	nset	{"div": {"class": "formLabel", "visible_text": "City"}, "set": "<%= params['location']['city'] %>", "nearest": "select"}	2019-04-09 18:12:52.532004	2019-04-18 16:35:03.397962	\N	\N
 15	1	Complex	nset	{"div": {"class": "formLabel", "visible_text": "Name of Project/Society"}, "set": "<%= params['location']['complex']%>", "nearest": "text_field"}	2019-04-18 16:57:28.006246	2019-04-18 16:57:28.006246	\N	\N
 16	1	Unit	nset	{"div": {"class": "formLabel", "visible_text": "Address"}, "set": "<%= params['location']['unit']%>", "nearest": "text_field"}	2019-04-18 16:58:12.62551	2019-04-18 16:58:12.62551	\N	\N
-17	1	Body click	mclick	{"body": {"index": 0}}	2019-04-20 14:45:43.979706	2019-04-20 14:45:43.979706	\N	\N
-19	1	Balconies	mset	{"set": "<%= params['features']['balconies'] %>", "select": {"id": "balconies"}}	2019-04-20 18:02:54.403707	2019-04-21 06:51:25.589702	\N	\N
-18	1	Bedrooms	mset	{"set": "<%= params['features']['bedrooms'] %>", "select": {"id": "bedrooms"}}	2019-04-20 18:02:06.37406	2019-04-21 11:35:12.083085	\N	\N
-20	1	Floor	mset	{"set": "<%= params['features']['floor'] %>", "select": {"id": "floorNumber"}}	2019-04-21 12:03:05.965986	2019-04-21 12:03:05.965986	\N	\N
-21	1	Total Floors	mset	{"set": "<%= params['features']['floors_total'] %>", "select": {"id": "totalFloorNumber"}}	2019-04-21 12:05:07.899692	2019-04-21 12:05:07.899692	\N	\N
-22	1	Furnishing	mset	{"set": "<%= params['features']['furnishing'] %>", "select": {"id": "furnished"}}	2019-04-21 12:06:19.811346	2019-04-21 12:06:19.811346	\N	\N
-32	1	Available From Year	mset	{"js": true, "set": "<%= params['basics']['sale_available_from']['year'] %>", "select": {"id": "availFromYear"}}	2019-05-04 16:46:38.284648	2019-05-16 16:28:55.123781	\N	
-33	1	Sale Price	mset	{"set": "<%= params[:prices][:sale][:value] %>", "input": {"id": "totalPrice"}}	2019-05-06 15:53:12.55185	2019-05-06 15:53:12.55185	\N	
+17	1	Body click	m_click	{"body": {"index": 0}}	2019-04-20 14:45:43.979706	2019-04-20 14:45:43.979706	\N	\N
+23	1	Bathrooms	m_set	{"set": "<%= params['features']['bathrooms'] %>", "select": {"id": "bathrooms"}}	2019-04-21 12:12:37.720529	2019-04-21 12:12:37.720529	\N	\N
 36	1	Price includes Club Membership	nset	{"set": "<%=params['prices']['sale']['includes']['club_membership']%>", "label": "Club Membership", "nearest": "checkbox", "body_click": true}	2019-05-06 18:03:12.599617	2019-05-06 18:25:44.104327	\N	
 4	1	Open Login Page	goto	{"url": "https://www.magicbricks.com/userLogin"}	2019-04-08 16:07:04.281331	2019-05-01 16:14:24.966746	\N	
 5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-05-01 16:20:45.228859	\N	
 28	1	Transaction Type	nset	{"set": true, "label": "<%= params['basics']['transaction_type'] %>", "nearest": "radio"}	2019-05-01 16:48:03.818926	2019-05-01 16:48:03.818926	\N	
 35	1	Price includes Car Parking	nset	{"set": "<%=params['prices']['sale']['includes']['car_parking']%>", "label": "Car Parking", "nearest": "checkbox", "body_click": true}	2019-05-06 17:14:27.419453	2019-05-06 18:25:28.614657	\N	
-38	1	Booking Amount	mset	{"set": "<%=params['prices']['booking_deposit']['value']%>", "input": {"id": "bookingAmount"}}	2019-05-08 16:38:54.004021	2019-05-15 14:58:57.476949	\N	
 34	1	Price includes PLC	nset	{"set": "<%=params['prices']['sale']['includes']['plc']%>", "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-08 16:27:58.908493	\N	
-37	1	Price includes Stamp and Registration Charges	mset	{"set": "<%=params['prices']['sale']['includes']['stamp_and_registration']%>", "input": {"id": "stampAndOtherCharges", "type": "checkbox"}, "body_click": true}	2019-05-08 16:33:21.985799	2019-05-08 16:33:21.985799	\N	
-39	1	Maintenance Value	mset	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
-40	1	Maintenance Frequency	mset	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
-42	1	Select Exterior Photos	mclick	{"a": {"visible_text": "Exterior View"}}	2019-05-12 17:26:03.289687	2019-05-12 17:28:37.502784	\N	
-43	1	Select Living Room Photos	mclick	{"a": {"visible_text": "Living Room"}}	2019-05-12 17:29:47.788059	2019-05-12 17:29:47.788059	\N	
-31	1	Available From Month	mset	{"js": true, "set": "<%= params['basics']['sale_available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-16 16:28:44.65228	\N	
-44	1	Upload Living Room Photos	mset	{"set": "<%=params['photos']['living_rooms']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-14 15:11:17.337849	\N	
-41	1	Upload Exterior Photos	mset	{"set": "<%=params['photos']['exteriors']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-14 15:11:20.000146	\N	
-45	1	Rent Price	mset	{"set": "<%=params['prices']['rent']['value']%>", "input": {"id": "totalPrice"}}	2019-05-15 14:55:41.574279	2019-05-15 14:55:41.574279	\N	
+42	1	Select Exterior Photos	m_click	{"a": {"visible_text": "Exterior View"}}	2019-05-12 17:26:03.289687	2019-05-12 17:28:37.502784	\N	
+43	1	Select Living Room Photos	m_click	{"a": {"visible_text": "Living Room"}}	2019-05-12 17:29:47.788059	2019-05-12 17:29:47.788059	\N	
+44	1	Upload Living Room Photos	m_set	{"set": "<%=params['photos']['living_rooms']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-14 15:11:17.337849	\N	
+41	1	Upload Exterior Photos	m_set	{"set": "<%=params['photos']['exteriors']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-14 15:11:20.000146	\N	
+55	2	Login	m_click	{"input": {"type": "button", "value": "Login"}}	2019-05-27 14:34:38.953548	2019-05-27 15:10:33.941548	\N	
+60	2	Page load wait	m_click	{"input": {"id": "UserName"}}	2019-05-29 15:47:12.030884	2019-05-29 16:05:42.954435	\N	
 46	1	Rent Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-16 15:57:34.441069	2019-05-16 15:57:34.441069	\N	
-47	1	Rent From Date	mset	{"js": true, "set": "<%=params['basics']['rent_available_from']['day'] + '-' + params['basics']['rent_available_from']['month'] + '-' + params['basics']['rent_available_from']['year']%>", "input": {"id": "availableDateStr"}}	2019-05-16 16:11:27.817106	2019-05-16 16:29:43.601151	\N	
+59	2	User Role	js_click	{"li": {"id": "<%= params['auth']['role'] %>"}}	2019-05-28 14:40:07.618924	2019-05-29 15:38:05.469752	\N	
 52	2	Open Listing Page	goto	{"url": "https://www.commonfloor.com/list-your-property"}	2019-05-23 14:34:03.303234	2019-05-27 15:33:12.621446	\N	
-58	2	Open Login Modal	nset	{}	2019-05-27 15:30:17.564742	2019-05-27 15:43:15.139662	\N	$(\r\n    function () { \r\n        $('#login-details ul li:first-child a:first-child').trigger('click');\r\n    }\r\n)
-51	1	Rent TV Count	mset	{"js": true, "set": "<%= params['furnishing']['tv'] %>", "select": {"id": "tvCount"}}	2019-05-21 14:38:48.579986	2019-05-21 15:17:06.044006	\N	
-49	1	Rent Bed Count	mset	{"js": true, "set": "<%= params['furnishing']['bed'] %>", "select": {"id": "bedCount"}}	2019-05-21 14:36:41.099919	2019-05-21 15:17:23.33685	\N	
-48	1	Rent AC Count	mset	{"js": true, "set": "<%= params['furnishing']['ac'] %>", "select": {"id": "acCount"}}	2019-05-21 14:35:51.921437	2019-05-21 15:17:37.346474	\N	
-50	1	Rent Wadrobe Count	mset	{"js": true, "set": "<%= params['furnishing']['wardrobe'] %>", "select": {"id": "wardrobeCount"}}	2019-05-21 14:38:04.819335	2019-05-21 15:17:57.476701	\N	
-54	2	Enter Password	mset	{"set": "<%= params['auth']['pwd'] %>", "input": {"id": "login-password-id"}}	2019-05-27 14:33:12.061881	2019-05-27 15:09:57.896199	\N	
-53	2	Enter Email	mset	{"set": "<%= params['auth']['uid'] %>", "input": {"id": "login-email-id"}}	2019-05-27 14:32:29.472555	2019-05-27 15:10:01.686465	\N	
-55	2	Login	mclick	{"input": {"type": "button", "value": "Login"}}	2019-05-27 14:34:38.953548	2019-05-27 15:10:33.941548	\N	
-59	2	User Role	jsclick	{"li": {"id": "<%= params['auth']['role'] %>"}}	2019-05-28 14:40:07.618924	2019-05-29 15:38:05.469752	\N	
-60	2	Page load wait	mclick	{"input": {"id": "UserName"}}	2019-05-29 15:47:12.030884	2019-05-29 16:05:42.954435	\N	
+45	1	Rent Price	m_set	{"set": "<%=params['prices']['rent']['value']%>", "input": {"id": "totalPrice"}}	2019-05-15 14:55:41.574279	2019-05-15 14:55:41.574279	\N	
+47	1	Rent From Date	m_set	{"js": true, "set": "<%=params['basics']['rent_available_from']['day'] + '-' + params['basics']['rent_available_from']['month'] + '-' + params['basics']['rent_available_from']['year']%>", "input": {"id": "availableDateStr"}}	2019-05-16 16:11:27.817106	2019-05-16 16:29:43.601151	\N	
+58	2	Open Login Modal	goto	{}	2019-05-27 15:30:17.564742	2019-05-31 15:05:05.285821	\N	$(\r\n    function () { \r\n        CfAppActions.getLogin('sign-in'); \r\n        CfAppActions.pushAnalytics('hp-login-click', 'log-in');\r\n    }\r\n)
 61	2	After login open listing	goto	{"url": "https://www.commonfloor.com/list-your-property"}	2019-05-29 16:07:06.258375	2019-05-29 16:07:06.258375	\N	
+24	1	Covered Area	m_set	{"set": "<%= params['dimensions']['covered_area']['value'] %>", "input": {"id": "coveredArea"}}	2019-04-21 12:36:37.001336	2019-04-21 12:51:01.292567	\N	\N
+25	1	Carpet Area	m_set	{"set": "<%= params['dimensions']['carpet_area']['value'] %>", "input": {"id": "carpetArea"}}	2019-04-21 12:51:21.404833	2019-04-21 12:51:21.404833	\N	\N
+26	1	Covered Area Unit	m_set	{"set": "<%= params['dimensions']['covered_area']['unit'] %>", "select": {"id": "coveredAreaType"}}	2019-04-21 12:53:21.381496	2019-04-21 12:53:21.381496	\N	\N
+27	1	Carpet Area Unit	m_set	{"set": "<%= params['dimensions']['carpet_area']['unit'] %>", "select": {"id": "carpetAreaType"}}	2019-04-21 12:53:56.183001	2019-04-21 12:53:56.183001	\N	\N
+30	1	Age of Construction	m_set	{"set": "<%= params['basics']['age_in_years']%>", "select": {"id": "ageofcons"}}	2019-05-02 16:05:37.045948	2019-05-02 16:05:37.045948	\N	
+19	1	Balconies	m_set	{"set": "<%= params['features']['balconies'] %>", "select": {"id": "balconies"}}	2019-04-20 18:02:54.403707	2019-04-21 06:51:25.589702	\N	\N
+18	1	Bedrooms	m_set	{"set": "<%= params['features']['bedrooms'] %>", "select": {"id": "bedrooms"}}	2019-04-20 18:02:06.37406	2019-04-21 11:35:12.083085	\N	\N
+20	1	Floor	m_set	{"set": "<%= params['features']['floor'] %>", "select": {"id": "floorNumber"}}	2019-04-21 12:03:05.965986	2019-04-21 12:03:05.965986	\N	\N
+21	1	Total Floors	m_set	{"set": "<%= params['features']['floors_total'] %>", "select": {"id": "totalFloorNumber"}}	2019-04-21 12:05:07.899692	2019-04-21 12:05:07.899692	\N	\N
+22	1	Furnishing	m_set	{"set": "<%= params['features']['furnishing'] %>", "select": {"id": "furnished"}}	2019-04-21 12:06:19.811346	2019-04-21 12:06:19.811346	\N	\N
+32	1	Available From Year	m_set	{"js": true, "set": "<%= params['basics']['sale_available_from']['year'] %>", "select": {"id": "availFromYear"}}	2019-05-04 16:46:38.284648	2019-05-16 16:28:55.123781	\N	
+33	1	Sale Price	m_set	{"set": "<%= params[:prices][:sale][:value] %>", "input": {"id": "totalPrice"}}	2019-05-06 15:53:12.55185	2019-05-06 15:53:12.55185	\N	
+38	1	Booking Amount	m_set	{"set": "<%=params['prices']['booking_deposit']['value']%>", "input": {"id": "bookingAmount"}}	2019-05-08 16:38:54.004021	2019-05-15 14:58:57.476949	\N	
+51	1	Rent TV Count	m_set	{"js": true, "set": "<%= params['furnishing']['tv'] %>", "select": {"id": "tvCount"}}	2019-05-21 14:38:48.579986	2019-05-21 15:17:06.044006	\N	
+49	1	Rent Bed Count	m_set	{"js": true, "set": "<%= params['furnishing']['bed'] %>", "select": {"id": "bedCount"}}	2019-05-21 14:36:41.099919	2019-05-21 15:17:23.33685	\N	
+48	1	Rent AC Count	m_set	{"js": true, "set": "<%= params['furnishing']['ac'] %>", "select": {"id": "acCount"}}	2019-05-21 14:35:51.921437	2019-05-21 15:17:37.346474	\N	
+50	1	Rent Wadrobe Count	m_set	{"js": true, "set": "<%= params['furnishing']['wardrobe'] %>", "select": {"id": "wardrobeCount"}}	2019-05-21 14:38:04.819335	2019-05-21 15:17:57.476701	\N	
+54	2	Enter Password	m_set	{"set": "<%= params['auth']['pwd'] %>", "input": {"id": "login-password-id"}}	2019-05-27 14:33:12.061881	2019-05-27 15:09:57.896199	\N	
+53	2	Enter Email	m_set	{"set": "<%= params['auth']['uid'] %>", "input": {"id": "login-email-id"}}	2019-05-27 14:32:29.472555	2019-05-27 15:10:01.686465	\N	
+37	1	Price includes Stamp and Registration Charges	m_set	{"set": "<%=params['prices']['sale']['includes']['stamp_and_registration']%>", "input": {"id": "stampAndOtherCharges", "type": "checkbox"}, "body_click": true}	2019-05-08 16:33:21.985799	2019-05-08 16:33:21.985799	\N	
+39	1	Maintenance Value	m_set	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
+40	1	Maintenance Frequency	m_set	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
+31	1	Available From Month	m_set	{"js": true, "set": "<%= params['basics']['sale_available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-16 16:28:44.65228	\N	
+62	2	Autocomplete City	js_autocomplete	{"set": "<%= params['location']['city'] %>", "input": {"id": "pap-basic-city"}, "autocomplete": {"ul": {"id": "pap-basic-city-select"}, "items": "li"}}	2019-05-31 15:17:08.879542	2019-05-31 15:18:40.837537	\N	
+63	2	Autocomplete Locality	js_autocomplete	{"set": "<%= params['location']['locality'] %>", "input": {"id": "pap-basic-locality"}, "autocomplete": {"ul": {"id": "pap-basic-locality-select"}, "items": "li"}}	2019-05-31 15:32:00.247761	2019-05-31 15:32:00.247761	\N	
 \.
 
 
@@ -611,7 +621,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 10, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 197, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 205, true);
 
 
 --
@@ -625,7 +635,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 2, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 61, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 63, true);
 
 
 --
