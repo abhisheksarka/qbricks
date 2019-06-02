@@ -591,8 +591,8 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 39	1	Maintenance Value	m_set	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
 40	1	Maintenance Frequency	m_set	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
 31	1	Available From Month	m_set	{"js": true, "set": "<%= params['basics']['sale_available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-16 16:28:44.65228	\N	
-62	2	Autocomplete City	js_autocomplete	{"set": "<%= params['location']['city'] %>", "input": {"id": "pap-basic-city"}, "autocomplete": {"ul": {"id": "pap-basic-city-select"}, "items": "li"}}	2019-05-31 15:17:08.879542	2019-05-31 15:18:40.837537	\N	
-63	2	Autocomplete Locality	js_autocomplete	{"set": "<%= params['location']['locality'] %>", "input": {"id": "pap-basic-locality"}, "autocomplete": {"ul": {"id": "pap-basic-locality-select"}, "items": "li"}}	2019-05-31 15:32:00.247761	2019-05-31 15:32:00.247761	\N	
+63	2	Autocomplete Locality	js_autocomplete	{"set": "<%= params['location']['locality'] %>", "input": {"id": "pap-basic-locality"}, "triggers": ["click"], "autocomplete": {"ul": {"id": "pap-basic-locality-select"}, "items": "li", "before_wait": 1}}	2019-05-31 15:32:00.247761	2019-06-02 16:54:42.421885	\N	
+62	2	Autocomplete City	js_autocomplete	{"set": "<%= params['location']['city'] %>", "input": {"id": "pap-basic-city"}, "autocomplete": {"ul": {"id": "pap-basic-city-select"}, "items": "li", "before_wait": 1}}	2019-05-31 15:17:08.879542	2019-06-02 16:56:56.849032	\N	
 \.
 
 

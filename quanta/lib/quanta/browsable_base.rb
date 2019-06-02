@@ -9,7 +9,8 @@ module Quanta
       after_wait: 5,
       before_wait: 6,
       complete: 7,
-      items: 8
+      items: 8,
+      triggers: 9
     )
     attr_accessor :browsable_config
 

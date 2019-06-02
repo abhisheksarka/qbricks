@@ -18,24 +18,30 @@ module Quanta
       config
     end
 
-    # Sample - { button: { id: 'foo' } }
+    # Sample - { button: { id: 'foo' }, triggers: [] }
     def js_set(config)
       config = js_before_exec(config)
       js_selector = js_selector_from_config(config)
       js_validate_presence!(js_selector)
       script("#{js_selector}.val('#{config[:set]}')")
-      js_trigger_event(js_selector, 'change')
-      js_trigger_event(js_selector, 'click')
+
+      (config[:triggers] || []).each do |t|
+        js_trigger_event(js_selector, t)
+      end
+
       js_validate_value!(js_selector, config[:set])
       config
     end
 
-    # Sample - { input: { id: 'city' }, set: 'Bangalore', autocomplete: { ul: { id: 'list' }, items: 'li' } }
+    # Sample - { input: { id: 'city' }, set: 'Bangalore', autocomplete: { ul: { id: 'list' }, items: 'li', before_wait: 5 } }
     def js_autocomplete(config)
       js_set(config)
       aconfig = js_before_exec(config[:autocomplete])
+      sleep(aconfig[:before_wait].to_i)
+
       js_selector = js_selector_from_config(aconfig)
       js_validate_presence!(js_selector)
+
       js_items_selector = "#{js_selector}.children('#{aconfig[:items]}:contains(#{config[:set]})')"
       js_validate_presence!(js_items_selector)
       js_trigger_event(js_items_selector, 'click')
@@ -65,7 +71,6 @@ module Quanta
     end
 
     def js_validate_value!(js_selector, value)
-      puts "#{js_selector} -> #{value}"
       raise 'JsValueMismatchError' if script("return #{js_selector}.val()") != value
     end
 
