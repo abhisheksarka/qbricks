@@ -1,9 +1,11 @@
 require 'active_support'
 require 'active_record'
 require 'active_support/core_ext'
+require 'devise'
 require 'quanta'
 require 'core/extensions'
 require 'core/version'
+require 'core/initialisers'
 require 'core/models'
 require 'core/services'
 
