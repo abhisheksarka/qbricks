@@ -22,13 +22,21 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
   padding: 1.75rem 0.75rem;
   border: 1px solid #d5dce3;
   outline: none !important;
+  border-radius: 7px;
   &:focus {
     outline: none !important;
     box-shadow: none !important;
   }
 }
 
-.btn-rnd {
-  border-radius: 2000px;
-  padding: 0.5rem 2rem;
+.btn-lg {
+  padding: 0.8rem 1rem;
+}
+
+.btn {
+  border-radius: 7px;
+}
+
+#footer {
+  background: $danger;
 }

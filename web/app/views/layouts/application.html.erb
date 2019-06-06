@@ -10,7 +10,20 @@
   </head>
 
   <body>
+    <div id="flashes">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= render partial: 'layouts/navbar' %>
-    <%= yield %>
+    <%= yield(:content) %>
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

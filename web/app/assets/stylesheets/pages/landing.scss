@@ -7,10 +7,13 @@
     margin-top: 40px;
   }
 
-  #sign-up-form {
+  #sign-up-form, #sign-in-form {
     padding: 50px;
     button {
       width: 100%;
     }
+  }
+  #sign-in-form {
+    margin-top: 100px;
   }
 }
