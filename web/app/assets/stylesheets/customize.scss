@@ -2,6 +2,16 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
   font-family: 'Montserrat', sans-serif;
 }
 
+.icon-backdrop {
+  position: fixed;
+  color: #007bff;
+  font-size: 1000px;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  opacity: 0.06;
+}
+
 .navbar {
   padding: 1.5rem 1rem;
 
