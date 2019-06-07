@@ -4,6 +4,7 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
 
 .navbar {
   padding: 1.5rem 1rem;
+
   .logo {
     display: inline-block;
     width: 30px;
@@ -11,6 +12,15 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
     img {
       width: 100%;
     }
+  }
+
+  .font-stylised {
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .nav-link {
+    font-weight: 400;
+    text-transform: uppercase;
   }
 }
 
@@ -39,5 +49,15 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
 }
 
 #footer {
-  background: $danger;
+  color: rgba(0, 0, 0, 0.5);
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn.btn-primary {
+  color: #fff;
 }

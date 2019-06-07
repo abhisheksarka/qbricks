@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   def sign_up; end
 
   def index
-    render :sign_in
+    render :sign_up
   end
 end
