@@ -1,24 +1,24 @@
-<form id="sign-up-form">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'sign-up-form' }) do |f| %>
   <div class="form-group">
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Company Email">
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Company Email' %>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="full-name" aria-describedby="fullName" placeholder="Full Name">
+    <%= f.text_field :full_name, class: 'form-control', placeholder: 'Full Name' %>
   </div>
   <div class="form-group">
-    <input type="number" class="form-control" id="phone-number" aria-describedby="phoneNumber" placeholder="Phone Number">
+    <%= f.number_field :phone_number, class: 'form-control', placeholder: 'Phone Number' %>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="password" placeholder="Password">
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password' %>
   </div>
-  <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
+  <%= f.button "Sign up", class: 'btn btn-primary btn-lg', type: 'submit' %>
   <br><br>
   <small class="text-muted">
     By signing up, you agree to our <a href="#">terms and conditions</a>
     <br>
     Already have an account? <a href="/sign_in">Sign in</a>
   </small>
-</form>
+<% end %>

@@ -9,6 +9,17 @@
 
   #sign-up-form, #sign-in-form {
     padding: 50px;
+
+    @include media-breakpoint-down(lg) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-left: 100px;
+      padding-right: 0px;
+    }
+
     button {
       width: 100%;
     }
