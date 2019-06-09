@@ -271,6 +271,56 @@ ALTER SEQUENCE public.steps_id_seq OWNED BY public.steps.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: abhishek
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    full_name character varying NOT NULL,
+    phone_number character varying NOT NULL,
+    country_code character varying NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO abhishek;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: abhishek
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO abhishek;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: abhishek
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
 -- Name: conditions id; Type: DEFAULT; Schema: public; Owner: abhishek
 --
 
@@ -310,6 +360,13 @@ ALTER TABLE ONLY public.sites ALTER COLUMN id SET DEFAULT nextval('public.sites_
 --
 
 ALTER TABLE ONLY public.steps ALTER COLUMN id SET DEFAULT nextval('public.steps_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
@@ -517,6 +574,7 @@ COPY public.schema_migrations (version) FROM stdin;
 20190214111418
 20190214111419
 20190214111420
+20190606153901
 \.
 
 
@@ -597,6 +655,14 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 
 
 --
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: abhishek
+--
+
+COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
@@ -636,6 +702,13 @@ SELECT pg_catalog.setval('public.sites_id_seq', 2, true);
 --
 
 SELECT pg_catalog.setval('public.steps_id_seq', 63, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
@@ -700,6 +773,14 @@ ALTER TABLE ONLY public.sites
 
 ALTER TABLE ONLY public.steps
     ADD CONSTRAINT steps_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -791,6 +872,34 @@ CREATE INDEX index_steps_on_site_id ON public.steps USING btree (site_id);
 --
 
 CREATE INDEX index_steps_on_step_type ON public.steps USING btree (step_type);
+
+
+--
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON public.users USING btree (confirmation_token);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
+-- Name: index_users_on_phone_number; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE UNIQUE INDEX index_users_on_phone_number ON public.users USING btree (phone_number);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
 
 
 --

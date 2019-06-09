@@ -8,4 +8,6 @@ class User < ApplicationRecord
          :validatable,
          :confirmable,
          :trackable
+
+  validates :country_code, inclusion: { in: %w[+91] }
 end
