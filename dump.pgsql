@@ -659,6 +659,10 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 --
 
 COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at) FROM stdin;
+3	Abhishek Sarkar	8095456768	+91	abhishek+1@synup.com	$2a$11$CnBlOBsobXnAZGim0H0T1.6MtomSmGzDdMBWpwHndHIQrmgH/mjZa	\N	\N	\N	0	\N	\N	\N	\N	EDbEs6JrTHtKcbpsHzKs	\N	2019-06-10 16:46:35.465149	2019-06-10 16:46:35.464745	2019-06-10 16:46:35.464745
+4	Abhishek Sarkar	839393003	+91	abhishek+2@synup.com	$2a$11$PydRUDVtuPnJ58yyKEaMF.iEzWyQ1X7nN3nyJwDacU9AWqcnj9qSe	\N	\N	\N	0	\N	\N	\N	\N	Gh4T_cb4ocxtePEjyTEs	\N	2019-06-10 17:03:00.530114	2019-06-10 17:03:00.529579	2019-06-10 17:03:00.529579
+5	Abhishek Sarkar	0980382333	+91	abhishek+3@synup.com	$2a$11$.txSe/C7Y.rrriFfceZ/WeJqVH/paMsrycKHsekw61BxscJY.aoOm	\N	\N	\N	0	\N	\N	\N	\N	2-cMyhkiGzuu4HgmnmPx	\N	2019-06-10 17:05:34.014639	2019-06-10 17:05:34.014417	2019-06-10 17:05:34.014417
+6	Abhishek Sarkar	09830840234	+91	abhishek+4@synup.com	$2a$11$UF/2AaoBg3YD3iWT90v2uOwXMSO5xrvIJkFfI3vKuYCKaAXyhgY12	\N	\N	\N	0	\N	\N	\N	\N	qqYXXDsmB--xhZ25N9Jy	\N	2019-06-10 17:07:49.947481	2019-06-10 17:07:49.947321	2019-06-10 17:07:49.947321
 \.
 
 
@@ -708,7 +712,7 @@ SELECT pg_catalog.setval('public.steps_id_seq', 63, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 6, true);
 
 
 --
