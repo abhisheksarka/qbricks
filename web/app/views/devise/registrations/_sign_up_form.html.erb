@@ -1,0 +1,32 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'sign-up-form' }) do |f| %>
+  <%= f.hidden_field :country_code, value: '+91' %>
+  <% if resource.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <% resource.errors.full_messages.each do |msg| %>
+        <small><%= msg %></small><br>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Company Email', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :full_name, class: 'form-control', placeholder: 'Full Name', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.number_field :phone_number, class: 'form-control', placeholder: 'Phone Number', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Password', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', required: true %>
+  </div>
+  <%= f.button "Sign up", class: 'btn btn-primary btn-lg', type: 'submit' %>
+  <br><br>
+  <small class="text-muted">
+    By signing up, you agree to our <a href="#">terms and conditions</a>
+    <br>
+    Already have an account? <a href="/sign_in">Sign in</a>
+  </small>
+<% end %>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { registrations: 'registrations' }
   root to: 'pages#index'
-  get '/sign_in', to: 'pages#sign_in'
-  get '/sign_up', to: 'pages#sign_up'
+  get '/users', to: 'pages#index'
 end

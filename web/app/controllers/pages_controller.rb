@@ -1,9 +1,7 @@
 class PagesController < ApplicationController
   layout 'landing'
-  def sign_in; end
-  def sign_up; end
 
   def index
-    render :sign_up
+    redirect_to new_user_registration_path
   end
 end

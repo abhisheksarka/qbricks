@@ -9,5 +9,7 @@ class User < ApplicationRecord
          :confirmable,
          :trackable
 
+  validates :phone_number, uniqueness: true, presence: true
   validates :country_code, inclusion: { in: %w[+91] }
+  validates :full_name, presence: true
 end

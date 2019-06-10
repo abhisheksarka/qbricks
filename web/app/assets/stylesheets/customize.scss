@@ -27,11 +27,6 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
   .font-stylised {
     text-transform: uppercase;
   }
-
-  .navbar-nav .nav-link {
-    font-weight: 400;
-    text-transform: uppercase;
-  }
 }
 
 .bg-transparent {
@@ -70,4 +65,18 @@ a:hover {
 
 .btn.btn-primary {
   color: #fff;
+}
+
+.alert {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  top: 20px;
+  z-index: 1;
+  box-shadow: 0px 25px 30px rgba(0,0,0,0.15);
+}
+
+.close {
+  font-weight: 300;
+  opacity: 0.4;
 }
