@@ -96,3 +96,9 @@ form {
     font-size: 0.8rem;
   }
 }
+
+#sign-out {
+  &:hover {
+    color: white;
+  }
+}

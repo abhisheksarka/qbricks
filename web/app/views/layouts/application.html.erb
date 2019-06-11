@@ -13,7 +13,11 @@
   <body>
     <%= render partial: 'layouts/flash' %>
     <%= render partial: 'layouts/navbar' %>
-    <%= yield(:content) %>
+    <% if current_user %>
+      <%= yield %>
+    <% else %>
+      <%= yield(:content) %>
+    <% end %>
     <%= render partial: 'layouts/footer' %>
   </body>
 </html>

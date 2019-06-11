@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  layout 'landing'
+  layout 'landing', only: [:index]
+  layout 'application', only: [:home]
 
   def index
     if current_user
