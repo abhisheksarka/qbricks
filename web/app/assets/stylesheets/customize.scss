@@ -1,3 +1,7 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6, .font-stylised {
   font-family: 'Montserrat', sans-serif;
 }
@@ -67,16 +71,28 @@ a:hover {
   color: #fff;
 }
 
+#flash {
+  .alert {
+    position: fixed;
+    left: 20%;
+    right: 20%;
+    top: 20px;
+    z-index: 1;
+    box-shadow: 0px 25px 30px rgba(0,0,0,0.15);
+  }
+}
+
 .alert {
-  position: fixed;
-  left: 20%;
-  right: 20%;
-  top: 20px;
-  z-index: 1;
-  box-shadow: 0px 25px 30px rgba(0,0,0,0.15);
+  padding: 1.2rem 1.5rem;
 }
 
 .close {
   font-weight: 300;
   opacity: 0.4;
+}
+
+form {
+  .form-check-label {
+    font-size: 0.8rem;
+  }
 }
