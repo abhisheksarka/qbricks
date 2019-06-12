@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   }
   root to: 'pages#index'
   get '/users', to: 'pages#index'
+
+  resources :companies, only: [:show]
 end

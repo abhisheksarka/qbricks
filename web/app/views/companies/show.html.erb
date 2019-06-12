@@ -1,0 +1,52 @@
+<div class="container page-content">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <h3 class="card-title">
+          Details
+        </h3>
+        <small class="card-subtitle text-muted">
+        </small>
+        <p class="card-text">
+          <p>
+            Name - <%= @company.name || 'Not Specified'%>
+            <br>
+            Domain - <a href="<%= @company.cname %>" target="_blank"><%= @company.cname || 'Not Specified'%></a>
+          </p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <h3 class="card-title">Members</h3>
+        <small class="card-subtitle text-muted">
+        </small>
+        <div class="card-text">
+          <br>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each_with_index do |user, i|%>
+                <tr>
+                  <th scope="row"><%= i+1 %></th>
+                  <td><%= user.full_name %></td>
+                  <td><%= user.email %></td>
+                  <td><span class="badge badge-pill badge-secondary">Member</span></td>
+                </tr>
+              <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

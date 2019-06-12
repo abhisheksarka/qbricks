@@ -3,8 +3,12 @@ body {
   background: #f5f5f5;
 }
 
-h1, h2, h3, h4, h5, h6, .font-stylised {
+.font-stylised {
   font-family: 'Montserrat', sans-serif;
+}
+
+.page-content {
+  margin-top: 30px;
 }
 
 .icon-backdrop {
@@ -117,4 +121,11 @@ form {
   &:hover {
     color: white;
   }
+}
+.card {
+  padding: 40px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
 }
