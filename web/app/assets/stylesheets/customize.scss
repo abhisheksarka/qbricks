@@ -1,7 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.9375rem;
-  background: #eff2f7;
+  font-weight: 100;
 }
 
 h1, h2, h3, h4, h5, h6, .font-stylised {
@@ -22,7 +20,7 @@ h1, h2, h3, h4, h5, h6, .font-stylised {
 
 .navbar {
   padding: 1.5rem 1rem;
-  font-size: 0.875rem;
+  // font-size: 0.875rem;
   .logo {
     display: inline-block;
     height: 30px;
@@ -94,6 +92,12 @@ a:hover {
 
 .alert {
   padding: 1.2rem 1.5rem;
+  background: rgba(0,0,0,0.9);
+  border: none;
+  color: rgba(255,255,255,0.9);
+  .close {
+    color: rgba(255,255,255,0.9);
+  }
 }
 
 .close {
