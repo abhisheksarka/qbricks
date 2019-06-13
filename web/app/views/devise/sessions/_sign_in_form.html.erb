@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'sign-in-form' }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'sign-in-form', class: 'raised' }) do |f| %>
   <div class="form-group">
     <%= f.email_field :email, autofocus: true, autocomplete: "Company Email", placeholder: "Company Email", id: "email", class: 'form-control', autocomplete: 'off' %>
   </div>
