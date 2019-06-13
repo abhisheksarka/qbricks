@@ -1,7 +1,8 @@
+<% @body_class='logged-in' %>
 <div class="container page-content">
   <div class="row">
     <div class="col-sm">
-      <div class="card">
+      <div class="card raised">
         <h3 class="card-title">
           Details
         </h3>
@@ -9,7 +10,7 @@
           Lorem ipsum dolor sit amet, consectetur
         </small>
         <p class="card-text">
-          <div class="row text-center">
+          <div class="row">
             <div class="col-sm-4 divider-right"> 
               <%= @company.name || 'Not Specified'%>
             </div>
@@ -26,7 +27,7 @@
   </div>
   <div class="row">
     <div class="col-sm">
-      <div class="card">
+      <div class="card raised">
         <h3 class="card-title">Members</h3>
         <small class="card-subtitle text-muted">
           Morbi mollis, ante in placerat fringilla
