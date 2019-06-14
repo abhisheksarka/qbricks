@@ -99,7 +99,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-warning {
   border: 0px solid transparent;
 }
+
 .raised {
+  box-shadow: 30px 30px 60px rgba(0,0,0,.1);
+}
+
+.raised-25 {
   box-shadow: 30px 30px 60px rgba(0,0,0,.25);
 }
 
