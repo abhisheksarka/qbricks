@@ -8,5 +8,8 @@
   <%= link_to('Organisation', company_path(current_user.company), class: 'nav-link') %>
 </li>
 <li class="nav-item">
+  <%= link_to('Sites', sites_path, class: 'nav-link') %>
+</li>
+<li class="nav-item">
   <%= link_to('New Listing', destroy_user_session_path, method: :delete, class: 'btn btn-secondary btn-round btn-sm raised', id: 'sign-out', role: 'button') %>
 </li>

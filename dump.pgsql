@@ -34,6 +34,42 @@ CREATE TABLE public.ar_internal_metadata (
 ALTER TABLE public.ar_internal_metadata OWNER TO abhishek;
 
 --
+-- Name: companies; Type: TABLE; Schema: public; Owner: abhishek
+--
+
+CREATE TABLE public.companies (
+    id bigint NOT NULL,
+    name character varying,
+    cname character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.companies OWNER TO abhishek;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE; Schema: public; Owner: abhishek
+--
+
+CREATE SEQUENCE public.companies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.companies_id_seq OWNER TO abhishek;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: abhishek
+--
+
+ALTER SEQUENCE public.companies_id_seq OWNED BY public.companies.id;
+
+
+--
 -- Name: conditions; Type: TABLE; Schema: public; Owner: abhishek
 --
 
@@ -293,7 +329,8 @@ CREATE TABLE public.users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    company_id bigint NOT NULL
 );
 
 
@@ -318,6 +355,13 @@ ALTER TABLE public.users_id_seq OWNER TO abhishek;
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: companies id; Type: DEFAULT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.companies ALTER COLUMN id SET DEFAULT nextval('public.companies_id_seq'::regclass);
 
 
 --
@@ -375,6 +419,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
 environment	development	2019-04-04 15:42:11.296652	2019-04-04 15:42:11.296652
+\.
+
+
+--
+-- Data for Name: companies; Type: TABLE DATA; Schema: public; Owner: abhishek
+--
+
+COPY public.companies (id, name, cname, created_at, updated_at) FROM stdin;
+1	\N	synup.com	2019-06-12 16:10:21.322928	2019-06-12 16:10:21.322928
 \.
 
 
@@ -575,6 +628,8 @@ COPY public.schema_migrations (version) FROM stdin;
 20190214111419
 20190214111420
 20190606153901
+20190612153901
+20190612153902
 \.
 
 
@@ -584,7 +639,9 @@ COPY public.schema_migrations (version) FROM stdin;
 
 COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_at) FROM stdin;
 1	Magic Bricks	mb	{"browser_type": "chrome"}	{"_var_": {"months": {"1": "January", "2": "February", "3": "March", "4": "April", "5": "May", "6": "June", "7": "July", "8": "August", "9": "September", "10": "October", "11": "November", "12": "December"}, "area_units": {"are": "Are", "acre": "Acre", "cent": "Cent", "rood": "Rood", "sq-m": "Sq-m", "bigha": "Bigha", "kanal": "Kanal", "marla": "Marla", "perch": "Perch", "sq-ft": "Sq-ft", "biswa1": "Biswa1", "biswa2": "Biswa2", "chatak": "Chatak", "ground": "Ground", "guntha": "Guntha", "kottah": "Kottah", "sq-yrd": "Sq-yrd", "hectare": "Hectare", "aankadam": "Aankadam"}, "basics_type": {"VILLA": "Villa", "RESIDENTIAL_HOUSE": "Residential House", "MULTISTOREY_APARTMENT": "Multistorey Apartment", "BUILDER_FLOOR_APARTMENT": "Builder Floor Apartment"}, "basics_status": {"READY_FOR_RENT_NOW": "Immediately", "READY_FOR_SALE_NOW": "Ready to Move", "READY_FOR_RENT_FROM": "Select Date", "READY_FOR_SALE_FROM": "Under Construction"}, "price_frequency": {"WEEKLY": "Weekly", "YEARLY": "Yearly", "MONTHLY": "Monthly", "ONE_TIME": "One-Time", "QUARTERLY": "Quarterly", "PER_SQUARE_UNIT_MONTHLY": "Per sq. Unit Monthly"}, "basics_transaction": {"PG": "PG", "RENT": "Rent", "SALE": "Sale"}, "basics_transaction_type": {"RESALE": "Resale", "NEW_PROPERTY": "New Property"}}, "basics": {"type": {"_var_": "basics_type"}, "status": {"_var_": "basics_status"}, "transaction": {"_var_": "basics_transaction"}, "age_in_years": {"_r_": {"..0": "New Construction", "1..4": "Less than 5 years", "20..": "Above 20 years", "5..10": "5 to 10 years", "11..15": "10 to 15 years", "16..20": "15 to 20 years"}}, "transaction_type": {"_var_": "basics_transaction_type"}, "sale_available_from": {"month": {"_var_": "months"}}}, "prices": {"maintenance": {"frequency": {"_var_": "price_frequency"}}}, "features": {"floor": {"0": "Ground", "-1": "Upper Basement", "-2": "Lower Basement"}, "bedrooms": {"_r_": {"11..": "> 10"}}, "balconies": {"_r_": {"11..": "> 10"}}, "bathrooms": {"0": "None", "_r_": {"11..": "> 10"}}, "furnishing": {"FURNISHED": "Furnished", "UNFURNISHED": "Unfurnished", "SEMI_FURNISHED": "Semi-Furnished"}}, "location": {"city": {"Bengaluru": "Bangalore"}}, "dimensions": {"carpet_area": {"unit": {"_var_": "area_units"}}, "covered_area": {"unit": {"_var_": "area_units"}}}, "furnishing": {"ac": {"_r_": {"..0": "Select", "4..": "3+"}}, "tv": {"_r_": {"..0": "Select", "4..": "3+"}}, "bed": {"_r_": {"..0": "Select", "4..": "3+"}}, "wardrobe": {"_r_": {"..0": "Select", "4..": "3+"}}}}	www.magicbricks.com	2019-04-04 15:46:38.091393	2019-05-21 14:58:05.684716
-2	CommonFloor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-05-31 15:27:12.50577
+2	Common Floor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-06-14 16:03:23.978456
+4	99 Acres	nn	{}	{}	www.99acres.com	2019-06-14 16:05:01.187921	2019-06-14 16:05:01.187921
+5	Housing	ho	{}	{}	www.housing.com	2019-06-14 16:05:29.050422	2019-06-14 16:05:29.050422
 \.
 
 
@@ -658,12 +715,17 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: abhishek
 --
 
-COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at) FROM stdin;
-3	Abhishek Sarkar	8095456768	+91	abhishek+1@synup.com	$2a$11$CnBlOBsobXnAZGim0H0T1.6MtomSmGzDdMBWpwHndHIQrmgH/mjZa	\N	\N	\N	0	\N	\N	\N	\N	EDbEs6JrTHtKcbpsHzKs	\N	2019-06-10 16:46:35.465149	2019-06-10 16:46:35.464745	2019-06-10 16:46:35.464745
-4	Abhishek Sarkar	839393003	+91	abhishek+2@synup.com	$2a$11$PydRUDVtuPnJ58yyKEaMF.iEzWyQ1X7nN3nyJwDacU9AWqcnj9qSe	\N	\N	\N	0	\N	\N	\N	\N	Gh4T_cb4ocxtePEjyTEs	\N	2019-06-10 17:03:00.530114	2019-06-10 17:03:00.529579	2019-06-10 17:03:00.529579
-5	Abhishek Sarkar	0980382333	+91	abhishek+3@synup.com	$2a$11$.txSe/C7Y.rrriFfceZ/WeJqVH/paMsrycKHsekw61BxscJY.aoOm	\N	\N	\N	0	\N	\N	\N	\N	2-cMyhkiGzuu4HgmnmPx	\N	2019-06-10 17:05:34.014639	2019-06-10 17:05:34.014417	2019-06-10 17:05:34.014417
-6	Abhishek Sarkar	09830840234	+91	abhishek+4@synup.com	$2a$11$UF/2AaoBg3YD3iWT90v2uOwXMSO5xrvIJkFfI3vKuYCKaAXyhgY12	\N	\N	\N	0	\N	\N	\N	\N	qqYXXDsmB--xhZ25N9Jy	\N	2019-06-10 17:07:49.947481	2019-06-10 17:07:49.947321	2019-06-10 17:07:49.947321
+COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at, company_id) FROM stdin;
+15	Abhishek Sarkar	8095456768	+91	abhishek@synup.com	$2a$11$/qnUykXuFyf/gvlQJqa39u9L9QQJjqfcXEWF27Dz/AoyIYIgmwIX2	\N	\N	\N	0	\N	\N	\N	\N	Bse9qkJFA5BeXcn3QdME	\N	2019-06-12 16:10:21.219285	2019-06-12 16:10:21.219	2019-06-12 16:10:21.219	1
+16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	2019-06-14 15:45:01.950928	19	2019-06-14 15:45:01.969677	2019-06-14 15:21:34.97007	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-14 15:45:01.971693	1
 \.
+
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
+--
+
+SELECT pg_catalog.setval('public.companies_id_seq', 1, true);
 
 
 --
@@ -698,7 +760,7 @@ SELECT pg_catalog.setval('public.flows_steps_id_seq', 205, true);
 -- Name: sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.sites_id_seq', 2, true);
+SELECT pg_catalog.setval('public.sites_id_seq', 5, true);
 
 
 --
@@ -712,7 +774,7 @@ SELECT pg_catalog.setval('public.steps_id_seq', 63, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 6, true);
+SELECT pg_catalog.setval('public.users_id_seq', 16, true);
 
 
 --
@@ -721,6 +783,14 @@ SELECT pg_catalog.setval('public.users_id_seq', 6, true);
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_pkey PRIMARY KEY (id);
 
 
 --
@@ -876,6 +946,13 @@ CREATE INDEX index_steps_on_site_id ON public.steps USING btree (site_id);
 --
 
 CREATE INDEX index_steps_on_step_type ON public.steps USING btree (step_type);
+
+
+--
+-- Name: index_users_on_company_id; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE INDEX index_users_on_company_id ON public.users USING btree (company_id);
 
 
 --

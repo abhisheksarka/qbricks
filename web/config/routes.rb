@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/users', to: 'pages#index'
 
   resources :companies, only: [:show]
+  resources :sites, only: [:index]
 end

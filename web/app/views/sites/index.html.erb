@@ -1,0 +1,22 @@
+<div class="container page-content">
+  <div class="row">
+    <% @sites.each do |site| %>
+      <div class="col-sm">
+        <div class="card semi-raised">
+          <div class="card-avatar">
+          </div>
+          <h3 class="card-title">
+            <%= site.name %>
+          </h3>
+          <small class="card-subtitle text-muted">
+            <a href="//<%= site.domain %>" target="_blank"><%= site.domain %></a>
+          </small>
+          <p class="card-text">
+            <div class="row">
+            </div>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
