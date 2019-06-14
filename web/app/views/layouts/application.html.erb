@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body class="<%= @body_class %>">
+  <body class="<%= current_user ? 'logged-in' : '' %>">
     <%= render partial: 'layouts/flash' %>
     <%= render partial: 'layouts/navbar' %>
     <% if current_user %>
