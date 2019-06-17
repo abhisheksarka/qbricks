@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_153902) do
+ActiveRecord::Schema.define(version: 2019_06_17_165101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 2019_06_12_153902) do
     t.float "serial"
     t.index ["flow_id"], name: "index_flows_steps_on_flow_id"
     t.index ["step_id"], name: "index_flows_steps_on_step_id"
+  end
+
+  create_table "site_credentials", force: :cascade do |t|
+    t.bigint "site_id", null: false
+    t.bigint "company_id", null: false
+    t.string "uid", null: false
+    t.string "password", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id", "site_id"], name: "index_site_credentials_on_company_id_and_site_id", unique: true
+    t.index ["company_id"], name: "index_site_credentials_on_company_id"
+    t.index ["site_id"], name: "index_site_credentials_on_site_id"
+    t.index ["uid"], name: "index_site_credentials_on_uid"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -118,5 +131,7 @@ ActiveRecord::Schema.define(version: 2019_06_12_153902) do
   add_foreign_key "flows", "sites"
   add_foreign_key "flows_steps", "flows"
   add_foreign_key "flows_steps", "steps"
+  add_foreign_key "site_credentials", "companies"
+  add_foreign_key "site_credentials", "sites"
   add_foreign_key "steps", "sites"
 end
