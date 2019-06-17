@@ -27,3 +27,17 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  (function () {
+    function loadRoute () {
+      var loc = window.location.href,
+        modalId = loc.split("#").pop();
+      if (modalId != loc) {
+        $("#"+modalId).modal();
+      };
+    };
+    $(loadRoute);
+    $(window).on('hashchange', loadRoute);
+  }());
+</script>

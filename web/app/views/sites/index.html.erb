@@ -2,7 +2,7 @@
   <% @sites.each_slice(3) do |sites| %>
     <div class="row">
       <% sites.each do |site| %>
-        <% modal_id = "modal-for-site-#{site.id}" %>
+        <% modal_id = "connect-#{site.code}" %>
         <div class="col-sm-4">
           <div class="card raised">
             <div class="card-body">
@@ -14,9 +14,9 @@
               </small>
               <p class="card-text">
               </p>
-              <button class="btn btn-outline-warning btn-sm btn-round" data-toggle="modal" data-target="#<%= modal_id %>">
+              <a class="btn btn-outline-warning btn-sm btn-round" data-toggle="modal" href="#<%= modal_id %>">
                 connect
-              </button>
+              </a>
               <%= render partial: 'shared/site_connect_modal', locals: { site: site, modal_id: modal_id } %>
             </div>
           </div>
