@@ -1,0 +1,29 @@
+<div class="modal fade site-connect-modal" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="text-center">
+          <%= image_tag "#{site.domain}.favicon.png", height: '20px', width: '20px', style: 'margin-top: -3px; border-radius: 300px;' %>
+          <h1><%= site.name %></h1>
+          <p class="text-muted">Enter your credentials to let us post listings on your behalf</p>
+        </div>
+        <br><br>
+        <form>
+          <div class="form-group">
+            <input type="email" placeholder="<%= site.name %> email/username" class='form-control' autocomplete='off'>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="<%= site.name %> password" class='form-control' autocomplete='off'>
+          </div>
+          <br>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Connect</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
