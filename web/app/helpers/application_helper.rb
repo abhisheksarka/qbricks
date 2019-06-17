@@ -29,4 +29,8 @@ module ApplicationHelper
       'alert alert-info'
     end
   end
+
+  def current_company
+    @current_company ||= current_user.company
+  end
 end
