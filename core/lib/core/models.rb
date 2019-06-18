@@ -9,6 +9,7 @@ require_relative 'models/site'
 require_relative 'models/step'
 require_relative 'models/user'
 require_relative 'models/company'
+require_relative 'models/site_credential'
 
 module Core
   module Models

@@ -3,7 +3,7 @@ module Core
     class Browser
       include Quanta::BrowsableRb
       include Quanta::BrowsableJs
-      
+
       attr_accessor :site,
                     :dataset,
                     :datamap,
@@ -12,7 +12,7 @@ module Core
       def initialize(site, dataset)
         @site = site
         @browsable_config = site.config.with_indifferent_access
-        @dataset = dataset
+        @dataset = dataset.with_indifferent_access
         @datamap = site.datamap
         @params = Quanta::HashMapped.new(@dataset, (@datamap || {}))
         @site.dataset = dataset

@@ -1,4 +1,7 @@
-{
+{	
+	"meta": {
+		"only_authenticate": true
+	},
 	"auth": {
 		"uid": "abhisheksarka@gmail.com",
 		"pwd": "Magic0657!",

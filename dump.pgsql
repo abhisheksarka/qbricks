@@ -228,6 +228,44 @@ CREATE TABLE public.schema_migrations (
 ALTER TABLE public.schema_migrations OWNER TO abhishek;
 
 --
+-- Name: site_credentials; Type: TABLE; Schema: public; Owner: abhishek
+--
+
+CREATE TABLE public.site_credentials (
+    id bigint NOT NULL,
+    site_id bigint NOT NULL,
+    company_id bigint NOT NULL,
+    uid character varying NOT NULL,
+    password character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.site_credentials OWNER TO abhishek;
+
+--
+-- Name: site_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: abhishek
+--
+
+CREATE SEQUENCE public.site_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.site_credentials_id_seq OWNER TO abhishek;
+
+--
+-- Name: site_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: abhishek
+--
+
+ALTER SEQUENCE public.site_credentials_id_seq OWNED BY public.site_credentials.id;
+
+
+--
 -- Name: sites; Type: TABLE; Schema: public; Owner: abhishek
 --
 
@@ -393,6 +431,13 @@ ALTER TABLE ONLY public.flows_steps ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: site_credentials id; Type: DEFAULT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.site_credentials ALTER COLUMN id SET DEFAULT nextval('public.site_credentials_id_seq'::regclass);
+
+
+--
 -- Name: sites id; Type: DEFAULT; Schema: public; Owner: abhishek
 --
 
@@ -458,6 +503,7 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 22	<%= dataset['basics']['transaction'] == 'SALE' && dataset['basics']['type'] == 'VILLA' %>	Flow	8	2019-05-23 14:25:35.642008	2019-05-23 14:25:35.642008
 23	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	9	2019-05-23 14:26:44.402745	2019-05-23 14:26:44.402745
 24	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	10	2019-05-23 14:31:24.579623	2019-05-23 14:31:24.579623
+25	<%= dataset['meta']['only_auth'] == true %>	Flow	11	2019-06-18 15:07:40.236038	2019-06-18 16:07:03.086881
 \.
 
 
@@ -480,6 +526,7 @@ COPY public.flows (id, site_id, name, created_at, updated_at) FROM stdin;
 7	2	Rent of Builder Floor Apartment	2019-05-23 14:23:41.362577	2019-05-23 14:23:41.362577
 8	2	Sale of Villa	2019-05-23 14:25:35.555433	2019-05-23 14:25:35.555433
 10	2	Rent of Villa	2019-05-23 14:31:24.567415	2019-05-23 14:31:24.567415
+11	1	Account Login	2019-06-18 15:07:40.170645	2019-06-18 15:07:40.170645
 \.
 
 
@@ -608,6 +655,11 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 203	7	63	2019-05-31 15:32:00.323892	2019-05-31 15:32:00.323892	118
 204	8	63	2019-05-31 15:32:00.345967	2019-05-31 15:32:00.345967	119
 205	10	63	2019-05-31 15:32:00.361463	2019-05-31 15:32:00.361463	120
+206	11	4	2019-06-18 15:08:17.320613	2019-06-18 15:09:32.290427	1
+207	11	5	2019-06-18 15:08:33.482565	2019-06-18 15:09:34.673125	2
+208	11	6	2019-06-18 15:08:49.583903	2019-06-18 15:09:37.13698	3
+209	11	7	2019-06-18 15:08:59.176409	2019-06-18 15:09:39.519348	4
+210	11	8	2019-06-18 15:09:12.031265	2019-06-18 15:09:41.545209	5
 \.
 
 
@@ -630,6 +682,16 @@ COPY public.schema_migrations (version) FROM stdin;
 20190606153901
 20190612153901
 20190612153902
+20190617165101
+\.
+
+
+--
+-- Data for Name: site_credentials; Type: TABLE DATA; Schema: public; Owner: abhishek
+--
+
+COPY public.site_credentials (id, site_id, company_id, uid, password, created_at, updated_at) FROM stdin;
+1	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-18 15:56:12.592548	2019-06-18 15:56:12.592548
 \.
 
 
@@ -642,6 +704,7 @@ COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_
 2	Common Floor	cf	{"browser_type": "chrome"}	{"auth": {"role": {"agent": "Broker"}}, "location": {"city": {"Bengaluru": "Bangalore"}}}	www.commonfloor.com	2019-05-21 15:26:49.203975	2019-06-14 16:03:23.978456
 4	99 Acres	nn	{}	{}	www.99acres.com	2019-06-14 16:05:01.187921	2019-06-14 16:05:01.187921
 5	Housing	ho	{}	{}	www.housing.com	2019-06-14 16:05:29.050422	2019-06-14 16:05:29.050422
+6	Makaan	mk	{}	{}	www.makaan.com	2019-06-14 17:14:20.006231	2019-06-14 17:14:20.006231
 \.
 
 
@@ -650,12 +713,13 @@ COPY public.sites (id, name, code, config, datamap, domain, created_at, updated_
 --
 
 COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at, signature, script) FROM stdin;
-6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-04-08 17:31:34.286912	\N	\N
+5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-06-18 16:13:00.412874	\N	
+7	1	Enter Password	nset	{"set": "<%= params['auth']['pwd'] %>", "label": "Password", "nearest": "text_field"}	2019-04-08 17:34:18.374361	2019-06-18 16:13:24.936902	\N	
+8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-06-18 16:13:52.871023	\N	
+6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-06-18 16:14:19.045255	\N	
 10	1	Close Buy Dialog	m_click	{"a": {"class": "md-close"}}	2019-04-09 16:11:58.997602	2019-04-09 16:11:58.997602	\N	\N
-8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-04-08 17:37:40.405507	\N	\N
 9	1	Open Listing Page	goto	{"url": "https://post.magicbricks.com/"}	2019-04-08 17:39:26.54559	2019-04-08 17:39:26.54559	\N	\N
 29	1	Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-01 16:54:56.1117	2019-05-01 16:54:56.1117	\N	
-7	1	Enter Password	nset	{"set": "<%= params['auth']['pwd'] %>", "label": "Password", "nearest": "text_field"}	2019-04-08 17:34:18.374361	2019-04-15 14:28:03.507071	\N	\N
 12	1	Property Type	nset	{"div": {"class": "formLabel", "visible_text": "Property Type"}, "set": "<%= params['basics']['type'] %>", "nearest": "select"}	2019-04-09 18:00:18.818261	2019-04-15 16:53:44.490661	\N	\N
 11	1	Property For	nset	{"set": true, "label": "<%= params['basics']['transaction'] %>", "nearest": "radio"}	2019-04-09 17:44:56.237586	2019-04-15 16:54:35.038174	\N	\N
 14	1	Locality	nset	{"div": {"class": "formLabel", "visible_text": "Locality"}, "set": "<%= params['location']['locality']%>", "nearest": "text_field"}	2019-04-18 16:32:37.029131	2019-04-18 16:33:46.730939	\N	\N
@@ -666,7 +730,6 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 23	1	Bathrooms	m_set	{"set": "<%= params['features']['bathrooms'] %>", "select": {"id": "bathrooms"}}	2019-04-21 12:12:37.720529	2019-04-21 12:12:37.720529	\N	\N
 36	1	Price includes Club Membership	nset	{"set": "<%=params['prices']['sale']['includes']['club_membership']%>", "label": "Club Membership", "nearest": "checkbox", "body_click": true}	2019-05-06 18:03:12.599617	2019-05-06 18:25:44.104327	\N	
 4	1	Open Login Page	goto	{"url": "https://www.magicbricks.com/userLogin"}	2019-04-08 16:07:04.281331	2019-05-01 16:14:24.966746	\N	
-5	1	Enter Email	nset	{"set": "<%= params['auth']['uid']%>", "label": "Enter Email or Mobile to Login", "nearest": "text_field"}	2019-04-08 16:13:32.471182	2019-05-01 16:20:45.228859	\N	
 28	1	Transaction Type	nset	{"set": true, "label": "<%= params['basics']['transaction_type'] %>", "nearest": "radio"}	2019-05-01 16:48:03.818926	2019-05-01 16:48:03.818926	\N	
 35	1	Price includes Car Parking	nset	{"set": "<%=params['prices']['sale']['includes']['car_parking']%>", "label": "Car Parking", "nearest": "checkbox", "body_click": true}	2019-05-06 17:14:27.419453	2019-05-06 18:25:28.614657	\N	
 34	1	Price includes PLC	nset	{"set": "<%=params['prices']['sale']['includes']['plc']%>", "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-08 16:27:58.908493	\N	
@@ -717,7 +780,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 
 COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at, company_id) FROM stdin;
 15	Abhishek Sarkar	8095456768	+91	abhishek@synup.com	$2a$11$/qnUykXuFyf/gvlQJqa39u9L9QQJjqfcXEWF27Dz/AoyIYIgmwIX2	\N	\N	\N	0	\N	\N	\N	\N	Bse9qkJFA5BeXcn3QdME	\N	2019-06-12 16:10:21.219285	2019-06-12 16:10:21.219	2019-06-12 16:10:21.219	1
-16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	2019-06-14 15:45:01.950928	19	2019-06-14 15:45:01.969677	2019-06-14 15:21:34.97007	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-14 15:45:01.971693	1
+16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	\N	33	2019-06-18 14:49:54.618258	2019-06-18 14:47:30.520436	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-18 14:49:54.620079	1
 \.
 
 
@@ -732,7 +795,7 @@ SELECT pg_catalog.setval('public.companies_id_seq', 1, true);
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 24, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 25, true);
 
 
 --
@@ -746,21 +809,28 @@ SELECT pg_catalog.setval('public.datasets_id_seq', 1, false);
 -- Name: flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_id_seq', 10, true);
+SELECT pg_catalog.setval('public.flows_id_seq', 11, true);
 
 
 --
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 205, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 210, true);
+
+
+--
+-- Name: site_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
+--
+
+SELECT pg_catalog.setval('public.site_credentials_id_seq', 2, true);
 
 
 --
 -- Name: sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.sites_id_seq', 5, true);
+SELECT pg_catalog.setval('public.sites_id_seq', 6, true);
 
 
 --
@@ -834,6 +904,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: site_credentials site_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.site_credentials
+    ADD CONSTRAINT site_credentials_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sites sites_pkey; Type: CONSTRAINT; Schema: public; Owner: abhishek
 --
 
@@ -904,6 +982,34 @@ CREATE INDEX index_flows_steps_on_flow_id ON public.flows_steps USING btree (flo
 --
 
 CREATE INDEX index_flows_steps_on_step_id ON public.flows_steps USING btree (step_id);
+
+
+--
+-- Name: index_site_credentials_on_company_id; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE INDEX index_site_credentials_on_company_id ON public.site_credentials USING btree (company_id);
+
+
+--
+-- Name: index_site_credentials_on_company_id_and_site_id; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE UNIQUE INDEX index_site_credentials_on_company_id_and_site_id ON public.site_credentials USING btree (company_id, site_id);
+
+
+--
+-- Name: index_site_credentials_on_site_id; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE INDEX index_site_credentials_on_site_id ON public.site_credentials USING btree (site_id);
+
+
+--
+-- Name: index_site_credentials_on_uid; Type: INDEX; Schema: public; Owner: abhishek
+--
+
+CREATE INDEX index_site_credentials_on_uid ON public.site_credentials USING btree (uid);
 
 
 --
@@ -1021,6 +1127,22 @@ ALTER TABLE ONLY public.flows
 
 ALTER TABLE ONLY public.datasets
     ADD CONSTRAINT fk_rails_cf1a97a02e FOREIGN KEY (site_id) REFERENCES public.sites(id);
+
+
+--
+-- Name: site_credentials fk_rails_d382217dc9; Type: FK CONSTRAINT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.site_credentials
+    ADD CONSTRAINT fk_rails_d382217dc9 FOREIGN KEY (company_id) REFERENCES public.companies(id);
+
+
+--
+-- Name: site_credentials fk_rails_eef30df88b; Type: FK CONSTRAINT; Schema: public; Owner: abhishek
+--
+
+ALTER TABLE ONLY public.site_credentials
+    ADD CONSTRAINT fk_rails_eef30df88b FOREIGN KEY (site_id) REFERENCES public.sites(id);
 
 
 --
