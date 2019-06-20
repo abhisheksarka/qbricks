@@ -1,3 +1,4 @@
+require 'webdrivers/chromedriver'
 require "quanta/version"
 require 'pry'
 require 'open-uri'

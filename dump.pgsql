@@ -660,6 +660,8 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 208	11	6	2019-06-18 15:08:49.583903	2019-06-18 15:09:37.13698	3
 209	11	7	2019-06-18 15:08:59.176409	2019-06-18 15:09:39.519348	4
 210	11	8	2019-06-18 15:09:12.031265	2019-06-18 15:09:41.545209	5
+211	11	64	2019-06-20 15:08:44.998677	2019-06-20 15:10:43.725415	6
+212	11	65	2019-06-20 15:10:26.518811	2019-06-20 15:10:49.3769	7
 \.
 
 
@@ -717,6 +719,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 7	1	Enter Password	nset	{"set": "<%= params['auth']['pwd'] %>", "label": "Password", "nearest": "text_field"}	2019-04-08 17:34:18.374361	2019-06-18 16:13:24.936902	\N	
 8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-06-18 16:13:52.871023	\N	
 6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-06-18 16:14:19.045255	\N	
+64	1	Open Dashboard	goto	{"url": "https://www.magicbricks.com/bricks/myMagicBox.html?type=ac"}	2019-06-20 15:08:44.933727	2019-06-20 15:08:44.933727	\N	
 10	1	Close Buy Dialog	m_click	{"a": {"class": "md-close"}}	2019-04-09 16:11:58.997602	2019-04-09 16:11:58.997602	\N	\N
 9	1	Open Listing Page	goto	{"url": "https://post.magicbricks.com/"}	2019-04-08 17:39:26.54559	2019-04-08 17:39:26.54559	\N	\N
 29	1	Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-01 16:54:56.1117	2019-05-01 16:54:56.1117	\N	
@@ -735,6 +738,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 34	1	Price includes PLC	nset	{"set": "<%=params['prices']['sale']['includes']['plc']%>", "label": "PLC", "nearest": "checkbox", "body_click": true}	2019-05-06 16:11:30.736413	2019-05-08 16:27:58.908493	\N	
 42	1	Select Exterior Photos	m_click	{"a": {"visible_text": "Exterior View"}}	2019-05-12 17:26:03.289687	2019-05-12 17:28:37.502784	\N	
 43	1	Select Living Room Photos	m_click	{"a": {"visible_text": "Living Room"}}	2019-05-12 17:29:47.788059	2019-05-12 17:29:47.788059	\N	
+65	1	Login Verify	m_click	{"a": {"visible_text": "Edit Company Details"}}	2019-06-20 15:10:26.493963	2019-06-20 15:10:26.493963	\N	
 44	1	Upload Living Room Photos	m_set	{"set": "<%=params['photos']['living_rooms']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-12 17:30:54.751981	2019-05-14 15:11:17.337849	\N	
 41	1	Upload Exterior Photos	m_set	{"set": "<%=params['photos']['exteriors']['urls']%>", "after_wait": 5, "file_field": {"id": "fileupload"}}	2019-05-09 16:45:26.274675	2019-05-14 15:11:20.000146	\N	
 55	2	Login	m_click	{"input": {"type": "button", "value": "Login"}}	2019-05-27 14:34:38.953548	2019-05-27 15:10:33.941548	\N	
@@ -780,7 +784,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 
 COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at, company_id) FROM stdin;
 15	Abhishek Sarkar	8095456768	+91	abhishek@synup.com	$2a$11$/qnUykXuFyf/gvlQJqa39u9L9QQJjqfcXEWF27Dz/AoyIYIgmwIX2	\N	\N	\N	0	\N	\N	\N	\N	Bse9qkJFA5BeXcn3QdME	\N	2019-06-12 16:10:21.219285	2019-06-12 16:10:21.219	2019-06-12 16:10:21.219	1
-16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	\N	33	2019-06-18 14:49:54.618258	2019-06-18 14:47:30.520436	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-18 14:49:54.620079	1
+16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	\N	34	2019-06-20 14:55:18.013281	2019-06-18 14:49:54.618258	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-20 14:55:18.018916	1
 \.
 
 
@@ -816,7 +820,7 @@ SELECT pg_catalog.setval('public.flows_id_seq', 11, true);
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 210, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 212, true);
 
 
 --
@@ -837,7 +841,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 6, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 63, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 65, true);
 
 
 --
