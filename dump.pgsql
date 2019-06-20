@@ -504,6 +504,7 @@ COPY public.conditions (id, expression, conditionable_type, conditionable_id, cr
 23	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	9	2019-05-23 14:26:44.402745	2019-05-23 14:26:44.402745
 24	<%= dataset['basics']['transaction'] == 'RENT' && dataset['basics']['type'] == 'VILLA' %>	Flow	10	2019-05-23 14:31:24.579623	2019-05-23 14:31:24.579623
 25	<%= dataset['meta']['only_auth'] == true %>	Flow	11	2019-06-18 15:07:40.236038	2019-06-18 16:07:03.086881
+26	<%= dataset['meta']['only_auth'] == true %>	Flow	12	2019-06-20 15:12:40.106572	2019-06-20 15:12:40.106572
 \.
 
 
@@ -527,6 +528,7 @@ COPY public.flows (id, site_id, name, created_at, updated_at) FROM stdin;
 8	2	Sale of Villa	2019-05-23 14:25:35.555433	2019-05-23 14:25:35.555433
 10	2	Rent of Villa	2019-05-23 14:31:24.567415	2019-05-23 14:31:24.567415
 11	1	Account Login	2019-06-18 15:07:40.170645	2019-06-18 15:07:40.170645
+12	2	Account Login	2019-06-20 15:12:40.088712	2019-06-20 15:12:40.088712
 \.
 
 
@@ -662,6 +664,13 @@ COPY public.flows_steps (id, flow_id, step_id, created_at, updated_at, serial) F
 210	11	8	2019-06-18 15:09:12.031265	2019-06-18 15:09:41.545209	5
 211	11	64	2019-06-20 15:08:44.998677	2019-06-20 15:10:43.725415	6
 212	11	65	2019-06-20 15:10:26.518811	2019-06-20 15:10:49.3769	7
+213	12	52	2019-06-20 15:13:33.924241	2019-06-20 15:14:28.596182	1
+214	12	58	2019-06-20 15:13:41.412969	2019-06-20 15:14:34.961921	2
+215	12	53	2019-06-20 15:13:46.117321	2019-06-20 15:14:39.823262	3
+216	12	54	2019-06-20 15:13:54.519123	2019-06-20 15:14:44.634761	4
+217	12	55	2019-06-20 15:14:00.284058	2019-06-20 15:14:47.866272	5
+218	12	66	2019-06-20 15:18:55.674854	2019-06-20 15:19:10.22056	6
+219	12	67	2019-06-20 15:20:41.254216	2019-06-20 15:20:55.866525	7
 \.
 
 
@@ -694,6 +703,7 @@ COPY public.schema_migrations (version) FROM stdin;
 
 COPY public.site_credentials (id, site_id, company_id, uid, password, created_at, updated_at) FROM stdin;
 1	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-18 15:56:12.592548	2019-06-18 15:56:12.592548
+3	2	1	abhishek.sarka@gmail.com	Magic0657	2019-06-20 15:16:55.044606	2019-06-20 15:16:55.044606
 \.
 
 
@@ -720,6 +730,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 8	1	Login	nclick	{"button": "Login", "nearest": "button"}	2019-04-08 17:37:40.405507	2019-06-18 16:13:52.871023	\N	
 6	1	Next	nclick	{"button": "Next", "nearest": "button"}	2019-04-08 17:27:08.831961	2019-06-18 16:14:19.045255	\N	
 64	1	Open Dashboard	goto	{"url": "https://www.magicbricks.com/bricks/myMagicBox.html?type=ac"}	2019-06-20 15:08:44.933727	2019-06-20 15:08:44.933727	\N	
+67	2	Login Verify	js_click	{"div": {"id": "user-dashboard"}}	2019-06-20 15:20:41.23452	2019-06-20 15:29:08.850031	\N	
 10	1	Close Buy Dialog	m_click	{"a": {"class": "md-close"}}	2019-04-09 16:11:58.997602	2019-04-09 16:11:58.997602	\N	\N
 9	1	Open Listing Page	goto	{"url": "https://post.magicbricks.com/"}	2019-04-08 17:39:26.54559	2019-04-08 17:39:26.54559	\N	\N
 29	1	Status	nset	{"set": true, "label": "<%= params['basics']['status'] %>", "nearest": "radio"}	2019-05-01 16:54:56.1117	2019-05-01 16:54:56.1117	\N	
@@ -773,6 +784,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 39	1	Maintenance Value	m_set	{"set": "<%=params['prices']['maintenance']['value']%>", "input": {"id": "maintenanceCharges"}}	2019-05-08 16:44:19.885005	2019-05-08 16:44:19.885005	\N	
 40	1	Maintenance Frequency	m_set	{"js": true, "set": "<%= params['prices']['maintenance']['frequency'] %>", "select": {"id": "maintenanceChargeFrequency"}}	2019-05-08 16:51:03.420418	2019-05-08 16:56:12.373437	\N	
 31	1	Available From Month	m_set	{"js": true, "set": "<%= params['basics']['sale_available_from']['month'] %>", "select": {"id": "availFromMonth"}}	2019-05-04 16:45:33.561896	2019-05-16 16:28:44.65228	\N	
+66	2	Open Dashboard	goto	{"url": "https://www.commonfloor.com/nmd/user-dashboard"}	2019-06-20 15:18:55.618393	2019-06-20 15:18:55.618393	\N	
 63	2	Autocomplete Locality	js_autocomplete	{"set": "<%= params['location']['locality'] %>", "input": {"id": "pap-basic-locality"}, "triggers": ["click"], "autocomplete": {"ul": {"id": "pap-basic-locality-select"}, "items": "li", "before_wait": 1}}	2019-05-31 15:32:00.247761	2019-06-02 16:54:42.421885	\N	
 62	2	Autocomplete City	js_autocomplete	{"set": "<%= params['location']['city'] %>", "input": {"id": "pap-basic-city"}, "autocomplete": {"ul": {"id": "pap-basic-city-select"}, "items": "li", "before_wait": 1}}	2019-05-31 15:17:08.879542	2019-06-02 16:56:56.849032	\N	
 \.
@@ -799,7 +811,7 @@ SELECT pg_catalog.setval('public.companies_id_seq', 1, true);
 -- Name: conditions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.conditions_id_seq', 25, true);
+SELECT pg_catalog.setval('public.conditions_id_seq', 26, true);
 
 
 --
@@ -813,21 +825,21 @@ SELECT pg_catalog.setval('public.datasets_id_seq', 1, false);
 -- Name: flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_id_seq', 11, true);
+SELECT pg_catalog.setval('public.flows_id_seq', 12, true);
 
 
 --
 -- Name: flows_steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.flows_steps_id_seq', 212, true);
+SELECT pg_catalog.setval('public.flows_steps_id_seq', 219, true);
 
 
 --
 -- Name: site_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.site_credentials_id_seq', 2, true);
+SELECT pg_catalog.setval('public.site_credentials_id_seq', 3, true);
 
 
 --
@@ -841,7 +853,7 @@ SELECT pg_catalog.setval('public.sites_id_seq', 6, true);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 65, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 67, true);
 
 
 --

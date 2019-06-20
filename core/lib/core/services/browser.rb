@@ -25,6 +25,9 @@ module Core
           flow.steps.each do |step|
             next unless step.execute?(binding)
 
+            puts '======================='
+            puts step.name
+            puts '======================='
             iconfig = step.interpolated_config(binding)
             script = step.script
 

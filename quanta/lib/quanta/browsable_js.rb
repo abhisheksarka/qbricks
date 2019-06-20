@@ -77,5 +77,21 @@ module Quanta
     def js_trigger_event(js_selector, event_name)
       script("#{js_selector}.trigger('#{event_name}')")
     end
+
+    def wait(max = 30)
+      i = 0
+      while !browser_client.execute_script('return $.isReady') && (i <= max)
+        sleep(1)
+        i += 1
+      end
+      raise 'DOMReadyFailed' if i > 30 && !browser_client.execute_script('return $.isReady')
+
+      true
+    end
+
+    def script(js_script, *args)
+      wait
+      super(js_script, *args)
+    end
   end
 end
