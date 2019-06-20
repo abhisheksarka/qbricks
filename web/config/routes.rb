@@ -8,9 +8,8 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:show]
   resources :sites, only: [:index]
-  resources :site_credentials, only: [:create]
 
   namespace :api do
-    resources :site_credentials, only: [:create]
+    resources :site_credentials, only: %i[create update]
   end
 end

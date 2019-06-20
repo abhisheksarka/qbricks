@@ -33,4 +33,11 @@ module ApplicationHelper
   def current_company
     @current_company ||= current_user.company
   end
+
+  def site_credential_for(site)
+    current_company
+      .site_credentials
+      .for_site(site.id)
+      .last || SiteCredential.new(company: current_company, site: site)
+  end
 end

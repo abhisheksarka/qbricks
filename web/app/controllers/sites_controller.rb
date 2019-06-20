@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  def index 
+  def index
     @sites = Site.all
   end
 end

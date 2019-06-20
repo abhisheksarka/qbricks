@@ -1,6 +1,7 @@
 class SiteCredential < ApplicationRecord
   belongs_to :site
   belongs_to :company
+  scope :for_site, ->(site_id) { where(site_id: site_id) }
 
   def dataset
     {
