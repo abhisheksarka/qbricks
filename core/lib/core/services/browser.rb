@@ -19,23 +19,23 @@ module Core
       end
 
       def run!
-        site.flows.each do |flow|
-          next unless flow.execute?(binding)
+        begin
+          site.flows.each do |flow|
+            next unless flow.execute?(binding)
 
-          flow.steps.each do |step|
-            next unless step.execute?(binding)
+            flow.steps.each do |step|
+              next unless step.execute?(binding)
 
-            puts '======================='
-            puts step.name
-            puts '======================='
-            iconfig = step.interpolated_config(binding)
-            script = step.script
+              iconfig = step.interpolated_config(binding)
+              script = step.script
 
-            send(step.step_type, iconfig) if iconfig.present?
-            send('script', step.script, params) if script.present?
+              send(step.step_type, iconfig) if iconfig.present?
+              send('script', step.script, params) if script.present?
+            end
           end
+        ensure
+          browser_client.close
         end
-        browser_client.close
       end
     end
   end
