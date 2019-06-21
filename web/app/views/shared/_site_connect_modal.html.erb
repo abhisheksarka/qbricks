@@ -1,4 +1,5 @@
 <% site_credential = site_credential_for(site) %>
+<% form_id = "connect-#{site.code}-form" %>
 <div class="modal fade site-connect-modal" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,20 +10,39 @@
         <div class="text-center">
           <%= image_tag "#{site.domain}.favicon.png", height: '20px', width: '20px', style: 'margin-top: -3px; border-radius: 300px;' %>
           <h1><%= site.name %></h1>
-          <p class="text-muted">Enter your credentials to let us post listings on your behalf</p>
+          <small class="text-muted">Enter your credentials to connect to the site</small>
         </div>
         <br><br>
-        <%= form_for [:api, site_credential], remote: true do |f| %>
-          <%= f.hidden_field :site_id, value: site.id %>
-          <div class="form-group">
-            <%= f.email_field :uid, autofocus: true, autocomplete: 'off', placeholder: "#{site.name} email/username", class: 'form-control', required: true%>
+        <%= form_for [:api, site_credential], html: { id: form_id } do |f| %>
+          <div class="success-box text-center">
+            <i class="far fa-check-circle text-success" style="font-size: 150px;"></i>
+            <br>
+            <p>Connection successful</p>
+            <button class="btn btn-primary btn-lg" data-dismiss="modal" aria-label="Close">Close</button>
           </div>
-          <div class="form-group">
-            <%= f.password_field :password, autocomplete: 'off', placeholder: "#{site.name} password", class: 'form-control', required: true%>
-          </div>
-          <br>
-          <div class="text-center">
-            <%= f.submit "Connect", class: 'btn btn-primary btn-lg' %>
+          <div class="form-box">
+            <%= f.hidden_field :site_id, value: site.id %>
+            <div class="form-group">
+              <%= f.email_field :uid, autofocus: true, autocomplete: 'off', placeholder: "#{site.name} email/username", class: 'form-control', required: true%>
+            </div>
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: 'off', placeholder: "#{site.name} password", class: 'form-control', required: true%>
+            </div>
+            <br>
+            <div class="text-center">
+              <div class="in-progress">
+                <%= render partial: 'shared/loader' %>
+                <p class="text-info">
+                  <br>
+                  Connecting. This might take a minute or two...
+                </p>
+              </div>
+              <%= f.submit "Connect", class: 'btn btn-primary btn-lg', data: { disable_with: false } %>
+              <p class="text-danger error text-center">
+                <br>
+                The connection could not be established right now. Please try again in sometime.
+              </p>
+            </div>
           </div>
         <% end %>
       </div>
@@ -31,7 +51,7 @@
 </div>
 <script>
   $(function() {
-    
+    new window.sharedExports.SiteConnect("#<%= form_id %>", "");
   });
 </script>
 

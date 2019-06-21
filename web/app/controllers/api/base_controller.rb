@@ -1,7 +1,5 @@
-class Api::BaseController < ActionController::Base
-  before_action :authenticate_user!
-
-  rescue_from StandardError, with: respond_with_error
+class Api::BaseController < ApplicationController
+  rescue_from StandardError, with: :respond_with_error
 
   def respond_with_error(exe)
     logger.error(exe)
@@ -12,6 +10,6 @@ class Api::BaseController < ActionController::Base
   end
 
   def respond_with_success(res)
-    render json: res, status: :success
+    render json: res, status: :ok
   end
 end

@@ -35,6 +35,7 @@ module Core
             send('script', step.script, params) if script.present?
           end
         end
+        browser_client.close
       end
     end
   end

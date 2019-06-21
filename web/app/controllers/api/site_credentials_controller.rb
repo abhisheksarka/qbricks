@@ -3,27 +3,33 @@ class Api::SiteCredentialsController < Api::BaseController
   before_action :load_site_credentials, only: [:update]
 
   def create
-    binding.pry
     sc = SiteCredential.create!(
       company: current_company,
       site: @site,
       uid: site_credential_params[:uid],
       password: site_credential_params[:password]
     )
-    Core::Services::Browser.new(@site, sc.dataset).run!
-    respond_with_success(sc.attributes)
+    invoke_browser(sc.site, sc.dataset)
+    respond_with_success sc.attributes
   end
 
   def update
-    ""
-    binding.pry
-    respond_with_success {}
+    @site_credentials.update_attributes!(
+      uid: site_credential_params[:uid],
+      password: site_credential_params[:password]
+    )
+    invoke_browser(@site_credentials.site, @site_credentials.dataset)
+    respond_with_success @site_credentials.attributes
   end
 
   private
 
+  def invoke_browser(site, dataset)
+    Core::Services::Browser.new(site, dataset).run!
+  end
+
   def load_site
-    @site = Site.find(params[:site_id])
+    @site = Site.find(site_credential_params[:site_id])
   end
 
   def load_site_credentials
@@ -31,6 +37,6 @@ class Api::SiteCredentialsController < Api::BaseController
   end
 
   def site_credential_params
-    params.require(:site_credentials).permit(:uid, :site_id, :password)
+    params.require(:site_credential).permit(:uid, :site_id, :password)
   end
 end

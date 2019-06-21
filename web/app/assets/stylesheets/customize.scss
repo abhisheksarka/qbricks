@@ -278,7 +278,7 @@ table.table {
       margin: 0px;
       .modal-body {
         margin-top: 100px;
-        max-width: 800px;
+        max-width: 500px;
         min-width: 400px;
         margin-left: auto;
         margin-right: auto;
@@ -341,4 +341,19 @@ button, a {
 
 .form-control {
   border-radius: 6px;
+}
+
+@keyframes spin {
+  0%  {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }   
+}
+
+.loader {
+  .shape {
+    animation: spin 1s infinite linear;
+  }
 }

@@ -702,8 +702,7 @@ COPY public.schema_migrations (version) FROM stdin;
 --
 
 COPY public.site_credentials (id, site_id, company_id, uid, password, created_at, updated_at) FROM stdin;
-1	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-18 15:56:12.592548	2019-06-18 15:56:12.592548
-3	2	1	abhishek.sarka@gmail.com	Magic0657	2019-06-20 15:16:55.044606	2019-06-20 15:16:55.044606
+7	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-21 15:49:40.245415	2019-06-21 16:59:40.468827
 \.
 
 
@@ -839,7 +838,7 @@ SELECT pg_catalog.setval('public.flows_steps_id_seq', 219, true);
 -- Name: site_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.site_credentials_id_seq', 3, true);
+SELECT pg_catalog.setval('public.site_credentials_id_seq', 7, true);
 
 
 --
