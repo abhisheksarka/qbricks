@@ -238,7 +238,8 @@ CREATE TABLE public.site_credentials (
     uid character varying NOT NULL,
     password character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    connected_at timestamp without time zone
 );
 
 
@@ -694,6 +695,7 @@ COPY public.schema_migrations (version) FROM stdin;
 20190612153901
 20190612153902
 20190617165101
+20190709165101
 \.
 
 
@@ -701,8 +703,9 @@ COPY public.schema_migrations (version) FROM stdin;
 -- Data for Name: site_credentials; Type: TABLE DATA; Schema: public; Owner: abhishek
 --
 
-COPY public.site_credentials (id, site_id, company_id, uid, password, created_at, updated_at) FROM stdin;
-7	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-21 15:49:40.245415	2019-06-21 16:59:40.468827
+COPY public.site_credentials (id, site_id, company_id, uid, password, created_at, updated_at, connected_at) FROM stdin;
+7	1	1	abhisheksarka@gmail.com	Magic0657!	2019-06-21 15:49:40.245415	2019-07-09 14:25:27.495412	2019-07-09 14:25:27.492722
+8	2	1	abhishek.sarka@gmail.com	Magic0657	2019-06-21 17:06:25.021268	2019-07-09 15:00:03.797431	2019-07-09 15:00:03.794094
 \.
 
 
@@ -795,7 +798,7 @@ COPY public.steps (id, site_id, name, step_type, config, created_at, updated_at,
 
 COPY public.users (id, full_name, phone_number, country_code, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, confirmation_token, confirmed_at, confirmation_sent_at, created_at, updated_at, company_id) FROM stdin;
 15	Abhishek Sarkar	8095456768	+91	abhishek@synup.com	$2a$11$/qnUykXuFyf/gvlQJqa39u9L9QQJjqfcXEWF27Dz/AoyIYIgmwIX2	\N	\N	\N	0	\N	\N	\N	\N	Bse9qkJFA5BeXcn3QdME	\N	2019-06-12 16:10:21.219285	2019-06-12 16:10:21.219	2019-06-12 16:10:21.219	1
-16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	\N	34	2019-06-20 14:55:18.013281	2019-06-18 14:49:54.618258	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-06-20 14:55:18.018916	1
+16	Binod Mainali	80938399033	+91	binod@synup.com	$2a$11$nz0CpS8ADr5bZTS3WwrUou/ZEpoWAZas1iyYD3qMuYYFclXv8Cc4G	\N	\N	\N	36	2019-07-09 14:59:41.296373	2019-07-09 14:13:39.676062	::1	::1	_HTesz_1yA4pScDsBK-y	2019-06-12 16:17:30.891527	2019-06-12 16:17:27.676025	2019-06-12 16:17:27.675839	2019-07-09 14:59:41.29835	1
 \.
 
 
@@ -838,7 +841,7 @@ SELECT pg_catalog.setval('public.flows_steps_id_seq', 219, true);
 -- Name: site_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: abhishek
 --
 
-SELECT pg_catalog.setval('public.site_credentials_id_seq', 7, true);
+SELECT pg_catalog.setval('public.site_credentials_id_seq', 8, true);
 
 
 --
