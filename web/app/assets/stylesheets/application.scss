@@ -1,9 +1,9 @@
-$primary: darken(#3A008C, 0%) !default; // #337ab7
+$primary: darken(#160033, 0%) !default; // #337ab7
 $secondary: #FF6C36;
-$success: #55DDE0 !default;
-$info: #202C39 !default;
-$warning: #F7B267 !default;
-$danger: #A4243B !default;
+$success: #05A8AA !default;
+$info: #333 !default;
+$warning: #ffb800 !default;
+$danger: #840032 !default;
 
 @import 'bootstrap';
 @import 'customize';

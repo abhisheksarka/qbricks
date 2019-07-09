@@ -10,6 +10,7 @@ class Api::SiteCredentialsController < Api::BaseController
       password: site_credential_params[:password]
     )
     invoke_browser(sc.site, sc.dataset)
+    sc.update_attributes!(connected_at: Time.zone.now)
     respond_with_success sc.attributes
   end
 
@@ -19,6 +20,7 @@ class Api::SiteCredentialsController < Api::BaseController
       password: site_credential_params[:password]
     )
     invoke_browser(@site_credentials.site, @site_credentials.dataset)
+    @site_credentials.update_attributes!(connected_at: Time.zone.now)
     respond_with_success @site_credentials.attributes
   end
 

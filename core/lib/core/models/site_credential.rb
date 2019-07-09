@@ -15,6 +15,10 @@ class SiteCredential < ApplicationRecord
     }
   end
 
+  def connected?
+    connected_at.present?
+  end
+
   def run!
     Core::Services::Browser.new(site, dataset).run!
   end
